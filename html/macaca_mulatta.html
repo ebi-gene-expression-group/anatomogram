@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/jquery-ui/css/jquery-ui.min.css">
+
+    <script type="text/javascript" src="../dist/vendor.bundle.js"></script>
+    <script type="text/javascript" src="../dist/anatomogramRenderer.bundle.js"></script>
+</head>
+<body>
+    <div id="main">
+    </div>
+</body>
+
+<script>
+    var anatomogramData =
+    {
+        "maleAnatomogramFile": "macaca_mulatta.svg",
+        "toggleButtonMaleImageTemplate": "",
+        "femaleAnatomogramFile": "",
+        "toggleButtonFemaleImageTemplate": "",
+        "brainAnatomogramFile": "",
+        "toggleButtonBrainImageTemplate": "",
+        "allSvgPathIds": ["UBERON_0000955", "UBERON_0000451", "UBERON_0002037", "UBERON_0000948", "UBERON_0002113", "UBERON_0002107", "UBERON_0000473"]
+    };
+
+    var profileRows = [
+//        {
+//            "name": "Profile name",
+//            "expressions": [
+//                {
+//                    "factorName": "heart",
+//                    "value": "1",
+//                    "svgPathId": "UBERON_0000948"
+//                },
+//                {
+//                    "factorName": "hippocampus",
+//                    "value": "1",
+//                    "svgPathId": "EFO_0000530"
+//                },
+//                {
+//                    "factorName": "liver",
+//                    "value": "1",
+//                    "svgPathId": "UBERON_0002107"
+//                },
+//                {
+//                    "factorName": "lung",
+//                    "value": "1",
+//                    "svgPathId": "UBERON_0002048"
+//                },
+//                {
+//                    "factorName": "spleen",
+//                    "value": "1",
+//                    "svgPathId": "UBERON_0002106"
+//                },
+//                {
+//                    "factorName": "thymus",
+//                    "value": "1",
+//                    "svgPathId": "UBERON_0002370"
+//                }
+//            ]
+//        }
+    ];
+
+    anatomogramRenderer(anatomogramData, "red", "indigo", profileRows, document.getElementById('main'));
+</script>
+
+</html>
