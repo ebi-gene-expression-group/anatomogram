@@ -171,7 +171,7 @@ var Anatomogram = React.createClass({
             return str.indexOf("human") > -1;
         }
 
-        var height = containsHuman(this.props.anatomogramData.maleAnatomogramFile) ? "360" : "250";
+        var height = containsHuman(this.props.anatomogramData.maleAnatomogramFile) ? "375" : "265";
 
         return (
             <div className="gxaAnatomogram" style={{display: "table", paddingTop: "4px"}}>
@@ -227,6 +227,7 @@ var Anatomogram = React.createClass({
     _loadAnatomogram: function(svgFile) {
 
         var svgCanvas = Snap(ReactDOM.findDOMNode(this.refs.anatomogram)),
+            $svgCanvas = $(ReactDOM.findDOMNode(this.refs.anatomogram)),
             allElements = svgCanvas.selectAll("*");
 
         if (allElements) {
@@ -243,6 +244,11 @@ var Anatomogram = React.createClass({
                 displayAllOrganismPartsCallback(g);
                 registerHoverEventsCallback(g);
                 svgCanvas.append(g);
+                var img = fragment.select("#ccLogo");
+                var heightTranslate = $svgCanvas.height() - 15;
+                var widthTranslate = $svgCanvas.width() / 2 - 40;
+                img.transform("t"+widthTranslate+","+heightTranslate);
+                svgCanvas.append(img);
             }
         );
     },
