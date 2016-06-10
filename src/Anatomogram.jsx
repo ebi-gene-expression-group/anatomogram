@@ -447,10 +447,22 @@ var Anatomogram = React.createClass({
             </div>
         );
     },
+    _registerListenerIfNecessary(name, fn){
+        if (this.props.eventEmitter &&
+            this.props.eventEmitter._events &&
+            !this.props.eventEmitter._events.hasOwnProperty(name)){
+            this.props.eventEmitter.addListener(name, fn);
+          }
+    },
 
     componentDidMount: function() {
-        this.props.eventEmitter.addListener("gxaHeatmapColumnHoverChange", this._highlightPath);
-        this.props.eventEmitter.addListener("gxaHeatmapRowHoverChange", this._highlightRow);
+        this._registerListenerIfNecessary("gxaHeatmapColumnHoverChange", this._highlightPath);
+        this._registerListenerIfNecessary("gxaHeatmapRowHoverChange", this._highlightRow);
+    },
+
+    componentDidUpdate: function () {
+      this._registerListenerIfNecessary("gxaHeatmapColumnHoverChange", this._highlightPath);
+      this._registerListenerIfNecessary("gxaHeatmapRowHoverChange", this._highlightRow);
     },
 
     _handleChange: function(newSelectedId) {
