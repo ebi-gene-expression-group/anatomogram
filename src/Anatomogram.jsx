@@ -144,7 +144,7 @@ var AnatomogramImageParts = React.createClass({
   },
 
   statics: {
-    idsThatShouldBeStronglyHighlighted(properties){
+    idsThatShouldBeStronglyHighlighted: function(properties){
       return properties.idsHeatmapWantsHighlighted.concat(properties.idsMousedOver);
     }
   }
@@ -449,7 +449,8 @@ var Anatomogram = React.createClass({
             </div>
         );
     },
-    _registerListenerIfNecessary(name, fn){
+
+    _registerListenerIfNecessary: function(name, fn){
         if (this.props.eventEmitter &&
             this.props.eventEmitter._events &&
             !this.props.eventEmitter._events.hasOwnProperty(name)){
