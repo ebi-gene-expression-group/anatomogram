@@ -275,12 +275,19 @@ var AnatomogramImage = React.createClass({
                 });
           }.bind(this);
 
+          var attachCallbacks = function(svgElement,svgPathId){
+            if(svgElement){
+              svgElement.mouseover(function() {mouseoverCallback(svgPathId)});
+              svgElement.mouseout(function() {mouseoutCallback(svgPathId)});
+            }
+          }
+
           this.props.allSvgPathIds.forEach(function(svgPathId) {
-              var svgElement = svg.select("#" + svgPathId);
-              if (svgElement) {
-                  svgElement.mouseover(function() {mouseoverCallback(svgPathId)});
-                  svgElement.mouseout(function() {mouseoutCallback(svgPathId)});
-              }
+            var svgElement = svg.select("#" + svgPathId);
+            attachCallbacks(svgElement,svgPathId);
+            if(svgElement && svgElement.type === "use"){
+              attachCallbacks(svg.select(svgElement.node.getAttribute("xlink:href")),svgPathId);
+            }
           }, this);
       }
   },
