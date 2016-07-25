@@ -76,7 +76,7 @@ var AnatomogramImageParts = React.createClass({
   },
 
   _highlightSlightly: function(svgPathId) {
-    return {id: svgPathId, colour: this.props.expressedTissueColour, opacity: 0.7 };
+    return {id: svgPathId, colour: this.props.expressedTissueColour, opacity: 0.5 };
   },
 
   _highlightAsBackground: function(svgPathId) {
