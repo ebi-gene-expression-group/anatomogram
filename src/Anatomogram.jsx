@@ -405,17 +405,19 @@ var Anatomogram = React.createClass({
 
     _anatomogramSelectImageButtons : function(){
       return (
-        this._availableAnatomograms()
-        .map(function(availableAnatomogram) {
-           return(
-               <AnatomogramSelectImageButton
-                key={availableAnatomogram.id + "_toggle"}
-                anatomogramId={availableAnatomogram.id}
-                selected={this.state.selectedId === availableAnatomogram.id}
-                toggleSrcTemplate={availableAnatomogram.toggleSrcTemplate}
-                onClick={this._afterUserSelectedAnatomogram}/>
-           )
-        }.bind(this))
+        this._availableAnatomograms().length < 2
+        ? []
+        : this._availableAnatomograms()
+          .map(function(availableAnatomogram) {
+             return(
+                 <AnatomogramSelectImageButton
+                  key={availableAnatomogram.id + "_toggle"}
+                  anatomogramId={availableAnatomogram.id}
+                  selected={this.state.selectedId === availableAnatomogram.id}
+                  toggleSrcTemplate={availableAnatomogram.toggleSrcTemplate}
+                  onClick={this._afterUserSelectedAnatomogram}/>
+             )
+          }.bind(this))
       );
     },
 
