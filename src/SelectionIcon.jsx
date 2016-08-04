@@ -7,6 +7,8 @@ var $ = require('jquery');
 require('jquery-hc-sticky');
 require('jquery-ui-bundle');
 
+require('!style!css!less!./SelectionIcon.less');
+
 //*------------------------------------------------------------------*
 
 var SelectionIcon = React.createClass({
@@ -25,12 +27,20 @@ var SelectionIcon = React.createClass({
   },
   render: function(){
     return (
+      <div>
+      <span>Jquery on</span>
       <img ref="toggleButton" onClick={this.props.onClick} src={this._selectionIcon()}
            style={{width: "24px", height: "24px", padding: "2px"}}/>
+      <span>Jquery off</span>
+      <img className={"selection-icon"} onClick={this.props.onClick} src={this._selectionIcon()}/>
+    </div>
     )
   },
   _selectionIcon: function(){
-    return this.props.pathToFolderWithBundledResources+"/"+ require("../assets/icons/"+this.props.anatomogramType+"_"+(this.props.selected?"selected":"unselected")+".png");
+    return (
+      (this.props.pathToFolderWithBundledResources?this.props.pathToFolderWithBundledResources+"/":"")
+      + require("../assets/icons/"+this.props.anatomogramType+"_"+(this.props.selected?"selected":"unselected")+".png")
+    );
   },
   componentDidMount: function() {
       $(ReactDOM.findDOMNode(this.refs.toggleButton)).button();
