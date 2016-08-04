@@ -6,6 +6,8 @@ module.exports = {
     entry: {
 	    anatomogram: './index.js',
         anatomogramRenderer: './html/anatomogramRenderer.js',
+        iconsTest: './html/iconRenderer.js',
+        anatomogramPicturesTest:'./html/anatomogramPictureRenderer.js',
         dependencies: ['react', 'react-dom', 'jquery', 'jquery-hc-sticky', 'jquery-ui-bundle', 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js']
     },
 
@@ -29,7 +31,13 @@ module.exports = {
 
     module: {
         loaders: [
-            {test: /\.jsx$/, loader: 'babel'}
+            {test: /\.jsx$/, loader: 'babel'},
+            {test: /\.(jpe?g|png|gif|svg)$/i,
+                  loaders: [
+                            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                  	  'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                  ]
+              }
         ]
     },
 
