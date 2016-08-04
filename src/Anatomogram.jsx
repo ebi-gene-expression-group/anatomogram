@@ -9,41 +9,13 @@ var $ = require('jquery');
 require('jquery-hc-sticky');
 require('jquery-ui-bundle');
 var imagesAvailableForSpecies = require('./imagesAvailable.js');
+var AnatomogramSelectImageButton = require('./SelectionIcon.jsx');
 
 var Snap = require('imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js');
 
 var EventEmitter = require('events');
 
 //*------------------------------------------------------------------*
-
-var AnatomogramSelectImageButton = React.createClass({
-    propTypes: {
-        anatomogramId: React.PropTypes.string.isRequired,
-        selected: React.PropTypes.bool.isRequired,
-        toggleSrcTemplate: React.PropTypes.string.isRequired,
-        onClick: React.PropTypes.func.isRequired
-    },
-
-    render: function() {
-        var selectedToggleSrc = this.props.toggleSrcTemplate + "_selected.png",
-            unselectedToggleSrc = this.props.toggleSrcTemplate + "_unselected.png";
-
-        return(
-            <div>
-                <img ref="toggleButton" onClick={this._onClick} src={this.props.selected ? selectedToggleSrc : unselectedToggleSrc}
-                     style={{width: "24px", height: "24px", padding: "2px"}}/>
-            </div>
-        );
-    },
-
-    componentDidMount: function() {
-        $(ReactDOM.findDOMNode(this.refs.toggleButton)).button();
-    },
-
-    _onClick: function() {
-        this.props.onClick(this.props.anatomogramId);
-    }
-});
 
 var AnatomogramImageParts = React.createClass({
   propTypes: {
@@ -119,7 +91,17 @@ var AnatomogramImageParts = React.createClass({
 
 var AnatomogramImage = React.createClass({
   propTypes: {
-    file: React.PropTypes.string.isRequired,
+    file: function(props, propName,componentName){
+      if(propName === "file"){
+        if(typeof props[propName]!== "string"){
+          return new Error("Expected string to specify file, got: "+props[propName]);
+        }
+        if(!props[propName]){
+          return new Error("Path to file empty!");
+        }
+      }
+      return "";
+    },
     height: React.PropTypes.string.isRequired,
     expressedFactorsPerRow: React.PropTypes.object.isRequired,
     allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
@@ -346,30 +328,22 @@ var Anatomogram = React.createClass({
     },
 
     _availableAnatomograms: function() {
-      return (
-        [].concat(
-          this.props.anatomogramData.maleAnatomogramFile ? [{
-            id: "male",
-            anatomogramFile: this.props.atlasBaseURL + "/resources/svg/" + this.props.anatomogramData.maleAnatomogramFile,
-            toggleSrcTemplate: this.props.atlasBaseURL + this.props.anatomogramData.toggleButtonMaleImageTemplate
-          }]: [],
-          this.props.anatomogramData.femaleAnatomogramFile ? [{
-            id: "female",
-            anatomogramFile: this.props.atlasBaseURL + "/resources/svg/" + this.props.anatomogramData.femaleAnatomogramFile,
-            toggleSrcTemplate: this.props.atlasBaseURL + this.props.anatomogramData.toggleButtonFemaleImageTemplate
-          }] : [],
-          this.props.anatomogramData.brainAnatomogramFile ? [{
-            id: "brain",
-            anatomogramFile: this.props.atlasBaseURL + "/resources/svg/" + this.props.anatomogramData.brainAnatomogramFile,
-            toggleSrcTemplate: this.props.atlasBaseURL + this.props.anatomogramData.toggleButtonBrainImageTemplate          }] : []
-        )
-      );
+      var result = [];
+      var o = imagesAvailableForSpecies(this.props.anatomogramData.species);
+      for(var anatomogramType in o){
+        if(o.hasOwnProperty(anatomogramType)&& o[anatomogramType]){
+          result.push({
+            type:anatomogramType,
+            anatomogramFile: this.props.pathToFolderWithBundledResources+"/"+o[anatomogramType],
+          })
+        }
+      }
+      return result;
     },
 
     getInitialState: function() {
         return {
-          availableAnatomograms: imagesAvailableForSpecies(this.props.anatomogramData.species),
-          selectedId: this._availableAnatomograms()[0].id,
+          selectedType: this._availableAnatomograms()[0].type,
         };
     },
 
@@ -385,9 +359,9 @@ var Anatomogram = React.createClass({
                       {this._anatomogramSelectImageButtons()}
                     </div>
                     <AnatomogramImage
-                      key={this.state.selectedId}
+                      key={this.state.selectedType}
                       ref="currentImage"
-                      file={this._getAnatomogramSVGFile(this.state.selectedId)}
+                      file={this._getAnatomogramSVGFile(this.state.selectedType)}
                       height={containsHuman(this.props.anatomogramData.maleAnatomogramFile) ? "375" : "265"}
                       expressedFactorsPerRow={
                         this.props.profileRows
@@ -418,11 +392,11 @@ var Anatomogram = React.createClass({
           .map(function(availableAnatomogram) {
              return(
                  <AnatomogramSelectImageButton
-                  key={availableAnatomogram.id + "_toggle"}
-                  anatomogramId={availableAnatomogram.id}
-                  selected={this.state.selectedId === availableAnatomogram.id}
-                  toggleSrcTemplate={availableAnatomogram.toggleSrcTemplate}
-                  onClick={this._afterUserSelectedAnatomogram}/>
+                  key={availableAnatomogram.type + "_toggle"}
+                  pathToFolderWithBundledResources={this.props.pathToFolderWithBundledResources}
+                  anatomogramType={availableAnatomogram.type}
+                  selected={this.state.selectedType === availableAnatomogram.type}
+                  onClick={function(){this._afterUserSelectedAnatomogram(availableAnatomogram.type);}.bind(this)}/>
              )
           }.bind(this))
       );
@@ -446,9 +420,9 @@ var Anatomogram = React.createClass({
       this._registerListenerIfNecessary("gxaHeatmapRowHoverChange", this._highlightRow);
     },
 
-    _afterUserSelectedAnatomogram: function(newSelectedId) {
-        if (newSelectedId !== this.state.selectedId) {
-            this.setState({selectedId: newSelectedId});
+    _afterUserSelectedAnatomogram: function(newSelectedType) {
+        if (newSelectedType !== this.state.selectedType) {
+            this.setState({selectedType: newSelectedType});
         }
     },
 
@@ -460,12 +434,12 @@ var Anatomogram = React.createClass({
       this.refs.currentImage._highlightRow(rowId);
     },
 
-    _getAnatomogramSVGFile: function(id) {
+    _getAnatomogramSVGFile: function(type) {
       return (
         this._availableAnatomograms()
         .filter(function(e,ix){
           return (
-            e.id === id
+            e.type === type
           )
         })
         .map(function(e){

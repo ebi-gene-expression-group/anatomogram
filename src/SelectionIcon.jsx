@@ -1,10 +1,17 @@
 "use strict";
 //*------------------------------------------------------------------*
 var React = require('react');
+var ReactDOM = require('react-dom');
+
+var $ = require('jquery');
+require('jquery-hc-sticky');
+require('jquery-ui-bundle');
+
 //*------------------------------------------------------------------*
 
 var SelectionIcon = React.createClass({
   propTypes: {
+    pathToFolderWithBundledResources:React.PropTypes.string.isRequired,
     anatomogramType: function(props, propName,componentName){
       if(propName === "anatomogramType"){
         if(["brain","female","male","whole_plant","flower_parts"].indexOf(props[propName])<0){
@@ -23,9 +30,12 @@ var SelectionIcon = React.createClass({
     )
   },
   _selectionIcon: function(){
-    return require("../assets/icons/"+this.props.anatomogramType+"_"+(this.props.selected?"selected":"unselected")+".png");
+    return this.props.pathToFolderWithBundledResources+"/"+ require("../assets/icons/"+this.props.anatomogramType+"_"+(this.props.selected?"selected":"unselected")+".png");
+  },
+  componentDidMount: function() {
+      $(ReactDOM.findDOMNode(this.refs.toggleButton)).button();
   }
-})
+});
 
 //*------------------------------------------------------------------*
 
