@@ -7,7 +7,7 @@ var ReactDOM = require('react-dom');
 
 //*------------------------------------------------------------------*
 
-var svgsForSpecies = require('../src/svgForSpecies.js');
+var svgsForSpecies = require('../src/imagesAvailable.js');
 
 var EventEmitter = require('events');
 

@@ -8,6 +8,7 @@ var ReactDOM = require('react-dom');
 var $ = require('jquery');
 require('jquery-hc-sticky');
 require('jquery-ui-bundle');
+var imagesAvailableForSpecies = require('./imagesAvailable.js');
 
 var Snap = require('imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js');
 
@@ -318,7 +319,12 @@ var AnatomogramImage = React.createClass({
 var Anatomogram = React.createClass({
 
     propTypes: {
-        anatomogramData: React.PropTypes.object.isRequired,
+        pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
+        anatomogramData: React.PropTypes.shape({
+          species: React.PropTypes.string.isRequired,
+          allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+          /** There may also be other properties sent for compatibility with the older widget.*/
+        }).isRequired,
         expressedTissueColour: React.PropTypes.string.isRequired,
         hoveredTissueColour: React.PropTypes.string.isRequired,
         profileRows: React.PropTypes.arrayOf(
@@ -362,7 +368,8 @@ var Anatomogram = React.createClass({
 
     getInitialState: function() {
         return {
-            selectedId: this._availableAnatomograms()[0].id,
+          availableAnatomograms: imagesAvailableForSpecies(this.props.anatomogramData.species),
+          selectedId: this._availableAnatomograms()[0].id,
         };
     },
 
