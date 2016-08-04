@@ -9,9 +9,6 @@
   "dependencies": {
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "jquery": "^2.2.1",
-    "jquery-hc-sticky": "git+https://github.com/alfonsomunozpomer/hc-sticky.git",
-    "jquery-ui-bundle": "^1.11.4",
     "snapsvg": "^0.4.0"
   },
   "devDependencies": {

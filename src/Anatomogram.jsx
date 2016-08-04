@@ -5,9 +5,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var $ = require('jquery');
-require('jquery-hc-sticky');
-require('jquery-ui-bundle');
 var imagesAvailableForSpecies = require('./imagesAvailable.js');
 var AnatomogramSelectImageButton = require('./SelectionIcon.jsx');
 
@@ -203,7 +200,6 @@ var AnatomogramImage = React.createClass({
   _loadAnatomogram: function(svgFile) {
 
       var svgCanvas = Snap(ReactDOM.findDOMNode(this.refs.anatomogram)),
-          $svgCanvas = $(ReactDOM.findDOMNode(this.refs.anatomogram)),
           allElements = svgCanvas.selectAll("*");
 
       if (allElements) {
@@ -221,8 +217,8 @@ var AnatomogramImage = React.createClass({
               registerHoverEventsCallback(g);
               svgCanvas.append(g);
               var img = fragment.select("#ccLogo");
-              var heightTranslate = $svgCanvas.height() - 15;
-              var widthTranslate = $svgCanvas.width() / 2 - 40;
+              var heightTranslate = svgCanvas.node.clientHeight - 15;
+              var widthTranslate = svgCanvas.node.clientWidth / 2 - 40;
               img.transform("t"+widthTranslate+","+heightTranslate);
               svgCanvas.append(img);
           }
