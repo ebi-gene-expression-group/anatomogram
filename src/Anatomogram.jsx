@@ -5,8 +5,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var imagesAvailableForSpecies = require('./imagesAvailable.js');
-
 var AnatomogramImage = require('./AnatomogramImage.jsx');
 var SelectionIcon = require('./SelectionIcon.jsx');
 
@@ -17,48 +15,23 @@ var EventEmitter = require('events');
 var Anatomogram = React.createClass({
     propTypes: {
         pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
-        anatomogramData: React.PropTypes.shape({
-          species: React.PropTypes.string.isRequired,
-          allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
-          /** There may also be other properties sent for compatibility with the older widget.*/
-        }).isRequired,
         expressedTissueColour: React.PropTypes.string.isRequired,
         hoveredTissueColour: React.PropTypes.string.isRequired,
-        profileRows: React.PropTypes.arrayOf(
-            React.PropTypes.shape({
-                id: React.PropTypes.string,
-                name: React.PropTypes.string.isRequired,
-                expressions: React.PropTypes.arrayOf(
-                    React.PropTypes.shape({
-                        factorName: React.PropTypes.string,
-                        color: React.PropTypes.string,
-                        value: React.PropTypes.number, // missing represents "NA"/"NT"
-                        svgPathId: React.PropTypes.string
-                    })
-                ).isRequired
-            })
-        ).isRequired,
-        eventEmitter: React.PropTypes.instanceOf(EventEmitter),
-        atlasBaseURL: React.PropTypes.string.isRequired
-    },
-
-    _availableAnatomograms: function() {
-      var result = [];
-      var o = imagesAvailableForSpecies(this.props.anatomogramData.species);
-      for(var anatomogramType in o){
-        if(o.hasOwnProperty(anatomogramType)&& o[anatomogramType]){
-          result.push({
-            type:anatomogramType,
-            anatomogramFile: this.props.pathToFolderWithBundledResources+"/"+o[anatomogramType],
+        expressedFactorsPerRow: React.PropTypes.object.isRequired,
+        availableAnatomograms : React.PropTypes.arrayOf(
+          React.PropTypes.shape({
+            type: React.PropTypes.string.isRequired,
+            anatomogramFile: React.PropTypes.string.isRequired
           })
-        }
-      }
-      return result;
+        ).isRequired,
+        height: React.PropTypes.number.isRequired,
+        eventEmitter: React.PropTypes.instanceOf(EventEmitter),
+        allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
     },
 
     getInitialState: function() {
         return {
-          selectedType: this._availableAnatomograms()[0].type,
+          selectedType: this.props.availableAnatomograms[0].type,
         };
     },
 
@@ -76,24 +49,8 @@ var Anatomogram = React.createClass({
                     <AnatomogramImage
                       key={this.state.selectedType}
                       ref="currentImage"
-                      file={this._getAnatomogramSVGFile(this.state.selectedType)}
-                      height={containsHuman(this.props.anatomogramData.maleAnatomogramFile) ? "375" : "265"}
-                      expressedFactorsPerRow={
-                        this.props.profileRows
-                        .reduce(function(result,row){
-                          result[row.name] =
-                            row.expressions.filter(function(expression){
-                              return expression.value;
-                            })
-                            .map(function(expression){
-                              return expression.svgPathId
-                            });
-                          return result;
-                        },{})}
-                      allSvgPathIds={this.props.anatomogramData.allSvgPathIds}
-                      eventEmitter={this.props.eventEmitter}
-                      expressedTissueColour={this.props.expressedTissueColour}
-                      hoveredTissueColour={this.props.hoveredTissueColour}/>
+                      file={this._selectedFile()}
+                      {...this.props} />
                 </div>
             </div>
         );
@@ -101,9 +58,9 @@ var Anatomogram = React.createClass({
 
     _anatomogramSelectImageButtons : function(){
       return (
-        this._availableAnatomograms().length < 2
+        this.props.availableAnatomograms.length < 2
         ? []
-        : this._availableAnatomograms()
+        : this.props.availableAnatomograms
           .map(function(availableAnatomogram) {
              return(
                  <SelectionIcon
@@ -149,9 +106,10 @@ var Anatomogram = React.createClass({
       this.refs.currentImage._highlightRow(rowId);
     },
 
-    _getAnatomogramSVGFile: function(type) {
+    _selectedFile: function() {
+      var type = this.state.selectedType;
       return (
-        this._availableAnatomograms()
+        this.props.availableAnatomograms
         .filter(function(e,ix){
           return (
             e.type === type

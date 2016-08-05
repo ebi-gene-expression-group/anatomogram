@@ -93,7 +93,7 @@ var AnatomogramImage = React.createClass({
       }
       return "";
     },
-    height: React.PropTypes.string.isRequired,
+    height: React.PropTypes.number.isRequired,
     expressedFactorsPerRow: React.PropTypes.object.isRequired,
     allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     expressedTissueColour: React.PropTypes.string.isRequired,
