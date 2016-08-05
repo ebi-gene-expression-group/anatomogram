@@ -69,16 +69,19 @@ var _availableAnatomograms= function(species,pathToFolderWithBundledResources) {
 
 var create = function(args){
   validate(args,argumentShape);
+  var availableAnatomograms= _availableAnatomograms(args.anatomogramData.species, args.pathToFolderWithBundledResources);
   return(
-    <Anatomogram
-      pathToFolderWithBundledResources={args.pathToFolderWithBundledResources}
-      expressedTissueColour={args.expressedTissueColour}
-      hoveredTissueColour={args.hoveredTissueColour}
-      expressedFactorsPerRow={_expressedFactorsPerRow(args.profileRows)}
-      availableAnatomograms= {_availableAnatomograms(args.anatomogramData.species, args.pathToFolderWithBundledResources)}
-      height={args.anatomogramData.species.indexOf("homo sapiens")>-1 ? 375 : 265}
-      eventEmitter={args.eventEmitter}
-      allSvgPathIds={args.anatomogramData.allSvgPathIds}  />
+    availableAnatomograms.length
+      ? <Anatomogram
+          pathToFolderWithBundledResources={args.pathToFolderWithBundledResources}
+          expressedTissueColour={args.expressedTissueColour}
+          hoveredTissueColour={args.hoveredTissueColour}
+          expressedFactorsPerRow={_expressedFactorsPerRow(args.profileRows)}
+          availableAnatomograms= {availableAnatomograms}
+          height={args.anatomogramData.species.indexOf("homo sapiens")>-1 ? 375 : 265}
+          eventEmitter={args.eventEmitter}
+          allSvgPathIds={args.anatomogramData.allSvgPathIds}  />
+      : null
   );
 }
 
