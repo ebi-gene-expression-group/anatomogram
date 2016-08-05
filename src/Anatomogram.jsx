@@ -295,7 +295,6 @@ var AnatomogramImage = React.createClass({
 
 
 var Anatomogram = React.createClass({
-
     propTypes: {
         pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
         anatomogramData: React.PropTypes.shape({

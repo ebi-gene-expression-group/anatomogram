@@ -2,4 +2,4 @@
 
 //*------------------------------------------------------------------*
 
-module.exports = require('./src/Anatomogram.jsx');
+module.exports = require('./src/AnatomogramFactory.jsx');
