@@ -3,7 +3,7 @@
 
 var React = require('react');
 var EventEmitter = require('events');
-var validate = require('react-prop-types-check')
+var validate = require('react-prop-types-check');
 
 var Anatomogram = require('./Anatomogram.jsx');
 var imagesAvailableForSpecies = require('./imagesAvailable.js');
