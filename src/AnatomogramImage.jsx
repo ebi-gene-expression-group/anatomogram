@@ -211,10 +211,12 @@ var AnatomogramImage = React.createClass({
               registerHoverEventsCallback(g);
               svgCanvas.append(g);
               var img = fragment.select("#ccLogo");
-              var heightTranslate = svgCanvas.node.clientHeight - 15;
-              var widthTranslate = svgCanvas.node.clientWidth / 2 - 40;
-              img.transform("t"+widthTranslate+","+heightTranslate);
-              svgCanvas.append(img);
+              if(img){
+                var heightTranslate = svgCanvas.node.clientHeight - 15;
+                var widthTranslate = svgCanvas.node.clientWidth / 2 - 40;
+                img.transform("t"+widthTranslate+","+heightTranslate);
+                svgCanvas.append(img);
+              }
           }
       );
   },
