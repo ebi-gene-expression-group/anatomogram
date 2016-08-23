@@ -205,11 +205,12 @@ var AnatomogramImage = React.createClass({
       Snap.load(
           svgFile,
           function (fragment) {
-              var g = fragment.select("g");
-              g.transform("S1.6,0,0");
-              displayAllOrganismPartsCallback(g);
-              registerHoverEventsCallback(g);
-              svgCanvas.append(g);
+              fragment.selectAll("svg > g").forEach(function(g){
+                g.transform("S1.6,0,0");
+                displayAllOrganismPartsCallback(g);
+                registerHoverEventsCallback(g);
+                svgCanvas.append(g);
+              });
               var img = fragment.select("#ccLogo");
               if(img){
                 var heightTranslate = svgCanvas.node.clientHeight - 15;
