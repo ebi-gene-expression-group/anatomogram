@@ -125,12 +125,5 @@
        d="m 111.49032,81.325572 c 0.72254,-1.770244 1.14704,-3.106961 1.14704,-3.106961 0.61416,-2.276026 1.00253,-2.92632 1.00253,-2.92632 0.27096,-0.505784 0.33419,0.05419 0.33419,0.05419 l 0.0452,0.379337 c -0.0427,1.657446 -0.61979,4.056281 -1.01158,5.816515 -0.57804,0.614166 -1.51735,-0.216763 -1.51735,-0.216763 z"
        style="fill:none;stroke:none"
        transform="translate(-56.287609,2.2839147)" />
-    <image
-       xlink:href="https://licensebuttons.net/i/l/by/ffffff/33/99/33/80x15.png"
-       x="55"
-       y="0"
-       height="15"
-       width="80"
-       id="image3545" />
   </g>
-</svg>
+  <a id="ccLogo" xlink:href="http://www.ebi.ac.uk/gxa/licence.html"> <image  xlink:href="https://licensebuttons.net/i/l/by/ffffff/33/99/33/80x15.png" x="55" y="0" height="15" width="80" /></a></svg>
