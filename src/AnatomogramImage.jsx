@@ -205,10 +205,10 @@ var AnatomogramImage = React.createClass({
       Snap.load(
           svgFile,
           function (fragment) {
+              displayAllOrganismPartsCallback(fragment.select("#LAYER_EFO"));
+              registerHoverEventsCallback(fragment.select("#LAYER_EFO"));
               fragment.selectAll("svg > g").forEach(function(g){
                 g.transform("S1.6,0,0");
-                displayAllOrganismPartsCallback(g);
-                registerHoverEventsCallback(g);
                 svgCanvas.append(g);
               });
               var img = fragment.select("#ccLogo");
