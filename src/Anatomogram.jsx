@@ -8,8 +8,6 @@ var ReactDOM = require('react-dom');
 var AnatomogramImage = require('./AnatomogramImage.jsx');
 var SelectionIcon = require('./SelectionIcon.jsx');
 
-var EventEmitter = require('events');
-
 //*------------------------------------------------------------------*
 
 var Anatomogram = React.createClass({
@@ -17,7 +15,6 @@ var Anatomogram = React.createClass({
         pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
         expressedTissueColour: React.PropTypes.string.isRequired,
         hoveredTissueColour: React.PropTypes.string.isRequired,
-        expressedFactorsPerRow: React.PropTypes.object.isRequired,
         availableAnatomograms : React.PropTypes.arrayOf(
           React.PropTypes.shape({
             type: React.PropTypes.string.isRequired,
@@ -25,9 +22,9 @@ var Anatomogram = React.createClass({
           })
         ).isRequired,
         height: React.PropTypes.number.isRequired,
-        eventEmitter: React.PropTypes.instanceOf(EventEmitter),
         whenMousedOverIdsChange: React.PropTypes.func,
-        allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+        allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+        idsToBeHighlighted: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
     },
 
     getInitialState: function() {
@@ -75,36 +72,10 @@ var Anatomogram = React.createClass({
       );
     },
 
-    _registerListenerIfNecessary: function(name, fn){
-        if (this.props.eventEmitter &&
-            this.props.eventEmitter._events &&
-            !this.props.eventEmitter._events.hasOwnProperty(name)){
-            this.props.eventEmitter.addListener(name, fn);
-          }
-    },
-
-    componentDidMount: function() {
-        this._registerListenerIfNecessary("gxaHeatmapColumnHoverChange", this._highlightPath);
-        this._registerListenerIfNecessary("gxaHeatmapRowHoverChange", this._highlightRow);
-    },
-
-    componentDidUpdate: function () {
-      this._registerListenerIfNecessary("gxaHeatmapColumnHoverChange", this._highlightPath);
-      this._registerListenerIfNecessary("gxaHeatmapRowHoverChange", this._highlightRow);
-    },
-
     _afterUserSelectedAnatomogram: function(newSelectedType) {
         if (newSelectedType !== this.state.selectedType) {
             this.setState({selectedType: newSelectedType});
         }
-    },
-
-    _highlightPath: function(svgPathId) {
-        this.refs.currentImage._highlightPath(svgPathId);
-    },
-
-    _highlightRow: function(rowId) {
-      this.refs.currentImage._highlightRow(rowId);
     },
 
     _selectedFile: function() {

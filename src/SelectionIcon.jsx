@@ -25,6 +25,9 @@ var SelectionIcon = React.createClass({
       <img className={"selection-icon"} onClick={this.props.onClick} src={this._selectionIcon()}/>
     );
   },
+  shouldComponentUpdate: function(nextProps){
+    return this.props.selected !== nextProps.selected;
+  },
   _selectionIcon: function(){
     return (
       (this.props.pathToFolderWithBundledResources?this.props.pathToFolderWithBundledResources+"/":"")

@@ -113,8 +113,9 @@ var AnatomogramImage = React.createClass({
       return "";
     },
     height: React.PropTypes.number.isRequired,
-    expressedFactorsPerRow: React.PropTypes.object.isRequired,
     allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+    idsExpressedInExperiment: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+    idsToBeHighlighted: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     expressedTissueColour: React.PropTypes.string.isRequired,
     hoveredTissueColour: React.PropTypes.string.isRequired,
     whenMousedOverIdsChange: React.PropTypes.func
@@ -122,20 +123,8 @@ var AnatomogramImage = React.createClass({
 
   getInitialState: function() {
     return {
-      hoveredPathId: null,
-      hoveredRowId: null,
       mousedOverSvgIds: []
     };
-  },
-  _expressedFactors: function(){
-    var o = this.props.expressedFactorsPerRow;
-    var vs = Object.keys(o).map(function(e){return o[e];});
-    return (
-      [].concat.apply({},vs)
-      .filter(function uniq(e, ix, self) {
-          return self.indexOf(e) === ix;
-      })
-    );
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -175,16 +164,15 @@ var AnatomogramImage = React.createClass({
     var idsExpressedInExperiment =[],
         idsHoveredOver=[],
         idsHeatmapWantsHighlighted = [],
-        idsNotHighlighted = [],
-        expressedFactors = this._expressedFactors();
+        idsNotHighlighted = [];
 
     for(var i = 0 ; i< this.props.allSvgPathIds.length; i++){
       var id = this.props.allSvgPathIds[i];
       if(this.state.mousedOverSvgIds.indexOf(id)>-1){
         idsHoveredOver.push(id);
-      } else if(this._hoveredRowContainsPathId(id) || this.state.hoveredPathId === id){
+      } else if(this.props.idsToBeHighlighted.indexOf(id)>-1){
         idsHeatmapWantsHighlighted.push(id);
-      } else if(expressedFactors.indexOf(id)>-1){
+      } else if(this.props.idsExpressedInExperiment.indexOf(id)>-1){
         idsExpressedInExperiment.push(id);
       } else {
         idsNotHighlighted.push(id);
@@ -205,10 +193,6 @@ var AnatomogramImage = React.createClass({
 
   _highlightPath: function(svgPathId) {
       this.setState({hoveredPathId: svgPathId});
-  },
-
-  _highlightRow: function(rowId) {
-      this.setState({hoveredRowId: rowId});
   },
 
   _loadAnatomogram: function(svgFile) {
@@ -251,7 +235,6 @@ var AnatomogramImage = React.createClass({
   _registerHoverEvents: function(svg) {
       if (svg) {  // Sometimes svg is null... why?
           var mouseoverCallback = function(svgPathId) {
-              this.props.eventEmitter.emit('gxaAnatomogramTissueMouseEnter', svgPathId);
               this.setState(function(previousState, currentProps){
                   var a = [].concat(previousState.mousedOverSvgIds);
                   a.push(svgPathId);
@@ -262,7 +245,6 @@ var AnatomogramImage = React.createClass({
               });
           }.bind(this);
           var mouseoutCallback = function(svgPathId) {
-              this.props.eventEmitter.emit('gxaAnatomogramTissueMouseLeave', svgPathId);
               this.setState(function(previousState, currentProps){
                   var a = previousState.mousedOverSvgIds.map(
                       function(el){return el===svgPathId ? "" : el}
