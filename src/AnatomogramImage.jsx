@@ -3,10 +3,21 @@
 //*------------------------------------------------------------------*
 var React = require('react');
 var ReactDOM = require('react-dom');
-
+var validate = require('react-prop-types-check');
 var Snap = require('imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js');
 
 //*------------------------------------------------------------------*
+
+//http://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
+var arraysEqual = function (a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+};
 
 var AnatomogramImageParts = React.createClass({
   propTypes: {
@@ -15,7 +26,12 @@ var AnatomogramImageParts = React.createClass({
     idsMousedOver: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     idsNotHighlighted: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     expressedTissueColour: React.PropTypes.string.isRequired,
-    hoveredTissueColour: React.PropTypes.string.isRequired
+    hoveredTissueColour: React.PropTypes.string.isRequired,
+    whenMousedOverIdsChange: React.PropTypes.func
+  },
+
+  getDefaultProps: function(){
+    return ({whenMousedOverIdsChange: function(nextIds,oldIds){}});
   },
 
   getInitialState: function () {
@@ -48,6 +64,9 @@ var AnatomogramImageParts = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
+    if(!arraysEqual(nextProps.idsMousedOver, this.props.idsMousedOver)){
+      this.props.whenMousedOverIdsChange(nextProps.idsMousedOver,this.props.idsMousedOver);
+    }
     var oldStrong = AnatomogramImageParts.idsThatShouldBeStronglyHighlighted(this.props);
     var newStrong = AnatomogramImageParts.idsThatShouldBeStronglyHighlighted(nextProps);
     var oldWeak = this.props.idsExpressedInExperiment;
@@ -97,7 +116,8 @@ var AnatomogramImage = React.createClass({
     expressedFactorsPerRow: React.PropTypes.object.isRequired,
     allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     expressedTissueColour: React.PropTypes.string.isRequired,
-    hoveredTissueColour: React.PropTypes.string.isRequired
+    hoveredTissueColour: React.PropTypes.string.isRequired,
+    whenMousedOverIdsChange: React.PropTypes.func
   },
 
   getInitialState: function() {

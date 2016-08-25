@@ -26,6 +26,7 @@ var Anatomogram = React.createClass({
         ).isRequired,
         height: React.PropTypes.number.isRequired,
         eventEmitter: React.PropTypes.instanceOf(EventEmitter),
+        whenMousedOverIdsChange: React.PropTypes.func,
         allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
     },
 

@@ -67,6 +67,22 @@ var _availableAnatomograms= function(species,pathToFolderWithBundledResources) {
   return result;
 };
 
+var callEmitterWhenMousedOverTissuesChange = function(eventEmitter){
+  var forEachXNotInYsEmit = function(xs, ys, eventName){
+    xs
+    .filter(function(id){
+      return ys.indexOf(id)>-1;
+    })
+    .forEach(function(id){
+      eventEmitter.emit(eventName, id);
+    });
+  }
+  return function emitEvents(nextIds,previousIds){
+    forEachXNotInYsEmit(nextIds, previousIds, 'gxaAnatomogramTissueMouseEnter');
+    forEachXNotInYsEmit(previousIds,nextIds, 'gxaAnatomogramTissueMouseLeave');
+  }
+}
+
 var create = function(args){
   validate(args,argumentShape);
   var availableAnatomograms= _availableAnatomograms(args.anatomogramData.species, args.pathToFolderWithBundledResources);
@@ -80,6 +96,13 @@ var create = function(args){
           availableAnatomograms= {availableAnatomograms}
           height={args.anatomogramData.species.indexOf("homo sapiens")>-1 ? 375 : 265}
           eventEmitter={args.eventEmitter}
+          whenMousedOverIdsChange={
+            args.whenMousedOverIdsChange
+            || (
+              args.eventEmitter
+              ? callEmitterWhenMousedOverTissuesChange(args.eventEmitter)
+              : function(){}
+            )}
           allSvgPathIds={args.anatomogramData.allSvgPathIds}  />
       : null
   );
