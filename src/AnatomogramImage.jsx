@@ -62,6 +62,9 @@ var AnatomogramImageParts = React.createClass({
   _highlightAsBackground: function(svgPathId) {
     return {id: svgPathId, colour: "gray", opacity: 0.5 };
   },
+  componentWillUnmount: function(){
+    this.props.whenMousedOverIdsChange([],this.props.idsMousedOver);
+  },
 
   componentWillReceiveProps: function(nextProps) {
     if(!arraysEqual(nextProps.idsMousedOver, this.props.idsMousedOver)){
@@ -224,12 +227,6 @@ var AnatomogramImage = React.createClass({
               }
           }
       );
-  },
-
-  _hoveredRowContainsPathId: function(svgPathId) {
-    return (this.state.hoveredRowId
-            && this.props.expressedFactorsPerRow.hasOwnProperty(this.state.hoveredRowId)
-            && this.props.expressedFactorsPerRow[this.state.hoveredRowId].indexOf(svgPathId) > -1 );
   },
 
   _registerHoverEvents: function(svg) {

@@ -64,7 +64,6 @@ var create = function(args){
           hoveredTissueColour={args.hoveredTissueColour}
           availableAnatomograms= {availableAnatomograms}
           height={args.anatomogramData.species.indexOf("homo sapiens")>-1 ? 375 : 265}
-          eventEmitter={args.eventEmitter}
           whenMousedOverIdsChange={
             args.whenMousedOverIdsChange
             || (
