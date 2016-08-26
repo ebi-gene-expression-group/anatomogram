@@ -41,7 +41,7 @@ var callEmitterWhenMousedOverTissuesChange = function(eventEmitter){
   var forEachXNotInYsEmit = function(xs, ys, eventName){
     xs
     .filter(function(id){
-      return ys.indexOf(id)>-1;
+      return ys.indexOf(id)==-1;
     })
     .forEach(function(id){
       eventEmitter.emit(eventName, id);

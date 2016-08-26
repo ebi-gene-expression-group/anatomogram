@@ -190,7 +190,8 @@ var AnatomogramImage = React.createClass({
             idsMousedOver={idsHoveredOver}
             idsNotHighlighted={idsNotHighlighted}
             expressedTissueColour={this.props.expressedTissueColour}
-            hoveredTissueColour={this.props.hoveredTissueColour}/>
+            hoveredTissueColour={this.props.hoveredTissueColour}
+            whenMousedOverIdsChange={this.props.whenMousedOverIdsChange}/>
       </span>);
   },
 
