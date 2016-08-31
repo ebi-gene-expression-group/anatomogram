@@ -2,7 +2,7 @@
 //*------------------------------------------------------------------*
 var React = require('react');
 
-require('!style!css!less!./SelectionIcon.less');
+require('./SelectionIcon.less');
 
 //*------------------------------------------------------------------*
 

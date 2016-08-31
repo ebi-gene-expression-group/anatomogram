@@ -1,0 +1,26 @@
+@asideWidth: 270px;
+#gxaAnatomogramWrapper {
+  .clearfix;
+  position: relative;
+  overflow: hidden;
+  marginLeft: @asideWidth;
+};
+
+#gxaAnatomogramAside {
+    float: left;
+    max-width: @asideWidth;
+};
+
+.clearfix {
+  display: block;
+  zoom: 1;
+
+  &:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+};

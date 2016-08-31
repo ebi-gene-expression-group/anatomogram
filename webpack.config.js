@@ -31,8 +31,9 @@ module.exports = {
 
     module: {
         loaders: [
-            {test: /\.jsx$/, loader: 'babel'},
-            {test: /\.less$/, loader: 'style-loader!less-loader'},
+            {test: /\.jsx$/, loader: 'babel'},bla
+            {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
+            {test: /\.json$/, loader: 'json'},
             {test: /\.(jpe?g|png|gif|svg)$/i,
                   loaders: [
                             'file?hash=sha512&digest=hex&name=[hash].[ext]',
