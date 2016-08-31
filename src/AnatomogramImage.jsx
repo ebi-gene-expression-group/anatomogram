@@ -153,8 +153,13 @@ var AnatomogramImage = React.createClass({
     }
   },
   _drawInitialLayout: function(svg){
-    this._drawOnSvg(svg,this.refs.imageParts.getInitialState().toDraw);
-    this.refs.imageParts.setState({toDraw:[]});
+    if(this.refs.imageParts){
+      this._drawOnSvg(svg,this.refs.imageParts.getInitialState().toDraw);
+      this.refs.imageParts.setState({toDraw:[]});
+    } else {
+      //Possibly the other component has not loaded yet so there are no refs.
+      //Interminnently throws an error in the console.
+    }
   },
 
   _drawOnSvg: function(svg, instructions){
