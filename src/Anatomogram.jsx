@@ -3,7 +3,6 @@
 //*------------------------------------------------------------------*
 
 var React = require('react');
-var ReactDOM = require('react-dom');
 
 var AnatomogramImage = require('./AnatomogramImage.jsx');
 var SelectionIcon = require('./SelectionIcon.jsx');
