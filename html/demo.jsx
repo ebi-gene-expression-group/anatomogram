@@ -66,12 +66,14 @@ var DemoContainer = React.createClass({
   _getOntologyIdsForChosenSpecies: function(){
     return (
       [].concat.apply([],
-        getSvgsForSpecies(this.props.species).map(function(el){
+        getSvgsForSpecies(this.props.species)
+        .map(function(el){
           return el.ids;
         })
       ).filter(function uniq(el,ix,self){
         return self.indexOf(el)==ix
       })
+      .sort()
     );
   },
   getInitialState: function(){

@@ -1,11 +1,10 @@
 {
   "name": "anatomogram",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Expression Atlas anatomogram",
   "main": "index.js",
-  "author": "Wojchech Bazant <wbazant@ebi.ac.uk>, Elisabet Barrera <barrera@ebi.ac.uk> and Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
-  "license": "Apache 2.0",
-  "private": true,
+  "author": "Wojtek Bazant <wbazant@ebi.ac.uk>, Elisabet Barrera <barrera@ebi.ac.uk> and Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
+  "license": "custom",
   "dependencies": {
     "react": "^0.14.7",
     "react-dom": "^0.14.7",

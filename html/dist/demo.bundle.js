@@ -2228,7 +2228,7 @@ webpackJsonp_name_([1],[
 	      return el.ids;
 	    })).filter(function uniq(el, ix, self) {
 	      return self.indexOf(el) == ix;
-	    });
+	    }).sort();
 	  },
 	  getInitialState: function getInitialState() {
 	    return {
