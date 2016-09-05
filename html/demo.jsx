@@ -26,9 +26,9 @@ var DemoComponent = React.createClass({
   },
   render: function(){
     return (
-      <div>
-        <p> This is the component stubbing out the Expression Atlas heatmap </p>
-        <div> Select of one or more ontologyIds- corresponds to hover events in heatmap</div>
+      <div style={{backgroundColor:"beige", minHeight:"280px", maxWidth:"450px"}}>
+        <h4> A demo component stubbing out the heatmap </h4>
+        <div> <i>Select of one or more ontologyIds- corresponds to hover events in heatmap</i></div>
         <select style={{height: '100px'}} multiple={true} value={this.state.ontologyIdsUnderFocus}
           onChange={function(ev){
             var selectedId = ev.target.value;
@@ -55,6 +55,7 @@ var DemoComponent = React.createClass({
             <span key={el}>{el}</span>
           )
         })}
+        {this.props.ontologyIdsToHighlight.length? null : "None"}
     </div>
 
     )
@@ -86,7 +87,7 @@ var DemoContainer = React.createClass({
       anatomogramData: {
         species: this.props.species
       },
-      expressedTissueColour: "fireBrick",
+      expressedTissueColour: "red",
       hoveredTissueColour: "purple",
       idsExpressedInExperiment: this.state.idsExpressedInExperiment
     }
@@ -133,7 +134,8 @@ var Demo = React.createClass({
   render:  function(){
     return (
       <div>
-        <p>Select species </p>
+        <h2>Expression Atlas Anatomogram </h2>
+        <div> Select species</div>
         <select value={this.state.species} onChange={function(el){this.setState({species:el.target.value})}.bind(this)}>
           {Object.keys(svgsForSpecies).map(function(species){
             return (
@@ -141,6 +143,7 @@ var Demo = React.createClass({
             )
           })}
         </select>
+        <br/>
         <DemoContainer species={this.state.species} />
       </div>
     )

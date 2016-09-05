@@ -12,7 +12,7 @@ module.exports = {
     output: {
         libraryTarget: 'var',
         library: '[name]',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'html/dist'),
 	    filename: '[name].bundle.js',
         publicPath: 'html/dist/'
     },
