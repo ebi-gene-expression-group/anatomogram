@@ -8,6 +8,7 @@ module.exports = {
         anatomogramRenderer: './html/anatomogramRenderer.js',
         iconsTest: './html/iconRenderer.js',
         anatomogramPicturesTest:'./html/anatomogramPictureRenderer.js',
+        demo:'./html/demo.js',
         dependencies: ['react', 'react-dom','imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js']
     },
 
@@ -16,7 +17,7 @@ module.exports = {
         library: '[name]',
         path: path.resolve(__dirname, 'dist'),
 	    filename: '[name].bundle.js',
-        publicPath: '/dist/'
+        publicPath: 'html/dist/'
     },
 
     plugins: [
@@ -34,12 +35,17 @@ module.exports = {
             {test: /\.jsx?$/, loader: 'babel', query: {presets: ['es2015', 'react']}},
             {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
             {test: /\.json$/, loader: 'json'},
-            {test: /\.(jpe?g|png|gif|svg)$/i,
+            {test: /\.(jpe?g|png|gif)$/i,
                   loaders: [
                       'file?hash=sha512&digest=hex&name=[hash].[ext]',
                       'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                   ]
-              }
+              },
+              {test: /\.(svg)$/i,
+                    loaders: [
+                        'file?hash=sha512&digest=hex&name=[hash].[ext]'
+                    ]
+                }
         ]
     },
 

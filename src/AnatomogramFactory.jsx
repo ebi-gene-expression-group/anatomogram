@@ -4,7 +4,7 @@
 var React = require('react');
 var validate = require('react-prop-types-check');
 var Anatomogram = require('./Anatomogram.jsx');
-var imagesAvailableForSpecies = require('./imagesAvailable.js');
+var getSvgsForSpecies = require('./imagesAvailable.js');
 require('./ContainerLayout.less');
 
 
@@ -13,27 +13,28 @@ var argumentShape= {
       pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
       anatomogramData: React.PropTypes.shape({
         species: React.PropTypes.string.isRequired,
-        allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+        allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string) //if not provided, we use properties read in from the file
         /** There may also be other properties sent for compatibility with the older widget.*/
       }).isRequired,
       expressedTissueColour: React.PropTypes.string.isRequired,
       hoveredTissueColour: React.PropTypes.string.isRequired,
       eventEmitter: React.PropTypes.object,
-      atlasBaseURL: React.PropTypes.string.isRequired
   };
 
-var _availableAnatomograms= function(species,pathToFolderWithBundledResources) {
-  var result = [];
-  var o = imagesAvailableForSpecies(species);
-  for(var anatomogramType in o){
-    if(o.hasOwnProperty(anatomogramType)&& o[anatomogramType]){
-      result.push({
-        type:anatomogramType,
-        anatomogramFile: pathToFolderWithBundledResources+"/"+o[anatomogramType],
-      })
-    }
-  }
-  return result;
+var _availableAnatomograms= function(species,pathToFolderWithBundledResources,allSvgPathIds) {
+  return (
+    getSvgsForSpecies(species,pathToFolderWithBundledResources)
+    .filter(function(e){
+      return (
+        ! allSvgPathIds
+        ||  allSvgPathIds
+            .filter(function(id){
+              return e.ids.indexOf(id)>-1
+            })
+            .length>0
+      )
+    })
+  )
 };
 
 var callEmitterWhenMousedOverTissuesChange = function(eventEmitter){
@@ -53,7 +54,11 @@ var callEmitterWhenMousedOverTissuesChange = function(eventEmitter){
 };
 var createAnatomogram = function(args){
   validate(args,argumentShape);
-  var availableAnatomograms= _availableAnatomograms(args.anatomogramData.species, args.pathToFolderWithBundledResources);
+  var availableAnatomograms=
+    _availableAnatomograms(
+      args.anatomogramData.species,
+      args.pathToFolderWithBundledResources,
+      args.anatomogramData.allSvgPathIds||null);
   return(
     availableAnatomograms.length
       ? <Anatomogram
@@ -69,9 +74,9 @@ var createAnatomogram = function(args){
               ? callEmitterWhenMousedOverTissuesChange(args.eventEmitter)
               : function(){}
             )}
-          allSvgPathIds={args.anatomogramData.allSvgPathIds}
           idsExpressedInExperiment={args.idsExpressedInExperiment||args.ontologyIdsForTissuesExpressedInAllRows || []}
-          idsToBeHighlighted={args.idsToBeHighlighted||[]}/>
+          idsToBeHighlighted={args.idsToBeHighlighted||[]}
+          {...(args.anatomogramData.allSvgPathIds? {allSvgPathIds:allSvgPathIds} :{})}/>
       : null
   );
 }
@@ -89,6 +94,7 @@ var arraysEqual = function (a, b) {
 var makeWrapper = function(ComponentClass){
   return (
     React.createClass({
+      displayName: "WrappedComponent",
       propTypes: {
         ontologyIdsToHighlight: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
         onOntologyIdIsUnderFocus: React.PropTypes.func.isRequired,
@@ -118,6 +124,7 @@ componentProps : other props to be passed over.
 var wrapComponentWithAnatomogram = function(anatomogramConfig, componentClass, componentProps){
   var Wrapped = makeWrapper(componentClass);
   return React.createClass({
+    displayName: "AnatomogramComponentWrapper",
     getInitialState: function(){
       return {
         ontologyIdsForComponentContentUnderFocus: [],

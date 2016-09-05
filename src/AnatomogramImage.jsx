@@ -146,7 +146,7 @@ var AnatomogramImage = React.createClass({
   },
 
   _draw: function() {
-    var svg= Snap(ReactDOM.findDOMNode(this.refs.anatomogram)).select("g");
+    var svg= Snap(ReactDOM.findDOMNode(this.refs.anatomogram)).select("#LAYER_EFO");
     if(svg!==null){
       this._drawOnSvg(svg,this.refs.imageParts.state.toDraw);
       this.refs.imageParts.setState({toDraw:[]});
@@ -186,7 +186,6 @@ var AnatomogramImage = React.createClass({
         idsNotHighlighted.push(id);
       }
     }
-
     return (<span>
         <svg ref="anatomogram" style={{display: "table-cell", width: "230px", height:this.props.height + "px"}} />
         <AnatomogramImageParts ref="imageParts" key={this.props.file}

@@ -6,6 +6,8 @@ var React = require('react');
 
 var AnatomogramImage = require('./AnatomogramImage.jsx');
 var SelectionIcon = require('./SelectionIcon.jsx');
+var idsForSvgs = require('../assets/json/idsForSvgs.json');
+
 
 //*------------------------------------------------------------------*
 
@@ -16,13 +18,14 @@ var Anatomogram = React.createClass({
         hoveredTissueColour: React.PropTypes.string.isRequired,
         availableAnatomograms : React.PropTypes.arrayOf(
           React.PropTypes.shape({
-            type: React.PropTypes.string.isRequired,
-            anatomogramFile: React.PropTypes.string.isRequired
+            type:React.PropTypes.string.isRequired,
+            path:React.PropTypes.string.isRequired,
+            ids: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
           })
         ).isRequired,
         height: React.PropTypes.number.isRequired,
         whenMousedOverIdsChange: React.PropTypes.func,
-        allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+        allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string),
         idsToBeHighlighted: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
     },
 
@@ -46,7 +49,8 @@ var Anatomogram = React.createClass({
                     <AnatomogramImage
                       key={this.state.selectedType}
                       ref="currentImage"
-                      file={this._selectedFile()}
+                      file={this._selectedAnatomogram().path}
+                      allSvgPathIds={this.props.allSvgPathIds || this._selectedAnatomogram().ids}
                       {...this.props} />
                 </div>
             </div>
@@ -77,7 +81,7 @@ var Anatomogram = React.createClass({
         }
     },
 
-    _selectedFile: function() {
+    _selectedAnatomogram: function() {
       var type = this.state.selectedType;
       return (
         this.props.availableAnatomograms
@@ -86,13 +90,14 @@ var Anatomogram = React.createClass({
             e.type === type
           )
         })
-        .map(function(e){
-          return e.anatomogramFile;
+        .concat({
+          type:"_",
+          path:"__invalid__.svg",
+          ids: []
         })
-        .concat([""])
         [0]
       );
-    }
+    },
 
 });
 
