@@ -76,7 +76,7 @@ var createAnatomogram = function(args){
             )}
           idsExpressedInExperiment={args.idsExpressedInExperiment||args.ontologyIdsForTissuesExpressedInAllRows || []}
           idsToBeHighlighted={args.idsToBeHighlighted||[]}
-          {...(args.anatomogramData.allSvgPathIds? {allSvgPathIds:allSvgPathIds} :{})}/>
+          {...(args.anatomogramData.allSvgPathIds? {allSvgPathIds:args.anatomogramData.allSvgPathIds} :{})}/>
       : null
   );
 }
