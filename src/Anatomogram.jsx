@@ -8,7 +8,6 @@ var AnatomogramImage = require('./AnatomogramImage.jsx');
 var SelectionIcon = require('./SelectionIcon.jsx');
 var idsForSvgs = require('../assets/json/idsForSvgs.json');
 
-
 //*------------------------------------------------------------------*
 
 var Anatomogram = React.createClass({
@@ -36,10 +35,6 @@ var Anatomogram = React.createClass({
     },
 
     render: function () {
-        function containsHuman(str) {
-            return str.indexOf("human") > -1;
-        }
-
         return (
             <div className="gxaAnatomogram" style={{display: "table", paddingTop: "4px"}}>
                 <div style={{display: "table-row"}}>
