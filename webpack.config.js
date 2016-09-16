@@ -4,16 +4,16 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-	    anatomogram: './index.js',
-      demo:'./html/demo.js',
-      dependencies: ['react', 'react-dom','imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js']
+        anatomogram: './index.js',
+        demo:'./html/demo.js',
+        dependencies: ['react', 'react-dom', 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js']
     },
 
     output: {
         libraryTarget: 'var',
         library: '[name]',
         path: path.resolve(__dirname, 'html/dist'),
-	    filename: '[name].bundle.js',
+        filename: '[name].bundle.js',
         publicPath: 'html/dist/'
     },
 
@@ -24,6 +24,11 @@ module.exports = {
             name: 'dependencies',
             filename: 'vendor.bundle.js',
             minChunks: Infinity     // Explicit definition-based split. Don’t put shared modules between main and demo entries in vendor.bundle.js (e.g. Anatomogram.jsx)
+        }),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: process.env.NODE_ENV === 'production' ? JSON.stringify("production") : JSON.stringify("development")
+            }
         })
     ],
 
