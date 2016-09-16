@@ -5,6 +5,7 @@ var React = require('react');
 var validate = require('react-prop-types-check');
 var Anatomogram = require('./Anatomogram.jsx');
 var getSvgsForSpecies = require('./imagesAvailable.js');
+var EventEmitter = require('events');
 require('./ContainerLayout.less');
 
 
@@ -18,7 +19,7 @@ var argumentShape= {
       }).isRequired,
       expressedTissueColour: React.PropTypes.string.isRequired,
       hoveredTissueColour: React.PropTypes.string.isRequired,
-      eventEmitter: React.PropTypes.object,
+      eventEmitter: React.PropTypes.instanceOf(EventEmitter)
   };
 
 var _availableAnatomograms= function(species,pathToFolderWithBundledResources,allSvgPathIds) {
@@ -46,19 +47,23 @@ var callEmitterWhenMousedOverTissuesChange = function(eventEmitter){
     .forEach(function(id){
       eventEmitter.emit(eventName, id);
     });
-  }
+  };
+
   return function emitEvents(nextIds,previousIds){
     forEachXNotInYsEmit(nextIds, previousIds, 'gxaAnatomogramTissueMouseEnter');
     forEachXNotInYsEmit(previousIds,nextIds, 'gxaAnatomogramTissueMouseLeave');
   }
 };
+
 var createAnatomogram = function(args){
-  validate(args,argumentShape);
+  validate(args, argumentShape);
+
   var availableAnatomograms=
     _availableAnatomograms(
       args.anatomogramData.species,
       args.pathToFolderWithBundledResources,
-      args.anatomogramData.allSvgPathIds||null);
+      args.anatomogramData.allSvgPathIds || null);
+
   return(
     availableAnatomograms.length
       ? <Anatomogram
@@ -74,12 +79,13 @@ var createAnatomogram = function(args){
               ? callEmitterWhenMousedOverTissuesChange(args.eventEmitter)
               : function(){}
             )}
-          idsExpressedInExperiment={args.idsExpressedInExperiment||args.ontologyIdsForTissuesExpressedInAllRows || []}
+          idsExpressedInExperiment={args.idsExpressedInExperiment || args.ontologyIdsForTissuesExpressedInAllRows || []}
           idsToBeHighlighted={args.idsToBeHighlighted||[]}
           {...(args.anatomogramData.allSvgPathIds? {allSvgPathIds:args.anatomogramData.allSvgPathIds} :{})}/>
       : null
   );
-}
+};
+
 //http://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
 var arraysEqual = function (a, b) {
   if (a === b) return true;
@@ -95,14 +101,17 @@ var makeWrapper = function(ComponentClass){
   return (
     React.createClass({
       displayName: "WrappedComponent",
+
       propTypes: {
         ontologyIdsToHighlight: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
         onOntologyIdIsUnderFocus: React.PropTypes.func.isRequired,
         componentProps: React.PropTypes.object.isRequired
       },
+
       shouldComponentUpdate: function(nextProps){
         return !arraysEqual(nextProps.ontologyIdsToHighlight,this.props.ontologyIdsToHighlight) ;
       },
+
       render: function(){
         return (
           <div id="gxaAnatomogramWrapper">
@@ -122,15 +131,19 @@ componentClass : a React class to be wrapped. Should accept props onOntologyIdIs
 componentProps : other props to be passed over.
 */
 var wrapComponentWithAnatomogram = function(anatomogramConfig, componentClass, componentProps){
+
   var Wrapped = makeWrapper(componentClass);
+
   return React.createClass({
     displayName: "AnatomogramComponentWrapper",
+
     getInitialState: function(){
       return {
         ontologyIdsForComponentContentUnderFocus: [],
         ontologyIdsForAnatomogramContentUnderFocus: []
       }
     },
+
     render: function(){
       return (
         <div>
@@ -140,12 +153,13 @@ var wrapComponentWithAnatomogram = function(anatomogramConfig, componentClass, c
                     anatomogramConfig,
                     {
                       idsToBeHighlighted: this.state.ontologyIdsForComponentContentUnderFocus,
-                      whenMousedOverIdsChange: function(nextIds,previousIds){
+                      whenMousedOverIdsChange: function(nextIds){
                         this.setState({ontologyIdsForAnatomogramContentUnderFocus: nextIds});
                       }.bind(this)
                     })
                   )}
             </div>
+
             <Wrapped componentProps={componentProps}
               onOntologyIdIsUnderFocus={function(selectedIdOrIds){
                 this.setState({ontologyIdsForComponentContentUnderFocus:
