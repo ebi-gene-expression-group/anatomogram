@@ -1,7 +1,6 @@
 "use strict";
 
 var React = require('react');
-var ReactDOM = require('react-dom');
 
 //*------------------------------------------------------------------*
 
@@ -13,7 +12,7 @@ var AnatomogramFactory = require('../src/AnatomogramFactory.jsx');
 var DemoComponent = React.createClass({
   propTypes:{
     onOntologyIdIsUnderFocus: React.PropTypes.func.isRequired,
-    ontologyIdsToHighlight: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+    ontologyIdsForChosenSpecies: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
   },
 
   getInitialState: function(){
@@ -50,12 +49,16 @@ var DemoComponent = React.createClass({
           })}
         </select>
         <p> Currently hovered in anatomogram: </p>
-        {this.props.ontologyIdsToHighlight.map(function(el){
-          return (
-            <span key={el}>{el}</span>
-          )
-        })}
-        {this.props.ontologyIdsToHighlight.length? null : "None"}
+        {this.state.ontologyIdsUnderFocus.length ?
+          <ul>
+            {this.state.ontologyIdsUnderFocus.map(function(el){
+              return (
+                <li key={el}>{el}</li>
+              )
+            })}
+          </ul>
+          :
+          <span>None</span>}
     </div>
 
     )
@@ -92,8 +95,9 @@ var DemoContainer = React.createClass({
       expressedTissueColour: "red",
       hoveredTissueColour: "purple",
       idsExpressedInExperiment: this.state.idsExpressedInExperiment
-    }
-    var Wrapped = AnatomogramFactory.wrapComponent(anatomogramConfig, DemoComponent, {ontologyIdsForChosenSpecies:this._getOntologyIdsForChosenSpecies()})
+    };
+
+    var Wrapped = AnatomogramFactory.wrapComponent(anatomogramConfig, DemoComponent, {ontologyIdsForChosenSpecies:this._getOntologyIdsForChosenSpecies()});
 
     return (
       <div>
