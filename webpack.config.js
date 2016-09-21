@@ -4,9 +4,9 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        anatomogram: './index.js',
+        anatomogram: ['babel-polyfill', './index.js'],
         demo:'./html/demo.js',
-        dependencies: ['react', 'react-dom', 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js']
+        dependencies: ['react', 'react-dom', 'react-prop-types-check', 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js']
     },
 
     output: {
@@ -27,15 +27,16 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             "process.env": {
-                NODE_ENV: process.env.NODE_ENV === 'production' ? JSON.stringify("production") : JSON.stringify("development")
+                NODE_ENV: process.env.NODE_ENV === 'production' ? JSON.stringify('production') : JSON.stringify('development')
             }
         })
     ],
 
     module: {
         loaders: [
+            {test: /\.js?$/, loader: 'babel', query: {presets: ['es2015']}},
             {test: /\.jsx?$/, loader: 'babel', query: {presets: ['es2015', 'react']}},
-            {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
+            {test: /\.less$/, loader: 'style!css!less'},
             {test: /\.json$/, loader: 'json'},
             {test: /\.(jpe?g|png|gif)$/i,
                   loaders: [
