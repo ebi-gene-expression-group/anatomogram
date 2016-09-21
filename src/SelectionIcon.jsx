@@ -12,7 +12,7 @@ const SelectionIcon = React.createClass({
 
   render () {
     return (
-      <img className={"selection-icon"} onClick={this.props.onClick} src={this._selectionIcon()}/>
+      <img className={"selection-icon"} onClick={this.props.onClick} src={this._resolvePathToImage()}/>
     );
   },
 
@@ -20,11 +20,12 @@ const SelectionIcon = React.createClass({
     return this.props.selected !== nextProps.selected;
   },
 
-  _selectionIcon () {
+  _resolvePathToImage () {
     return Path.resolve(
           this.props.pathToFolderWithBundledResources,
-          require(`../assets/icons/` + this.props.anatomogramType + `_` + (this.props.selected ? `selected` : `unselected`) + `.png`)
-      )
+          Path.basename(
+              require(`../assets/icons/` + this.props.anatomogramType + `_` + (this.props.selected ? `selected` : `unselected`) + `.png`))
+    );
   }
 });
 
