@@ -1,41 +1,31 @@
-"use strict";
-//*------------------------------------------------------------------*
-var React = require('react');
+const Path = require(`path`);
+const React = require(`react`);
+require(`./SelectionIcon.less`);
 
-require('./SelectionIcon.less');
-
-//*------------------------------------------------------------------*
-
-var SelectionIcon = React.createClass({
+const SelectionIcon = React.createClass({
   propTypes: {
-    pathToFolderWithBundledResources:React.PropTypes.string.isRequired,
-    anatomogramType: function(props, propName,componentName){
-      if(propName === "anatomogramType"){
-        if(["brain","female","male","whole_plant","flower_parts"].indexOf(props[propName])<0){
-          return new Error("Unknown type of anatomogram: "+props[propName]);
-        }
-      }
-      return "";
-    },
+    pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
+    anatomogramType: React.PropTypes.oneOf([`brain`,`female`,`male`,`whole_plant`,`flower_parts`]).isRequired,
     selected: React.PropTypes.bool.isRequired,
     onClick: React.PropTypes.func.isRequired
   },
-  render: function(){
+
+  render () {
     return (
       <img className={"selection-icon"} onClick={this.props.onClick} src={this._selectionIcon()}/>
     );
   },
-  shouldComponentUpdate: function(nextProps){
+
+  shouldComponentUpdate (nextProps) {
     return this.props.selected !== nextProps.selected;
   },
-  _selectionIcon: function(){
-    return (
-      (this.props.pathToFolderWithBundledResources?this.props.pathToFolderWithBundledResources+"/":"")
-      + require("../assets/icons/"+this.props.anatomogramType+"_"+(this.props.selected?"selected":"unselected")+".png")
-    );
+
+  _selectionIcon () {
+    return Path.resolve(
+          this.props.pathToFolderWithBundledResources,
+          require(`../assets/icons/` + this.props.anatomogramType + `_` + (this.props.selected ? `selected` : `unselected`) + `.png`)
+      )
   }
 });
-
-//*------------------------------------------------------------------*
 
 module.exports = SelectionIcon;
