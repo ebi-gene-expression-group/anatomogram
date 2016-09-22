@@ -12,9 +12,9 @@ module.exports = {
     output: {
         libraryTarget: 'var',
         library: '[name]',
-        path: path.resolve(__dirname, 'html/dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js',
-        publicPath: 'html/dist/'
+        publicPath: '/dist/'
     },
 
     plugins: [
