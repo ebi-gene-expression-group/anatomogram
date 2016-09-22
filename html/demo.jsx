@@ -6,12 +6,12 @@ var React = require('react');
 
 var idsForSvgs = require('../assets/json/idsForSvgs.json');
 var svgsForSpecies = require('../assets/json/svgsForSpecies.json');
-var getSvgsForSpecies = require('../src/imagesAvailable.js');
+var getSvgsForSpecies = require('../src/imagesAvailable.js').GetSvgsForSpecies;
 var AnatomogramFactory = require('../src/AnatomogramFactory.jsx');
 //*------------------------------------------------------------------*
 var DemoComponent = React.createClass({
   propTypes:{
-    onOntologyIdIsUnderFocus: React.PropTypes.func.isRequired,
+    // onOntologyIdIsUnderFocus: React.PropTypes.func.isRequired,
     ontologyIdsForChosenSpecies: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
   },
 
@@ -21,7 +21,7 @@ var DemoComponent = React.createClass({
     }
   },
   componentDidUpdate: function(){
-    this.props.onOntologyIdIsUnderFocus(this.state.ontologyIdsUnderFocus);
+    // this.props.onOntologyIdIsUnderFocus(this.state.ontologyIdsUnderFocus);
   },
   render: function(){
     return (
@@ -69,7 +69,7 @@ var DemoContainer = React.createClass({
   _getOntologyIdsForChosenSpecies: function(){
     return (
       [].concat.apply([],
-        getSvgsForSpecies(this.props.species)
+        getSvgsForSpecies('', this.props.species)
         .map(function(el){
           return el.ids;
         })
@@ -88,7 +88,7 @@ var DemoContainer = React.createClass({
   },
   render: function(){
     var anatomogramConfig = {
-      pathToFolderWithBundledResources: "..",
+      pathToFolderWithBundledResources: "/dist",
       anatomogramData: {
         species: this.props.species
       },

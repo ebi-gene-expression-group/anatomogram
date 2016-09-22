@@ -1,5 +1,5 @@
-const Path = require(`path`);
 const React = require(`react`);
+const ResolvePathToIcon = require(`./imagesAvailable.js`).ResolvePathToIcon;
 require(`./SelectionIcon.less`);
 
 const SelectionIcon = React.createClass({
@@ -12,20 +12,13 @@ const SelectionIcon = React.createClass({
 
   render () {
     return (
-      <img className={"selection-icon"} onClick={this.props.onClick} src={this._resolvePathToImage()}/>
+      <img className={"selection-icon"} onClick={this.props.onClick}
+           src={ResolvePathToIcon(this.props.pathToFolderWithBundledResources, this.props.anatomogramType, this.props.selected)}/>
     );
   },
 
   shouldComponentUpdate (nextProps) {
     return this.props.selected !== nextProps.selected;
-  },
-
-  _resolvePathToImage () {
-    return Path.resolve(
-          this.props.pathToFolderWithBundledResources,
-          Path.basename(
-              require(`../assets/icons/` + this.props.anatomogramType + `_` + (this.props.selected ? `selected` : `unselected`) + `.png`))
-    );
   }
 });
 
