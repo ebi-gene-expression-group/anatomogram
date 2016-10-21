@@ -31,6 +31,8 @@ const GetSvgsForSpecies = (pathToFolderWithBundledResources, species) => {
             path: ResolvePathToSvg(pathToFolderWithBundledResources, svgEntry),
             ids: IdsForSvgs[svgEntry]
         }];
+    } else {
+        return [];
     }
 };
 
