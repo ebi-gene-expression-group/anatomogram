@@ -6,7 +6,6 @@ var React = require('react');
 
 var AnatomogramImage = require('./AnatomogramImage.jsx');
 var SelectionIcon = require('./SelectionIcon.jsx');
-var idsForSvgs = require('../assets/json/idsForSvgs.json');
 
 //*------------------------------------------------------------------*
 
