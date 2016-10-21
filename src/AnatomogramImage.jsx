@@ -1,25 +1,19 @@
-"use strict";
-
-//*------------------------------------------------------------------*
-var React = require('react');
-var ReactDOM = require('react-dom');
-var validate = require('react-prop-types-check');
-var Snap = require('imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js');
-
-//*------------------------------------------------------------------*
+const React = require(`react`);
+const ReactDOM = require(`react-dom`);
+const Snap = require(`imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js`);
 
 //http://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
-var arraysEqual = function (a, b) {
+const ArraysEqual = (a, b) => {
   if (a === b) return true;
   if (a == null || b == null) return false;
   if (a.length != b.length) return false;
-  for (var i = 0; i < a.length; ++i) {
+  for (let i = 0; i < a.length; ++i) {
     if (a[i] !== b[i]) return false;
   }
   return true;
 };
 
-var AnatomogramImageParts = React.createClass({
+const AnatomogramImageParts = React.createClass({
   propTypes: {
     idsExpressedInExperiment: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     idsHeatmapWantsHighlighted: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
@@ -30,13 +24,13 @@ var AnatomogramImageParts = React.createClass({
     whenMousedOverIdsChange: React.PropTypes.func
   },
 
-  getDefaultProps: function(){
-    return ({whenMousedOverIdsChange: function(nextIds,oldIds){}});
+  getDefaultProps () {
+    return ({whenMousedOverIdsChange: (nextIds, oldIds) => {}});
   },
 
-  getInitialState: function () {
+  getInitialState () {
     return {toDraw: [].concat(
-      AnatomogramImageParts.idsThatShouldBeStronglyHighlighted(this.props)
+      this._idsThatShouldBeStronglyHighlighted(this.props)
         .map(this._highlightStrongly)
       ,
       this.props.idsExpressedInExperiment
@@ -47,73 +41,72 @@ var AnatomogramImageParts = React.createClass({
       )};
   },
 
-  render: function() {
+  render () {
     return <span/>;
   },
 
-  _highlightStrongly: function(svgPathId) {
+  _highlightStrongly (svgPathId) {
     return {id: svgPathId, colour: this.props.hoveredTissueColour, opacity: 0.7 };
   },
 
-  _highlightSlightly: function(svgPathId) {
+  _highlightSlightly (svgPathId) {
     return {id: svgPathId, colour: this.props.expressedTissueColour, opacity: 0.5 };
   },
 
-  _highlightAsBackground: function(svgPathId) {
-    return {id: svgPathId, colour: "gray", opacity: 0.5 };
+  _highlightAsBackground (svgPathId) {
+    return {id: svgPathId, colour: `gray`, opacity: 0.5 };
   },
-  componentWillUnmount: function(){
+  componentWillUnmount (){
     this.props.whenMousedOverIdsChange([],this.props.idsMousedOver);
   },
 
-  componentWillReceiveProps: function(nextProps) {
-    if(!arraysEqual(nextProps.idsMousedOver, this.props.idsMousedOver)){
+  componentWillReceiveProps (nextProps) {
+    if(!ArraysEqual(nextProps.idsMousedOver, this.props.idsMousedOver)){
       this.props.whenMousedOverIdsChange(nextProps.idsMousedOver,this.props.idsMousedOver);
     }
-    var oldStrong = AnatomogramImageParts.idsThatShouldBeStronglyHighlighted(this.props);
-    var newStrong = AnatomogramImageParts.idsThatShouldBeStronglyHighlighted(nextProps);
-    var oldWeak = this.props.idsExpressedInExperiment;
-    var newWeak = nextProps.idsExpressedInExperiment;
+    let oldStrong = this._idsThatShouldBeStronglyHighlighted(this.props);
+    let newStrong = this._idsThatShouldBeStronglyHighlighted(nextProps);
+    let oldWeak = this.props.idsExpressedInExperiment;
+    let newWeak = nextProps.idsExpressedInExperiment;
 
-    var toDraw = [].concat(
+    let toDraw = [].concat(
       //ids that heatmap wants highlighted are the most highlighted
       newStrong
-        .filter(function(id){return oldStrong.indexOf(id)<0})
+        .filter(id => !oldStrong.includes(id))
         .map(this._highlightStrongly)
       ,
       //ids that are expressed in the experiment are highlighted with a weaker colour, often the same as background
       newWeak
-        .filter(function(id){return newStrong.indexOf(id)<0})
-        .filter(function(id){return oldWeak.indexOf(id)<0}.bind(this))
+        .filter(id => !newStrong.includes(id))
+        .filter(id => !oldWeak.includes(id))
         .map(this._highlightSlightly)
       ,
       nextProps.idsNotHighlighted
-        .filter(function(id){return this.props.idsNotHighlighted.indexOf(id)<0}.bind(this))
+        .filter(id => !this.props.idsNotHighlighted.includes(id))
         .map(this._highlightAsBackground)
       );
 
     this.setState({toDraw:toDraw});
   },
 
-  statics: {
-    idsThatShouldBeStronglyHighlighted: function(properties){
-      return properties.idsHeatmapWantsHighlighted.concat(properties.idsMousedOver);
-    }
+  _idsThatShouldBeStronglyHighlighted (properties){
+    return properties.idsHeatmapWantsHighlighted.concat(properties.idsMousedOver);
   }
 });
 
-var AnatomogramImage = React.createClass({
+
+const AnatomogramImage = React.createClass({
   propTypes: {
-    file: function(props, propName,componentName){
-      if(propName === "file"){
-        if(typeof props[propName]!== "string"){
-          return new Error("Expected string to specify file, got: "+props[propName]);
+    file: (props, propName, componentName) => {
+      if(propName === `file`){
+        if(typeof props[propName]!== `string`){
+          return new Error(`Expected string to specify file, got: ${props[propName]}`);
         }
         if(!props[propName]){
-          return new Error("Path to file empty!");
+          return new Error(`Path to file empty!`);
         }
       }
-      return "";
+      return ``;
     },
     height: React.PropTypes.number.isRequired,
     allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
@@ -124,71 +117,70 @@ var AnatomogramImage = React.createClass({
     whenMousedOverIdsChange: React.PropTypes.func
   },
 
-  getInitialState: function() {
+  getInitialState () {
     return {
       mousedOverSvgIds: []
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if(nextProps.file!==this.props.file){
       this._loadAnatomogram(nextProps.file);
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount () {
       this._loadAnatomogram(this.props.file);
       this._draw();
   },
 
-  componentDidUpdate: function(){
+  componentDidUpdate (){
     this._draw();
   },
 
-  _draw: function() {
-    var svg= Snap(ReactDOM.findDOMNode(this.refs.anatomogram)).select("#LAYER_EFO");
+  _draw () {
+    let svg= Snap(ReactDOM.findDOMNode(this._anatomogram)).select(`#LAYER_EFO`);
     if(svg!==null){
-      this._drawOnSvg(svg,this.refs.imageParts.state.toDraw);
-      this.refs.imageParts.setState({toDraw:[]});
-    }
-  },
-  _drawInitialLayout: function(svg){
-    if(this.refs.imageParts){
-      this._drawOnSvg(svg,this.refs.imageParts.getInitialState().toDraw);
-      this.refs.imageParts.setState({toDraw:[]});
-    } else {
-      //Possibly the other component has not loaded yet so there are no refs.
-      //Interminnently throws an error in the console.
+      this._drawOnSvg(svg, this._imageParts.state.toDraw);
+        this._imageParts.setState({toDraw:[]});
     }
   },
 
-  _drawOnSvg: function(svg, instructions){
-    instructions.forEach(function(instruction){
+  _drawInitialLayout (svg){
+    if(this._imageParts){
+      this._drawOnSvg(svg, this._imageParts.getInitialState().toDraw);
+        this._imageParts.setState({toDraw:[]});
+    }
+  },
+
+  _drawOnSvg (svg, instructions){
+    instructions.forEach(instruction => {
       this._highlightOrganismParts(svg,instruction.id, instruction.colour, instruction.opacity);
-    }.bind(this));
+    });
   },
 
-  render: function () {
-    var idsExpressedInExperiment =[],
+  render () {
+    let idsExpressedInExperiment =[],
         idsHoveredOver=[],
         idsHeatmapWantsHighlighted = [],
         idsNotHighlighted = [];
 
-    for(var i = 0 ; i< this.props.allSvgPathIds.length; i++){
-      var id = this.props.allSvgPathIds[i];
-      if(this.state.mousedOverSvgIds.indexOf(id)>-1){
+    this.props.allSvgPathIds.forEach(id => {
+      if(this.state.mousedOverSvgIds.includes(id)){
         idsHoveredOver.push(id);
-      } else if(this.props.idsToBeHighlighted.indexOf(id)>-1){
+      } else if(this.props.idsToBeHighlighted.includes(id)){
         idsHeatmapWantsHighlighted.push(id);
-      } else if(this.props.idsExpressedInExperiment.indexOf(id)>-1){
+      } else if(this.props.idsExpressedInExperiment.includes(id)){
         idsExpressedInExperiment.push(id);
       } else {
         idsNotHighlighted.push(id);
       }
-    }
-    return (<span>
-        <svg ref="anatomogram" style={{display: "table-cell", width: "230px", height:this.props.height + "px"}} />
-        <AnatomogramImageParts ref="imageParts" key={this.props.file}
+    });
+
+    return (
+      <span>
+        <svg ref={c => this._anatomogram = c} style={{display: "table-cell", width: "230px", height:this.props.height + "px"}} />
+        <AnatomogramImageParts ref={c => this._imageParts = c} key={this.props.file}
             idsExpressedInExperiment={idsExpressedInExperiment}
             idsHeatmapWantsHighlighted={idsHeatmapWantsHighlighted}
             idsMousedOver={idsHoveredOver}
@@ -199,98 +191,90 @@ var AnatomogramImage = React.createClass({
       </span>);
   },
 
-  _highlightPath: function(svgPathId) {
+  _highlightPath (svgPathId) {
       this.setState({hoveredPathId: svgPathId});
   },
 
-  _loadAnatomogram: function(svgFile) {
+  _loadAnatomogram (svgFile) {
 
-      var svgCanvas = Snap(ReactDOM.findDOMNode(this.refs.anatomogram)),
-          allElements = svgCanvas.selectAll("*");
+      let svgCanvas = Snap(ReactDOM.findDOMNode(this._anatomogram)),
+          allElements = svgCanvas.selectAll(`*`);
 
       if (allElements) {
           allElements.remove();
       }
 
-      var displayAllOrganismPartsCallback = this._drawInitialLayout;
-      var registerHoverEventsCallback = this._registerHoverEvents;
+      let displayAllOrganismPartsCallback = this._drawInitialLayout;
+      let registerHoverEventsCallback = this._registerHoverEvents;
       Snap.load(
           svgFile,
-          function (fragment) {
-              displayAllOrganismPartsCallback(fragment.select("#LAYER_EFO"));
-              registerHoverEventsCallback(fragment.select("#LAYER_EFO"));
-              fragment.selectAll("svg > g").forEach(function(g){
-                g.transform("S1.6,0,0");
+          fragment => {
+              displayAllOrganismPartsCallback(fragment.select(`#LAYER_EFO`));
+              registerHoverEventsCallback(fragment.select(`#LAYER_EFO`));
+              fragment.selectAll(`svg > g`).forEach(g => {
+                g.transform(`S1.6,0,0`);
                 svgCanvas.append(g);
               });
-              var img = fragment.select("#ccLogo");
+              var img = fragment.select(`#ccLogo`);
               if(img){
-                var heightTranslate = svgCanvas.node.clientHeight - 15;
-                var widthTranslate = svgCanvas.node.clientWidth / 2 - 40;
-                img.transform("t"+widthTranslate+","+heightTranslate);
+                let heightTranslate = svgCanvas.node.clientHeight - 15;
+                let widthTranslate = svgCanvas.node.clientWidth / 2 - 40;
+                img.transform(`t`+widthTranslate+`,`+heightTranslate);
                 svgCanvas.append(img);
               }
           }
       );
   },
 
-  _registerHoverEvents: function(svg) {
+  _registerHoverEvents (svg) {
       if (svg) {  // Sometimes svg is null... why?
-          var mouseoverCallback = function(svgPathId) {
-              this.setState(function(previousState, currentProps){
-                  var a = [].concat(previousState.mousedOverSvgIds);
-                  a.push(svgPathId);
-                  while(a.length >5){
-                    a.shift();
-                  }
-                  return {mousedOverSvgIds: a};
-              });
-          }.bind(this);
-          var mouseoutCallback = function(svgPathId) {
-              this.setState(function(previousState, currentProps){
-                  var a = previousState.mousedOverSvgIds.map(
-                      function(el){return el===svgPathId ? "" : el}
-                    );
-                  return {mousedOverSvgIds: a};
-                });
-          }.bind(this);
+          const MaxOverlappingTissues = 5;
+          let mouseoverCallback = svgPathId => {
+              this.setState((previousState) =>
+                ({mousedOverSvgIds: [...previousState.mousedOverSvgIds, svgPathId].slice(-MaxOverlappingTissues)})
+              );
+          };
 
-          var attachCallbacks = function(svgElement,svgPathId){
+          let mouseoutCallback = svgPathId => {
+              this.setState((previousState) =>
+                ({mousedOverSvgIds: previousState.mousedOverSvgIds.map(el => el===svgPathId ? `` : el)})
+              );
+          };
+
+          let attachCallbacks = (svgElement,svgPathId) => {
             if(svgElement){
-              svgElement.mouseover(function() {mouseoverCallback(svgPathId)});
-              svgElement.mouseout(function() {mouseoutCallback(svgPathId)});
+              svgElement.mouseover(() => {mouseoverCallback(svgPathId)});
+              svgElement.mouseout(() => {mouseoutCallback(svgPathId)});
             }
-          }
+          };
 
-          this.props.allSvgPathIds.forEach(function(svgPathId) {
-            var svgElement = svg.select("#" + svgPathId);
-            attachCallbacks(svgElement,svgPathId);
-            if(svgElement && svgElement.type === "use"){
-              attachCallbacks(svg.select(svgElement.node.getAttribute("xlink:href")),svgPathId);
+          this.props.allSvgPathIds.forEach(svgPathId => {
+            let svgElement = svg.select(`#${svgPathId}`);
+            attachCallbacks(svgElement, svgPathId);
+            if(svgElement && svgElement.type === `use`){
+              attachCallbacks(svg.select(svgElement.node.getAttribute(`xlink:href`)), svgPathId);
             }
-          }, this);
+          });
       }
   },
 
-  _highlightOrganismParts: function(svg, svgPathId, colour, opacity) {
-      var el = svg.select("#" + svgPathId);
-      if(el && el.type === "use"){
-        AnatomogramImage._recursivelyChangeProperties(svg.select(el.node.getAttribute("xlink:href")), colour, opacity);
+  _highlightOrganismParts (svg, svgPathId, colour, opacity) {
+      let el = svg.select(`#${svgPathId}`);
+      if(el && el.type === `use`){
+        this._recursivelyChangeProperties(svg.select(el.node.getAttribute(`xlink:href`)), colour, opacity);
       }
-      AnatomogramImage._recursivelyChangeProperties(el,colour, opacity);
+      this._recursivelyChangeProperties(el, colour, opacity);
   },
 
-  statics: {
-    _recursivelyChangeProperties: function(svgElement, colour, opacity) {
-      if (svgElement) {
-        svgElement.selectAll("*").forEach(
-          function(innerElement) {
-            AnatomogramImage._recursivelyChangeProperties(innerElement);
-        });
-        svgElement.attr({"fill": colour, "fill-opacity": opacity});
-      }
+  _recursivelyChangeProperties (svgElement, colour, opacity) {
+    if (svgElement) {
+      svgElement.selectAll(`*`).forEach(
+        innerElement => {
+          this._recursivelyChangeProperties(innerElement);
+      });
+      svgElement.attr({"fill": colour, "fill-opacity": opacity});
     }
   }
 });
-//*------------------------------------------------------------------*
-module.exports=AnatomogramImage;
+
+module.exports = AnatomogramImage;
