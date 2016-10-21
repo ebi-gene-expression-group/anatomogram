@@ -4,35 +4,36 @@
 var React = require('react');
 var validate = require('react-prop-types-check');
 var Anatomogram = require('./Anatomogram.jsx');
-var getSvgsForSpecies = require('./imagesAvailable.js');
+var getSvgsForSpecies = require('./imagesAvailable.js').GetSvgsForSpecies;
 var EventEmitter = require('events');
 require('./ContainerLayout.less');
 
-
 //*------------------------------------------------------------------*
-var argumentShape= {
-      pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
-      anatomogramData: React.PropTypes.shape({
-        species: React.PropTypes.string.isRequired,
-        allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string) //if not provided, we use properties read in from the file
-        /** There may also be other properties sent for compatibility with the older widget.*/
-      }).isRequired,
-      expressedTissueColour: React.PropTypes.string.isRequired,
-      hoveredTissueColour: React.PropTypes.string.isRequired,
-      eventEmitter: React.PropTypes.instanceOf(EventEmitter)
-  };
 
-var _availableAnatomograms= function(species,pathToFolderWithBundledResources,allSvgPathIds) {
+var RequiredString = React.PropTypes.string.isRequired;
+
+var argumentShape= {
+    pathToFolderWithBundledResources: RequiredString,
+    anatomogramData: React.PropTypes.shape({
+      species: RequiredString,
+      allSvgPathIds: React.PropTypes.arrayOf(RequiredString) //if not provided, we use properties read in from the file
+    }).isRequired,
+    expressedTissueColour: RequiredString,
+    hoveredTissueColour: RequiredString,
+    eventEmitter: React.PropTypes.instanceOf(EventEmitter)
+};
+
+var _availableAnatomograms= function(species, pathToFolderWithBundledResources, allSvgPathIds) {
   return (
-    getSvgsForSpecies(species,pathToFolderWithBundledResources)
+    getSvgsForSpecies(pathToFolderWithBundledResources, species)
     .filter(function(e){
       return (
         ! allSvgPathIds
         ||  allSvgPathIds
             .filter(function(id){
-              return e.ids.indexOf(id)>-1
+              return e.ids.indexOf(id) > -1
             })
-            .length>0
+            .length > 0
       )
     })
   )
@@ -101,17 +102,14 @@ var makeWrapper = function(ComponentClass){
   return (
     React.createClass({
       displayName: "WrappedComponent",
-
       propTypes: {
         ontologyIdsToHighlight: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
         onOntologyIdIsUnderFocus: React.PropTypes.func.isRequired,
         componentProps: React.PropTypes.object.isRequired
       },
-
       shouldComponentUpdate: function(nextProps){
         return !arraysEqual(nextProps.ontologyIdsToHighlight,this.props.ontologyIdsToHighlight) ;
       },
-
       render: function(){
         return (
           <div id="gxaAnatomogramWrapper">
@@ -131,19 +129,15 @@ componentClass : a React class to be wrapped. Should accept props onOntologyIdIs
 componentProps : other props to be passed over.
 */
 var wrapComponentWithAnatomogram = function(anatomogramConfig, componentClass, componentProps){
-
   var Wrapped = makeWrapper(componentClass);
-
   return React.createClass({
     displayName: "AnatomogramComponentWrapper",
-
     getInitialState: function(){
       return {
         ontologyIdsForComponentContentUnderFocus: [],
         ontologyIdsForAnatomogramContentUnderFocus: []
       }
     },
-
     render: function(){
       return (
         <div>
@@ -159,7 +153,6 @@ var wrapComponentWithAnatomogram = function(anatomogramConfig, componentClass, c
                     })
                   )}
             </div>
-
             <Wrapped componentProps={componentProps}
               onOntologyIdIsUnderFocus={function(selectedIdOrIds){
                 this.setState({ontologyIdsForComponentContentUnderFocus:
