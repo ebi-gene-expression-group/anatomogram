@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "Wojtek Bazant <wbazant@ebi.ac.uk>, Elisabet Barrera <barrera@ebi.ac.uk> and Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
   "license": "custom",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gxa/anatomogram.git"
+  },
   "dependencies": {
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
