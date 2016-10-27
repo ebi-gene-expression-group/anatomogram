@@ -192,8 +192,7 @@
   <!-- group_all -->
   <a
      id="ccLogo"
-     xlink:href="http://www.ebi.ac.uk/gxa/licence.html"
-     transform="translate(-33.524499,-2.4410013)"
+     xlink:href="https://www.ebi.ac.uk/gxa/licence.html"
      style="fill:none">
     <image
        xlink:href="https://licensebuttons.net/i/l/by/ffffff/33/99/33/80x15.png"
