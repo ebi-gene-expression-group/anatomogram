@@ -42,9 +42,9 @@ const createAnatomogram = (args) => {
 
     const availableAnatomograms =
         _availableAnatomograms(
-        args.anatomogramData.species,
-        args.pathToFolderWithBundledResources,
-        args.anatomogramData.allSvgPathIds || null);
+            args.anatomogramData.species,
+            args.pathToFolderWithBundledResources,
+            args.anatomogramData.allSvgPathIds || null);
 
     return(
         availableAnatomograms.length ?
