@@ -24,18 +24,18 @@ Required:
 npm, webpack, webpack-dev-server
 ```
 
-To update the anatomograms or ontology IDs edit them in the `assets/svg` directory, then run
+To update the anatomograms or ontology IDs edit them in the `resources/svg` directory, then run
 ```
 scripts/idsForSvgs.py
 ```
-This regenerates the file `assets/json/idsForSvgs.svg`.
+This regenerates the file `resources/json/idsForSvgs.svg`.
 
-To add new anatomograms put them in the assets/svg directory, then edit the config `assets/json/svgsForSpecies.json`.
+To add new anatomograms put them in the `resources/svg` directory, then edit the config `resources/json/svgsForSpecies.json`.
 
 
 When you are finished run a local copy of the demo page:
 ```
-webpack-dev-server --port 9000
+webpack-dev-server -d
 ```
 Go to localhost:9000/html and see that the tissues show up like you want them to.
 

@@ -6,8 +6,8 @@ import re
 import sys
 
 SCRIPT_DIR=os.path.dirname(os.path.realpath(sys.argv[0]))
-SVG_DIR=SCRIPT_DIR+'/../assets/svg'
-TARGET=SCRIPT_DIR+'/../assets/json/idsForSvgs.json'
+SVG_DIR=SCRIPT_DIR+'/../resources/svg'
+TARGET=SCRIPT_DIR+'/../resources/json/idsForSvgs.json'
 f = []
 for (dirpath, dirnames, filenames) in os.walk(SVG_DIR):
     f.extend(filenames)

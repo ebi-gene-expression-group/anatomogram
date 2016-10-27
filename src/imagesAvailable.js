@@ -1,18 +1,18 @@
 const Url = require(`url`);
 const Path = require(`path`);
-const SvgsForSpecies = require(`../assets/json/svgsForSpecies.json`);
-const IdsForSvgs = require(`../assets/json/idsForSvgs.json`);
+const SvgsForSpecies = require(`../resources/json/svgsForSpecies.json`);
+const IdsForSvgs = require(`../resources/json/idsForSvgs.json`);
 
 const ResolvePathToIcon = (pathToFolderWithBundledResources, type, selected) =>
     Url.resolve(
         pathToFolderWithBundledResources,
-        Path.basename(require(`../assets/icons/${type}_${selected ? `` : `un`}selected.png`))
+        Path.basename(require(`../resources/icons/${type}_${selected ? `` : `un`}selected.png`))
     );
 
 const ResolvePathToSvg = (pathToFolderWithBundledResources, svg) =>
     Url.resolve(
         pathToFolderWithBundledResources,
-        Path.basename(require(`../assets/svg/${svg}`))
+        Path.basename(require(`../resources/svg/${svg}`))
     );
 
 const GetSvgsForSpecies = (pathToFolderWithBundledResources, species) => {
