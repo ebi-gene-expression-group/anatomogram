@@ -211,12 +211,13 @@ const AnatomogramImage = React.createClass({
                     g.transform(`S1.6,0,0`);
                     svgCanvas.append(g);
                 });
-
+                debugger;
                 const img = fragment.select(`#ccLogo`);
-                if(img){
-                    let heightTranslate = svgCanvas.node.clientHeight - 15;
-                    let widthTranslate = svgCanvas.node.clientWidth / 2 - 40;
-                    img.transform(`t`+widthTranslate+`,`+heightTranslate);
+                if (img) {
+                    // svgCanvas.node.clientHeight and svgCanvas.node.clientWidth is more “correct” but are 0 in Firefox
+                    const heightTranslate = Number.parseInt(this._anatomogram.style.height) - 15;
+                    const widthTranslate = Number.parseInt(this._anatomogram.style.width) / 2 - 40;
+                    img.transform(`t${widthTranslate},${heightTranslate}`);
                     svgCanvas.append(img);
                 }
             }
