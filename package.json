@@ -1,6 +1,6 @@
 {
   "name": "anatomogram",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Expression Atlas anatomogram",
   "main": "index.js",
   "author": "Wojtek Bazant <wbazant@ebi.ac.uk>, Elisabet Barrera <barrera@ebi.ac.uk> and Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
