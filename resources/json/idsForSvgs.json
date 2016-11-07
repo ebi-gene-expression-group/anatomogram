@@ -202,7 +202,6 @@
     "UBERON_001621"
   ], 
   "human_brain.svg": [
-    "EFO_0000530", 
     "UBERON_0000451", 
     "UBERON_0000956", 
     "UBERON_0001870", 
@@ -226,6 +225,7 @@
     "UBERON_0002285", 
     "UBERON_0002360", 
     "UBERON_0002363", 
+    "UBERON_0002421", 
     "UBERON_0002702", 
     "UBERON_0002771", 
     "UBERON_0003027"
