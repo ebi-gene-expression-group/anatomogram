@@ -5,9 +5,12 @@ import json
 import re
 import sys
 
+
 SCRIPT_DIR=os.path.dirname(os.path.realpath(sys.argv[0]))
 SVG_DIR=SCRIPT_DIR+'/../resources/svg'
 TARGET=SCRIPT_DIR+'/../resources/json/idsForSvgs.json'
+print("Regenerating the file %s"%TARGET)
+
 f = []
 for (dirpath, dirnames, filenames) in os.walk(SVG_DIR):
     f.extend(filenames)
@@ -21,3 +24,5 @@ ids_for_svgs = {filename: idsInFile(filename) for filename in f}
 
 with open(TARGET,'w') as target_file:
     json.dump(ids_for_svgs, target_file, indent=2)
+
+print("Done!")
