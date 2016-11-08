@@ -21,31 +21,11 @@ const DemoComponent = React.createClass({
     render() {
         return (
             <div style={{backgroundColor:`beige`, minHeight:`280px`, maxWidth:`450px`}}>
-                <h4>A demo component stubbing out the heatmap</h4>
-                <div> <i>Select of one or more ontologyIds- corresponds to hover events in heatmap</i></div>
-
-                <select style={{height: `100px`}} multiple={true} value={this.state.ontologyIdsUnderFocus}
-                        onChange={ev => {
-                            const selectedId = ev.target.value;
-                            this.setState(previousState =>
-                                ({
-                                    ontologyIdsUnderFocus:
-                                        previousState.ontologyIdsUnderFocus.includes(selectedId) ?
-                                            previousState.ontologyIdsUnderFocus.filter(el => el !== selectedId) :
-                                            previousState.ontologyIdsUnderFocus.concat([selectedId])
-                                })
-                            )}}>
-                    {this.props.ontologyIdsForChosenSpecies.map(id =>
-                        (
-                            <option key={id} value = {id} >{id}</option>
-                        )
-                    )}
-                </select>
 
                 <p>Currently hovered in anatomogram:</p>
-                {this.state.ontologyIdsUnderFocus.length ?
+                {this.props.ontologyIdsToHighlight.length ?
                     <ul>
-                        {this.state.ontologyIdsUnderFocus.map(el =>
+                        {this.props.ontologyIdsToHighlight.map(el =>
                             (
                                 <li key={el}>{el}</li>
                             )
@@ -74,13 +54,14 @@ const DemoContainer = React.createClass({
     },
 
   getInitialState() {
-      return { idsExpressedInExperiment: this._getOntologyIdsForChosenSpecies().filter(() => Math.random() > 0.7) }
+      return { showAll: false, idsExpressedInExperiment: this._getOntologyIdsForChosenSpecies().filter(() => Math.random() > 0.7) }
   },
   render() {
       const anatomogramConfig = {
           pathToFolderWithBundledResources: `/dist/`,
           anatomogramData: {
-              species: this.props.species
+              species: this.props.species,
+              allSvgPathIds: this.state.showAll? undefined: this.state.idsExpressedInExperiment
           },
           expressedTissueColour: `red`,
           hoveredTissueColour: `purple`,
@@ -89,31 +70,41 @@ const DemoContainer = React.createClass({
 
       const Wrapped =
           AnatomogramFactory.wrapComponent(
-              anatomogramConfig, DemoComponent, { ontologyIdsForChosenSpecies: this._getOntologyIdsForChosenSpecies() });
+              anatomogramConfig, DemoComponent, { ontologyIdsForChosenSpecies: this.state.idsExpressedInExperiment });
 
       return (
+        <div>
           <div>
-              <p>Ids selected in experiment:</p>
-              <select style={{height: `100px`}} multiple={true} value={this.state.idsExpressedInExperiment}
-                      onChange={ev => {
-                          const selectedId = ev.target.value;
-                          this.setState(function(previousState) {
-                              return {
-                                  idsExpressedInExperiment:
-                                      previousState.idsExpressedInExperiment.includes(selectedId) ?
-                                          previousState.idsExpressedInExperiment.filter(el => el!==selectedId) :
-                                          previousState.idsExpressedInExperiment.concat([selectedId])
-                              }
-                          })
-                      }}>
-              {this._getOntologyIdsForChosenSpecies().map(id =>
-                  (
-                      <option key={id} value = {id} >{id}</option>
-                  )
-              )}
-              </select>
-              <Wrapped/>
+            <input type="checkbox" checked={this.state.showAll} onChange={ev => {
+              this.setState(function(previousState) {
+                  return {
+                      showAll: !previousState.showAll
+                  }
+              })
+            }}/>
+            Show all
           </div>
+          <p>Ids selected in experiment:
+          </p>
+          {this._getOntologyIdsForChosenSpecies().map((selectedId)=>{
+            return (
+              <span>
+                <input type="checkbox" checked={this.state.idsExpressedInExperiment.indexOf(selectedId)>-1} onChange={ev => {
+                  this.setState(function(previousState) {
+                      return {
+                          idsExpressedInExperiment:
+                              previousState.idsExpressedInExperiment.includes(selectedId) ?
+                                  previousState.idsExpressedInExperiment.filter(el => el!==selectedId) :
+                                  previousState.idsExpressedInExperiment.concat([selectedId])
+                      }
+                  })
+                }}/>
+                {selectedId}
+              </span>
+            )
+          })}
+        <Wrapped/>
+      </div>
     )
   }
 });
