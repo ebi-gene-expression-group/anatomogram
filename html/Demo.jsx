@@ -88,7 +88,7 @@ const DemoContainer = React.createClass({
           </p>
           {this._getOntologyIdsForChosenSpecies().map((selectedId)=>{
             return (
-              <span>
+              <span key={selectedId}>
                 <input type="checkbox" checked={this.state.idsExpressedInExperiment.indexOf(selectedId)>-1} onChange={ev => {
                   this.setState(function(previousState) {
                       return {
