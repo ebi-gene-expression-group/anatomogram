@@ -13,14 +13,15 @@ print("Regenerating the file %s"%TARGET)
 svgsFound = []
 for (dirpath, dirnames, filenames) in os.walk(SVG_DIR):
     for filename in filenames:
-	svgsFound.append(os.path.join(dirpath, filename))
+        if re.match(r".*\.svg", filename):
+	    svgsFound.append((dirpath, filename))
     break
-def idsInFile(filename):
-    print("Parsing: "+filename)
-    e = xml.etree.ElementTree.parse(filename).getroot()
+def idsInFile(filepath):
+    print("Parsing: "+filepath)
+    e = xml.etree.ElementTree.parse(filepath).getroot()
     return sorted([x.attrib['id'] for x in e.findall(".//*[@id='LAYER_EFO']/*") if re.match('[A-Z]+_\w+', x.attrib['id'] )])
 
-ids_for_svgs = {filename: idsInFile(filename) for filename in svgsFound}
+ids_for_svgs = {filename: idsInFile(os.path.join(dirpath,filename)) for (dirpath,filename) in svgsFound}
 
 with open(TARGET,'w') as target_file:
     json.dump(ids_for_svgs, target_file, indent=2)
