@@ -11,9 +11,13 @@ SVG_DIR=SCRIPT_DIR+'/../resources/svg'
 TARGET=SCRIPT_DIR+'/../resources/json/idsForSvgs.json'
 print("Regenerating the file %s"%TARGET)
 svgsFound = []
+regex = "\.DS_Store$"
 for (dirpath, dirnames, filenames) in os.walk(SVG_DIR):
     for filename in filenames:
-	svgsFound.append(os.path.join(dirpath, filename))
+        if re.match(regex, filename):
+		continue
+	else: 
+		svgsFound.append(os.path.join(dirpath, filename))
     break
 def idsInFile(filename):
     print("Parsing: "+filename)
