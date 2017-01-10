@@ -4132,7 +4132,7 @@ webpackJsonp_name_([1],[
 	        var _this = this;
 
 	        var anatomogramConfig = {
-	            pathToFolderWithBundledResources: "/dist/",
+	            pathToFolderWithBundledResources: "../dist/",
 	            anatomogramData: {
 	                species: this.props.species,
 	                allSvgPathIds: this.state.showAll ? undefined : this.state.idsExpressedInExperiment

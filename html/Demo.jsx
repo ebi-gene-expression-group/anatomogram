@@ -58,7 +58,7 @@ const DemoContainer = React.createClass({
   },
   render() {
       const anatomogramConfig = {
-          pathToFolderWithBundledResources: `/dist/`,
+          pathToFolderWithBundledResources: `../dist/`,
           anatomogramData: {
               species: this.props.species,
               allSvgPathIds: this.state.showAll? undefined: this.state.idsExpressedInExperiment
