@@ -6,7 +6,7 @@ module.exports = {
     entry: {
         anatomogram: ['babel-polyfill', './index.js'],
         demoRenderer:'./html/demoRenderer.js',
-        dependencies: ['react', 'react-dom', 'react-prop-types-check', 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js']
+        dependencies: ['react', 'react-dom', 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js']
     },
 
     output: {

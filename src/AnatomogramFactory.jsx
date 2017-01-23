@@ -1,24 +1,19 @@
 const React = require(`react`);
-const validate = require(`react-prop-types-check`);
 const Anatomogram = require(`./Anatomogram.jsx`);
 const getSvgsForSpecies = require(`./imagesAvailable.js`).GetSvgsForSpecies;
-const EventEmitter = require(`events`);
 require(`./ContainerLayout.less`);
 
-//*------------------------------------------------------------------*
-
-const RequiredString = React.PropTypes.string.isRequired;
-
-const argumentShape= {
-    pathToFolderWithBundledResources: RequiredString,
-    anatomogramData: React.PropTypes.shape({
-        species: RequiredString,
-        allSvgPathIds: React.PropTypes.arrayOf(RequiredString) //if not provided, we use properties read in from the file
-    }).isRequired,
-    expressedTissueColour: RequiredString,
-    hoveredTissueColour: RequiredString,
-    eventEmitter: React.PropTypes.instanceOf(EventEmitter)
-};
+// See note below, consider using something like https://flowtype.org if type checking is necessary
+// const argumentShape= {
+//     pathToFolderWithBundledResources: RequiredString,
+//     anatomogramData: React.PropTypes.shape({
+//         species: RequiredString,
+//         allSvgPathIds: React.PropTypes.arrayOf(RequiredString) //if not provided, we use properties read in from the file
+//     }).isRequired,
+//     expressedTissueColour: RequiredString,
+//     hoveredTissueColour: RequiredString,
+//     eventEmitter: React.PropTypes.instanceOf(EventEmitter)
+// };
 
 const _availableAnatomograms = (species, pathToFolderWithBundledResources, allSvgPathIds) =>
     getSvgsForSpecies(pathToFolderWithBundledResources, species)
@@ -38,7 +33,9 @@ const callEmitterWhenMousedOverTissuesChange = (eventEmitter) => {
 };
 
 const createAnatomogram = (args) => {
-    validate(args, argumentShape);
+    // PropTypes should only be used with proper React components
+    // https://facebook.github.io/react/warnings/dont-call-proptypes.html
+    // validate(argumentShape, args, "Error!");
 
     const availableAnatomograms =
         _availableAnatomograms(
@@ -70,7 +67,7 @@ const arraysEqual = (a, b) => {
     if (a === b) return true;
     if (a == null || b == null) return false;
     if (a.length != b.length) return false;
-    for (var i = 0; i < a.length; ++i) {
+    for (let i = 0 ; i < a.length ; ++i) {
         if (a[i] !== b[i]) return false;
     }
     return true;
@@ -109,7 +106,7 @@ componentClass : a React class to be wrapped. Should accept props onOntologyIdIs
 componentProps : other props to be passed over.
 */
 const wrapComponentWithAnatomogram = (anatomogramConfig, componentClass, componentProps) => {
-    var Wrapped = makeWrapper(componentClass);
+    const Wrapped = makeWrapper(componentClass);
 
     return React.createClass({
         displayName: "AnatomogramComponentWrapper",

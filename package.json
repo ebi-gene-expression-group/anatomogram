@@ -1,18 +1,17 @@
 {
   "name": "anatomogram",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Expression Atlas anatomogram",
   "main": "index.js",
   "author": "Wojtek Bazant <wbazant@ebi.ac.uk>, Elisabet Barrera <barrera@ebi.ac.uk> and Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
-  "license": "custom",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gxa/anatomogram.git"
   },
   "dependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-prop-types-check": "0.0.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "snapsvg": "^0.4.0"
   },
   "devDependencies": {
@@ -30,7 +29,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   }
 }
