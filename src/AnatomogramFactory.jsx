@@ -1,7 +1,7 @@
-const React = require(`react`);
-const Anatomogram = require(`./Anatomogram.jsx`);
-const getSvgsForSpecies = require(`./imagesAvailable.js`).GetSvgsForSpecies;
-require(`./ContainerLayout.less`);
+import React from 'react';
+import Anatomogram from './Anatomogram.jsx';
+import {GetSvgsForSpecies} from './imagesAvailable.js';
+import './ContainerLayout.less';
 
 // See note below, consider using something like https://flowtype.org if type checking is necessary
 // const argumentShape= {
@@ -16,8 +16,8 @@ require(`./ContainerLayout.less`);
 // };
 
 const _availableAnatomograms = (species, pathToFolderWithBundledResources, allSvgPathIds) =>
-    getSvgsForSpecies(pathToFolderWithBundledResources, species)
-    .filter(e => !allSvgPathIds || allSvgPathIds.some(id => e.ids.indexOf(id) > -1));
+    GetSvgsForSpecies(pathToFolderWithBundledResources, species)
+    .filter(e => !allSvgPathIds || allSvgPathIds.some(id => e.ids.includes(id)));
 
 const callEmitterWhenMousedOverTissuesChange = (eventEmitter) => {
     const forEachXNotInYsEmit = (xs, ys, eventName) => {
@@ -41,7 +41,7 @@ const createAnatomogram = (args) => {
         _availableAnatomograms(
             args.anatomogramData.species,
             args.pathToFolderWithBundledResources,
-            args.anatomogramData.allSvgPathIds || null);
+            args.anatomogramData.allSvgPathIds);
 
     return(
         availableAnatomograms.length ?
