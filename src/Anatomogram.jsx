@@ -1,28 +1,15 @@
-const React = require(`react`);
-const AnatomogramImage = require(`./AnatomogramImage.jsx`);
-const SelectionIcon = require(`./SelectionIcon.jsx`);
+import React from 'react';
+import AnatomogramImage from './AnatomogramImage.jsx';
+import SelectionIcon from './SelectionIcon.jsx';
 
-const Anatomogram = React.createClass({
-    propTypes: {
-        pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
-        expressedTissueColour: React.PropTypes.string.isRequired,
-        hoveredTissueColour: React.PropTypes.string.isRequired,
-        availableAnatomograms : React.PropTypes.arrayOf(
-            React.PropTypes.shape({
-                type:React.PropTypes.string.isRequired,
-                path:React.PropTypes.string.isRequired,
-                ids: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
-            })
-        ).isRequired,
-        height: React.PropTypes.number.isRequired,
-        whenMousedOverIdsChange: React.PropTypes.func,
-        allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string),
-        idsToBeHighlighted: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
-    },
+class Anatomogram extends React.Component {
+    constructor(props) {
+        super(props);
 
-    getInitialState() {
-        return { selectedType: this.props.availableAnatomograms[0].type };
-    },
+        this.state = {
+            selectedType: this.props.availableAnatomograms[0].type
+        }
+    }
 
     render() {
         return (
@@ -39,7 +26,7 @@ const Anatomogram = React.createClass({
                 </div>
             </div>
         );
-    },
+    }
 
     _anatomogramSelectImageButtons() {
         return (
@@ -57,13 +44,13 @@ const Anatomogram = React.createClass({
                     )
                 )
         );
-    },
+    }
 
     _afterUserSelectedAnatomogram(newSelectedType) {
         if (newSelectedType !== this.state.selectedType) {
             this.setState({ selectedType: newSelectedType });
         }
-    },
+    }
 
     _selectedAnatomogram() {
         return (
@@ -75,7 +62,24 @@ const Anatomogram = React.createClass({
                 ids: []
             })[0]
         );
-    },
-});
+    }
+}
 
-module.exports = Anatomogram;
+Anatomogram.propTypes = {
+    availableAnatomograms : React.PropTypes.arrayOf(
+        React.PropTypes.shape({
+            type: React.PropTypes.string.isRequired,
+            path: React.PropTypes.string.isRequired,
+            ids: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+        })
+    ).isRequired,
+    pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
+    expressedTissueColour: React.PropTypes.string.isRequired,
+    hoveredTissueColour: React.PropTypes.string.isRequired,
+    height: React.PropTypes.number.isRequired,
+    whenMousedOverIdsChange: React.PropTypes.func,
+    allSvgPathIds: React.PropTypes.arrayOf(React.PropTypes.string),
+    idsToBeHighlighted: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+};
+
+export default Anatomogram;
