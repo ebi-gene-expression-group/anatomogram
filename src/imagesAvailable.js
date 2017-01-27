@@ -1,34 +1,34 @@
-const Url = require(`url`);
-const Path = require(`path`);
-const SvgsForSpecies = require(`../resources/json/svgsForSpecies.json`);
-const IdsForSvgs = require(`../resources/json/idsForSvgs.json`);
+import Url from 'url';
+import Path from 'path';
+import SvgsForSpecies from '../resources/json/svgsForSpecies.json';
+import IdsForSvgs from '../resources/json/idsForSvgs.json';
 
-const ResolvePathToIcon = (pathToFolderWithBundledResources, type, selected) =>
+const ResolvePathToIcon = (pathToResources, type, selected) =>
     Url.resolve(
-        pathToFolderWithBundledResources,
+        pathToResources,
         Path.basename(require(`../resources/icons/${type}_${selected ? `` : `un`}selected.png`))
     );
 
-const ResolvePathToSvg = (pathToFolderWithBundledResources, svg) =>
+const ResolvePathToSvg = (pathToResources, svg) =>
     Url.resolve(
-        pathToFolderWithBundledResources,
+        pathToResources,
         Path.basename(require(`../resources/svg/${svg}`))
     );
 
-const GetSvgsForSpecies = (pathToFolderWithBundledResources, species) => {
-    let svgEntry = SvgsForSpecies[species];
+const GetSvgsForSpecies = (pathToResources, species) => {
+    const svgEntry = SvgsForSpecies[species];
     if (typeof svgEntry === `object`) {
         return Object.keys(svgEntry).map(anatomogramType => (
             {
                 type: anatomogramType,
-                path: ResolvePathToSvg(pathToFolderWithBundledResources, svgEntry[anatomogramType]),
+                path: ResolvePathToSvg(pathToResources, svgEntry[anatomogramType]),
                 ids: IdsForSvgs[svgEntry[anatomogramType]]
             }
         ));
     } else if (typeof svgEntry === `string`) {
         return [{
             type: `svg`,
-            path: ResolvePathToSvg(pathToFolderWithBundledResources, svgEntry),
+            path: ResolvePathToSvg(pathToResources, svgEntry),
             ids: IdsForSvgs[svgEntry]
         }];
     } else {
@@ -36,4 +36,4 @@ const GetSvgsForSpecies = (pathToFolderWithBundledResources, species) => {
     }
 };
 
-module.exports = {GetSvgsForSpecies, ResolvePathToIcon};
+export {GetSvgsForSpecies, ResolvePathToIcon};
