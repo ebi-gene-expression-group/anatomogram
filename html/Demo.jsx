@@ -1,8 +1,9 @@
-const React = require(`react`);
-const idsForSvgs = require(`../resources/json/idsForSvgs.json`);
-const svgsForSpecies = require(`../resources/json/svgsForSpecies.json`);
-const getSvgsForSpecies = require(`../src/imagesAvailable.js`).GetSvgsForSpecies;
-const AnatomogramFactory = require(`../src/AnatomogramFactory.jsx`);
+import React from 'react';
+import {getSvgsForSpecies} from '../src/imagesAvailable.js';
+import AnatomogramFactory from '../src/AnatomogramFactory.jsx';
+
+import SvgsForSpecies from '../resources/json/svgsForSpecies.json';
+// import IdsForSvgs from '../resources/json/idsForSvgs.json';
 
 const DemoComponent = React.createClass({
     propTypes: {
@@ -58,7 +59,7 @@ const DemoContainer = React.createClass({
   },
   render() {
       const anatomogramConfig = {
-          pathToFolderWithBundledResources: `../dist/`,
+          pathToResources: `../dist/`,
           anatomogramData: {
               species: this.props.species,
               allSvgPathIds: this.state.showAll? undefined: this.state.idsExpressedInExperiment
@@ -125,7 +126,7 @@ const Demo = React.createClass({
                 <div> Select species</div>
 
                 <select value={this.state.species} onChange={this.handleChange}>
-                    {Object.keys(svgsForSpecies).map(species =>
+                    {Object.keys(SvgsForSpecies).map(species =>
                         (
                             <option key={species} value={species}>{species}</option>
                         )
@@ -139,4 +140,4 @@ const Demo = React.createClass({
   }
 });
 
-module.exports = Demo;
+export default Demo;
