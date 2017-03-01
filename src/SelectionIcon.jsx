@@ -11,7 +11,7 @@ class SelectionIcon extends React.Component {
         return (
             <img className={"selection-icon"} onClick={this.props.onClick}
                  src={ResolvePathToIcon(
-                         this.props.pathToFolderWithBundledResources,
+                         this.props.pathToResources,
                          this.props.anatomogramType,
                          this.props.selected)} />
         );
@@ -19,7 +19,7 @@ class SelectionIcon extends React.Component {
 }
 
 SelectionIcon.propTypes = {
-    pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
+    pathToResources: React.PropTypes.string.isRequired,
     anatomogramType: React.PropTypes.oneOf([`brain`,`female`,`male`,`whole_plant`,`flower_parts`]).isRequired,
     selected: React.PropTypes.bool.isRequired,
     onClick: React.PropTypes.func.isRequired

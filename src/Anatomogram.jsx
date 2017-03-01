@@ -37,7 +37,7 @@ class Anatomogram extends React.Component {
                     (
                         <SelectionIcon
                             key={`${availableAnatomogram.type}_toggle`}
-                            pathToFolderWithBundledResources={this.props.pathToFolderWithBundledResources}
+                            pathToResources={this.props.pathToResources}
                             anatomogramType={availableAnatomogram.type}
                             selected={this.state.selectedType === availableAnatomogram.type}
                             onClick={() => { this._afterUserSelectedAnatomogram(availableAnatomogram.type); }}/>
@@ -73,7 +73,7 @@ Anatomogram.propTypes = {
             ids: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
         })
     ).isRequired,
-    pathToFolderWithBundledResources: React.PropTypes.string.isRequired,
+    pathToResources: React.PropTypes.string.isRequired,
     expressedTissueColour: React.PropTypes.string.isRequired,
     hoveredTissueColour: React.PropTypes.string.isRequired,
     height: React.PropTypes.number.isRequired,

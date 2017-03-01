@@ -15,8 +15,8 @@ import './ContainerLayout.less';
 //     eventEmitter: React.PropTypes.instanceOf(EventEmitter)
 // };
 
-const _availableAnatomograms = (species, pathToFolderWithBundledResources, allSvgPathIds) =>
-    GetSvgsForSpecies(pathToFolderWithBundledResources, species)
+const _availableAnatomograms = (species, pathToResources, allSvgPathIds) =>
+    GetSvgsForSpecies(pathToResources, species)
     .filter(e => !allSvgPathIds || allSvgPathIds.some(id => e.ids.includes(id)));
 
 const callEmitterWhenMousedOverTissuesChange = (eventEmitter) => {
@@ -40,13 +40,13 @@ const createAnatomogram = (args) => {
     const availableAnatomograms =
         _availableAnatomograms(
             args.anatomogramData.species,
-            args.pathToFolderWithBundledResources,
+            args.pathToResources,
             args.anatomogramData.allSvgPathIds);
 
     return(
         availableAnatomograms.length ?
             <Anatomogram
-                pathToFolderWithBundledResources={args.pathToFolderWithBundledResources}
+                pathToResources={args.pathToResources}
                 expressedTissueColour={args.expressedTissueColour}
                 hoveredTissueColour={args.hoveredTissueColour}
                 availableAnatomograms= {availableAnatomograms}
