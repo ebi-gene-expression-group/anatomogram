@@ -1,5 +1,6 @@
-const React = require(`react`);
-const ReactDOM = require(`react-dom`);
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 const Snap = require(`imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js`);
 
 //http://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
@@ -271,4 +272,4 @@ const AnatomogramImage = React.createClass({
     }
 });
 
-module.exports = AnatomogramImage;
+export default AnatomogramImage;
