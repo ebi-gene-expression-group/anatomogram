@@ -3,6 +3,9 @@
   "version": "0.3.2",
   "description": "Expression Atlas anatomogram",
   "main": "index.js",
+  "scripts": {
+    "prod": "NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules"
+  },
   "author": "Wojtek Bazant <wbazant@ebi.ac.uk>, Elisabet Barrera <barrera@ebi.ac.uk> and Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
   "license": "Apache-2.0",
   "repository": {
