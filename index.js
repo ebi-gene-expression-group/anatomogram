@@ -1,1 +1,2 @@
-module.exports = require(`./src/AnatomogramFactory.jsx`);
+import AnatomogramFactory from './src/AnatomogramFactory.jsx';
+export default AnatomogramFactory;
