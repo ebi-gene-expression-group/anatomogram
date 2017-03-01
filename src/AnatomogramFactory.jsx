@@ -38,10 +38,7 @@ const createAnatomogram = (args) => {
     // validate(argumentShape, args, "Error!");
 
     const availableAnatomograms =
-        _availableAnatomograms(
-            args.anatomogramData.species,
-            args.pathToResources,
-            args.anatomogramData.allSvgPathIds);
+        _availableAnatomograms(args.anatomogramData.species, args.pathToResources, args.anatomogramData.allSvgPathIds);
 
     return(
         availableAnatomograms.length ?
@@ -150,7 +147,7 @@ const wrapComponentWithAnatomogram = (anatomogramConfig, componentClass, compone
 };
 
 export default {
-    create: createAnatomogram, wrapComponent:
-    wrapComponentWithAnatomogram
+    create: createAnatomogram,
+    wrapComponent: wrapComponentWithAnatomogram
 };
 
