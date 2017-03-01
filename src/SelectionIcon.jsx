@@ -1,22 +1,10 @@
 import React from 'react';
-import {ResolvePathToIcon} from './imagesAvailable.js';
+import {resolvePathToIcon} from './imagesAvailable.js';
 import './SelectionIcon.less';
 
-class SelectionIcon extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <img className={"selection-icon"} onClick={this.props.onClick}
-                 src={ResolvePathToIcon(
-                         this.props.pathToResources,
-                         this.props.anatomogramType,
-                         this.props.selected)} />
-        );
-    }
-}
+const SelectionIcon = props =>
+    <img className={"selection-icon"} onClick={props.onClick}
+         src={resolvePathToIcon(props.pathToResources, props.anatomogramType, props.selected)} />;
 
 SelectionIcon.propTypes = {
     pathToResources: React.PropTypes.string.isRequired,
