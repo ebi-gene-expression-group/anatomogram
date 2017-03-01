@@ -1,6 +1,6 @@
 import React from 'react';
 import Anatomogram from './Anatomogram.jsx';
-import {GetSvgsForSpecies} from './imagesAvailable.js';
+import {getSvgsForSpecies} from './imagesAvailable.js';
 import './ContainerLayout.less';
 
 // See note below, consider using something like https://flowtype.org if type checking is necessary
@@ -16,7 +16,7 @@ import './ContainerLayout.less';
 // };
 
 const _availableAnatomograms = (species, pathToResources, allSvgPathIds) =>
-    GetSvgsForSpecies(pathToResources, species)
+    getSvgsForSpecies(pathToResources, species)
     .filter(e => !allSvgPathIds || allSvgPathIds.some(id => e.ids.includes(id)));
 
 const callEmitterWhenMousedOverTissuesChange = (eventEmitter) => {
@@ -149,4 +149,8 @@ const wrapComponentWithAnatomogram = (anatomogramConfig, componentClass, compone
     })
 };
 
-module.exports={"create": createAnatomogram, "wrapComponent": wrapComponentWithAnatomogram};
+export default {
+    create: createAnatomogram, wrapComponent:
+    wrapComponentWithAnatomogram
+};
+
