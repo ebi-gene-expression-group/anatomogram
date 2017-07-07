@@ -150,4 +150,3 @@ export default {
     create: createAnatomogram,
     wrapComponent: wrapComponentWithAnatomogram
 };
-

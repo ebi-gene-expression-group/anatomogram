@@ -49,7 +49,7 @@ const drawOnSvgDomNode = ({domNode,instructions}) => {
 const loadSvgOntoDom = ({
 	svgFile,
 	domNode,
-	style: {height, width},
+	dimensions: {height, width},
 	events,
 	elementsInitialLayout
 	}) => {
