@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js';
+import colourSvgElements from './ColourSvgElements.js'
 
 //http://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
 const ArraysEqual = (a, b) => {
@@ -134,22 +134,16 @@ const AnatomogramImage = React.createClass({
     _draw() {
         const svg = Snap(ReactDOM.findDOMNode(this._anatomogram)).select(`#LAYER_EFO`);
         if(svg !== null){
-            this._drawOnSvg(svg, this._imageParts.state.toDraw);
+            colourSvgElements({svg, instructions: this._imageParts.state.toDraw});
             this._imageParts.setState({ toDraw: [] });
         }
     },
 
     _drawInitialLayout(svg) {
         if(this._imageParts) {
-            this._drawOnSvg(svg, this._imageParts.getInitialState().toDraw);
+            colourSvgElements({svg, instructions:this._imageParts.getInitialState().toDraw});
             this._imageParts.setState({ toDraw: [] });
         }
-    },
-
-    _drawOnSvg(svg, instructions) {
-        instructions.forEach(instruction => {
-            this._highlightOrganismParts(svg,instruction.id, instruction.colour, instruction.opacity);
-        });
     },
 
     render () {
@@ -253,22 +247,9 @@ const AnatomogramImage = React.createClass({
                 }
             });
         }
-    },
-
-    _highlightOrganismParts(svg, svgPathId, colour, opacity) {
-        let el = svg.select(`#${svgPathId}`);
-        if (el && el.type === `use`) {
-            this._recursivelyChangeProperties(svg.select(el.node.getAttribute(`xlink:href`)), colour, opacity);
-        }
-        this._recursivelyChangeProperties(el, colour, opacity);
-    },
-
-    _recursivelyChangeProperties(svgElement, colour, opacity) {
-        if (svgElement) {
-            svgElement.selectAll(`*`).forEach(innerElement => { this._recursivelyChangeProperties(innerElement); });
-            svgElement.attr({"fill": colour, "fill-opacity": opacity});
-        }
     }
+
+
 });
 
 export default AnatomogramImage;
