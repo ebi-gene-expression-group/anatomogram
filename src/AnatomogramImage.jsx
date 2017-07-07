@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import colourSvgElements from './ColourSvgElements.js'
+import {loadSvgOntoDom, drawOnSvgDomNode} from './MaintainSvgCanvas.js'
 
 //http://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
 const ArraysEqual = (a, b) => {
@@ -132,18 +132,8 @@ const AnatomogramImage = React.createClass({
     },
 
     _draw() {
-        const svg = Snap(ReactDOM.findDOMNode(this._anatomogram)).select(`#LAYER_EFO`);
-        if(svg !== null){
-            colourSvgElements({svg, instructions: this._imageParts.state.toDraw});
-            this._imageParts.setState({ toDraw: [] });
-        }
-    },
-
-    _drawInitialLayout(svg) {
-        if(this._imageParts) {
-            colourSvgElements({svg, instructions:this._imageParts.getInitialState().toDraw});
-            this._imageParts.setState({ toDraw: [] });
-        }
+        drawOnSvgDomNode({domNode: ReactDOM.findDOMNode(this._anatomogram), instructions: this._imageParts.state.toDraw})
+        this._imageParts.setState({ toDraw: [] })
     },
 
     render () {
@@ -186,70 +176,27 @@ const AnatomogramImage = React.createClass({
     },
 
     _loadAnatomogram(svgFile) {
-        let svgCanvas = Snap(ReactDOM.findDOMNode(this._anatomogram)),
-            allElements = svgCanvas.selectAll(`*`);
+        const MaxOverlappingTissues = 5
 
-        if (allElements) {
-            allElements.remove();
-        }
-
-        const displayAllOrganismPartsCallback = this._drawInitialLayout;
-        const registerHoverEventsCallback = this._registerHoverEvents;
-
-        Snap.load(
+        loadSvgOntoDom({
             svgFile,
-            fragment => {
-                displayAllOrganismPartsCallback(fragment.select(`#LAYER_EFO`));
-                registerHoverEventsCallback(fragment.select(`#LAYER_EFO`));
-                fragment.selectAll(`svg > g`).forEach(g => {
-                    g.transform(`S1.6,0,0`);
-                    svgCanvas.append(g);
-                });
-                const img = fragment.select(`#ccLogo`);
-                if (img) {
-                    // svgCanvas.node.clientHeight and svgCanvas.node.clientWidth is more “correct” but are 0 in Firefox
-                    const heightTranslate = Number.parseInt(this._anatomogram.style.height) - 15;
-                    const widthTranslate = Number.parseInt(this._anatomogram.style.width) / 2 - 40;
-                    img.transform(`t${widthTranslate},${heightTranslate}`);
-                    svgCanvas.append(img);
+            domNode: ReactDOM.findDOMNode(this._anatomogram),
+            style: this._anatomogram.style,
+            elementsInitialLayout: this._imageParts.getInitialState().toDraw,
+            events: {
+                onIdMouseover : (svgPathId) => {
+                    this.setState((previousState) =>
+                        ({ mousedOverSvgIds: [...previousState.mousedOverSvgIds, svgPathId].slice(-MaxOverlappingTissues) })
+                    )
+                },
+                onIdMouseout : (svgPathId) => {
+                    this.setState((previousState) =>
+                        ({ mousedOverSvgIds: previousState.mousedOverSvgIds.map(el => el === svgPathId ? `` : el) })
+                    )
                 }
             }
-        );
-    },
-
-    _registerHoverEvents(svg) {
-        if (svg) {  // Sometimes svg is null... why?
-            const MaxOverlappingTissues = 5;
-            const mouseoverCallback = svgPathId => {
-                this.setState((previousState) =>
-                    ({ mousedOverSvgIds: [...previousState.mousedOverSvgIds, svgPathId].slice(-MaxOverlappingTissues) })
-                );
-            };
-
-            const mouseoutCallback = svgPathId => {
-                this.setState((previousState) =>
-                    ({ mousedOverSvgIds: previousState.mousedOverSvgIds.map(el => el === svgPathId ? `` : el) })
-                );
-            };
-
-            const attachCallbacks = (svgElement, svgPathId) => {
-                if (svgElement) {
-                    svgElement.mouseover(() => { mouseoverCallback(svgPathId) });
-                    svgElement.mouseout(() => { mouseoutCallback(svgPathId) });
-                }
-            };
-
-            this.props.allSvgPathIds.forEach(svgPathId => {
-                const svgElement = svg.select(`#${svgPathId}`);
-                attachCallbacks(svgElement, svgPathId);
-                if(svgElement && svgElement.type === `use`){
-                    attachCallbacks(svg.select(svgElement.node.getAttribute(`xlink:href`)), svgPathId);
-                }
-            });
-        }
+        })
     }
-
-
 });
 
 export default AnatomogramImage;
