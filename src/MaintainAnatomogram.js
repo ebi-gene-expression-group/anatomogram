@@ -4,19 +4,7 @@ import {debounce} from 'lodash'
 
 const submitCallbackForDebouncedExecution = debounce(f => f(), 100)
 
-
-//http://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
-const ArraysEqual = (a, b) => {
-    if (a === b) return true;
-    if (a == null || b == null) return false;
-    if (a.length != b.length) return false;
-    for (let i = 0; i < a.length; ++i) {
-        if (a[i] !== b[i]) return false;
-    }
-    return true;
-}
 const MaxOverlappingTissues = 5
-
 
 const areInstructionsEquivalent = (instruction1, instruction2) => (
     instruction1.id == instruction2.id
@@ -93,16 +81,15 @@ const onDesiredLayoutChange = ({domNode, desiredLayout}) => {
 }
 
 const onMouseoverIdsChange = ({domNode, whenMousedOverIdsChange, idsMousedOver}) => {
-	const previousIdsMousedOver = currentState.idsMousedOver
-	if(!ArraysEqual(previousIdsMousedOver, idsMousedOver)){
-		const previousDrawInstructions = drawInstructions(currentState)
-		currentState.idsMousedOver = idsMousedOver
-		drawOnSvgDomNode({
-			domNode,
-			instructions : diffInstructions(previousDrawInstructions, drawInstructions(currentState))
-		})
-		submitCallbackForDebouncedExecution(whenMousedOverIdsChange.bind(this, idsMousedOver,previousIdsMousedOver) )
-	}
+	const previousDrawInstructions = drawInstructions(currentState)
+
+	currentState.idsMousedOver = idsMousedOver
+
+	drawOnSvgDomNode({
+		domNode,
+		instructions : diffInstructions(previousDrawInstructions, drawInstructions(currentState))
+	})
+	submitCallbackForDebouncedExecution(whenMousedOverIdsChange.bind(this, idsMousedOver))
 }
 
 const prescribeAnatomogram = ({domNode, svgFile, dimensions, whenMousedOverIdsChange, desiredLayout}) => {
@@ -128,7 +115,7 @@ const prescribeAnatomogram = ({domNode, svgFile, dimensions, whenMousedOverIdsCh
 					onMouseoverIdsChange({
 						domNode,
 						whenMousedOverIdsChange,
-						idsMousedOver: currentState.idsMousedOver.map(el => el === svgPathId ? `` : el).filter(el=>el)
+						idsMousedOver: []
 					})
 				}
 			}
