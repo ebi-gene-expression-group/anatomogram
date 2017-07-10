@@ -1,6 +1,6 @@
 {
   "name": "anatomogram",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Expression Atlas anatomogram",
   "main": "index.js",
   "scripts": {
