@@ -1,5 +1,8 @@
 
 import {loadSvgOntoDom, drawOnSvgDomNode} from './MaintainSvgCanvas.js'
+import {debounce} from 'lodash'
+
+const submitCallbackForDebouncedExecution = debounce(f => f(), 100)
 
 
 //http://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
@@ -98,7 +101,7 @@ const onMouseoverIdsChange = ({domNode, whenMousedOverIdsChange, idsMousedOver})
 			domNode,
 			instructions : diffInstructions(previousDrawInstructions, drawInstructions(currentState))
 		})
-		whenMousedOverIdsChange(idsMousedOver,previousIdsMousedOver)
+		submitCallbackForDebouncedExecution(whenMousedOverIdsChange.bind(this, idsMousedOver,previousIdsMousedOver) )
 	}
 }
 
