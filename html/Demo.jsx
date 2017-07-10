@@ -5,6 +5,11 @@ import AnatomogramFactory from '../src/AnatomogramFactory.jsx';
 import SvgsForSpecies from '../resources/json/svgsForSpecies.json';
 // import IdsForSvgs from '../resources/json/idsForSvgs.json';
 
+function sleepFor( sleepDuration ){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ }
+}
+
 const DemoComponent = React.createClass({
     propTypes: {
         // onOntologyIdIsUnderFocus: React.PropTypes.func.isRequired,
@@ -20,13 +25,14 @@ const DemoComponent = React.createClass({
     // },
 
     render() {
+        //sleepFor(500)
         return (
             <div style={{backgroundColor:`beige`, minHeight:`280px`, maxWidth:`450px`}}>
 
                 <p>Currently hovered in anatomogram:</p>
                 {this.props.ontologyIdsToHighlight.length ?
                     <ul>
-                        {this.props.ontologyIdsToHighlight.map(el =>
+                        {this.props.ontologyIdsToHighlight.filter((e,ix,self) => (self.indexOf(e) === ix)).map(el =>
                             (
                                 <li key={el}>{el}</li>
                             )
@@ -87,7 +93,7 @@ const DemoContainer = React.createClass({
           </div>
           <p>Ids selected in experiment:
           </p>
-          {this._getOntologyIdsForChosenSpecies().map((selectedId)=>{
+          {this._getOntologyIdsForChosenSpecies().filter((e,ix,self) => (self.indexOf(e) === ix)).map((selectedId)=>{
             return (
               <span key={selectedId}>
                 <input type="checkbox" checked={this.state.idsExpressedInExperiment.indexOf(selectedId)>-1} onChange={ev => {
