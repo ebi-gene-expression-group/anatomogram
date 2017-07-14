@@ -1,0 +1,41 @@
+{
+  "name": "expression-atlas-anatomogram",
+  "version": "0.0.1",
+  "description": "Anatomogram component for Expression Atlas heatmap",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf lib && babel src -d lib --ignore '**/*.less','**/*.sass' --copy-files && node lib/svg/svgParser.js ",
+    "prepublish": "npm run build",
+    "coverage": "jest --coverage",
+    "test": "npm run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "author": "Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gxa/atlas-anatomogram.git"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-svg": "^2.1.21",
+    "urijs": "^1.18.10",
+    "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.0.1",
+    "coveralls": "^2.13.1",
+    "enzyme": "^2.9.1",
+    "jest": "^20.0.4",
+    "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.0"
+  }
+}
