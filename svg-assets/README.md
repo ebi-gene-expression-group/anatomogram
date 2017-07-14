@@ -1,4 +1,4 @@
-# Anatomogram SVG guidelines
+# SVG authoring guidelines
 
 - Anatomogram SVGs are edited with Inkscape and saved first as *Inkscape SVG* and as *Plain SVG* in the `src/svg` directory.
 - The structure of the SVG must be as follows:
