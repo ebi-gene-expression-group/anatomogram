@@ -26,4 +26,4 @@
 - If a tissue shape is a group, i.e. `<g ...></g>` each of the shapes inside must have no styles at all. The appearance is determined by the attributes of the enclosing group tag.
 - A tissue shape cannot have another group inside. It must be formed by basic shapes only.
 - A tissue shape should have a `<title>` attribute with the name of the tissue.
-- The top `<svg ...>` tag must have the attributes `viewbox="0 0 [height] [value]"` and `preserveAspectRatio="none"`. These may be added with a text editor.
+- The top `<svg ...>` tag must have the attributes `viewbox="0 0 [height] [value]"` and `preserveAspectRatio="none"`. These may be added with a text editor after saving the SVG to look up the `height` and `width` attributes.
