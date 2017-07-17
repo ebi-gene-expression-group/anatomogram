@@ -1,0 +1,22 @@
+{
+  "anolis_carolinensis": [],
+  "arabidopsis_thaliana": [],
+  "bos_taurus": [],
+  "brachypodium_distachyon": ["_flower_parts", "_whole_plant"],
+  "gallus_gallus": [],
+  "homo_sapiens": ["_brain", "_female", "_male"],
+  "hordeum_vulgare": ["_flower_parts", "_whole_plant"],
+  "macaca_mulatta": [],
+  "monodelphis_domestica": [],
+  "mus_musculus": ["_brain", "_female", "_male"],
+  "oryza_sativa": ["_flower_parts", "_whole_plant"],
+  "papio_anubis": [],
+  "rattus_norvegicus": [],
+  "solanum_lycopersicum": ["_flower_parts", "_whole_plant"],
+  "solanum_tuberosum": [],
+  "sorghum_bicolor": ["_flower_parts", "_whole_plant"],
+  "tetraodon_nigroviridis": [],
+  "triticum_aestivum": ["_flower_parts", "_whole_plant"],
+  "xenopus_tropicalis": [],
+  "zea_mays": ["_flower_parts", "_whole_plant"]
+}
