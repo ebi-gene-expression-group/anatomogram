@@ -9,6 +9,12 @@
     "coverage": "jest --coverage",
     "test": "npm run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
   "author": "Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
   "license": "Apache-2.0",
   "repository": {
@@ -33,8 +39,12 @@
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
     "coveralls": "^2.13.1",
+    "css-loader": "^0.28.4",
     "enzyme": "^2.9.1",
     "jest": "^20.0.4",
+    "react-test-renderer": "^15.6.1",
+    "sinon": "^2.3.8",
+    "style-loader": "^0.18.2",
     "webpack": "^3.1.0",
     "webpack-dev-server": "^2.5.0"
   }
