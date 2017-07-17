@@ -7,9 +7,6 @@ import Switcher from '../src/Switcher'
 import availableSpecies from '../src/svgs.json'
 
 describe(`Anatomogram switcher`, () => {
-  // it(`should render without throwing an error`, () => {
-  //   expect(shallow(<Switcher />).contains(<div className="foo">Bar</div>)).toBe(true)
-  // })
   const requiredProps = {
     anatomogramTypes: [`female`, `male`],
     selectedType: `female`,
