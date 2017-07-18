@@ -26,8 +26,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-svg": "^2.1.21",
-    "urijs": "^1.18.10",
-    "xml2js": "^0.4.17"
+    "urijs": "^1.18.10"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -41,6 +40,7 @@
     "coveralls": "^2.13.1",
     "css-loader": "^0.28.4",
     "enzyme": "^2.9.1",
+    "fast-xml-parser": "^2.6.0",
     "jest": "^20.0.4",
     "react-test-renderer": "^15.6.1",
     "sinon": "^2.3.8",
