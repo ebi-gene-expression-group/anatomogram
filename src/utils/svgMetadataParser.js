@@ -41,7 +41,7 @@ if (process.argv.length < 3) {
 const outStream = process.argv[3] ? fs.createWriteStream(process.argv[3]) : process.stdout
 
 const parseSvgFile = (filename) => ({
-  [filename]: parseSvg(fs.readFileSync(filename, {encoding: `utf8`}))
+  [path.basename(filename)]: parseSvg(fs.readFileSync(filename, {encoding: `utf8`}))
 })
 
 
@@ -63,6 +63,7 @@ else {
       JSON.stringify(
         fs.readdirSync(process.argv[2])
           .filter((filename) => path.extname(filename) === `.svg`)
+          .map((filename) => path.resolve(process.argv[2], filename))
           .map((filename) => {
             process.stdout.write(`Processing ${filename}...`)
             const parsed = parseSvgFile(filename)
