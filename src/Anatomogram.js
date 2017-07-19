@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import ReactSVG from 'react-svg'
 
@@ -11,11 +12,13 @@ class Anatomogram extends React.Component {
     super(props)
 
     this._attachListeners = this._attachListeners.bind(this)
+    this._getSvgElementById = this._getSvgElementById.bind(this)
+    this._getEfoLayerGroup = this._getEfoLayerGroup.bind(this)
   }
 
   _paintIds(ids, colour, opacity) {
     ids.forEach((id) => {
-      const e = document.getElementById(id)
+      const e = this._getSvgElementById(id)
 
       // We might be showing an ID which is not part of the displayed anatomogram (e.g. heart in brain)
       if (e) {
@@ -27,7 +30,7 @@ class Anatomogram extends React.Component {
 
   _attachMouseOverMouseOutListeners(ids, mouseOverColour, mouseOverOpacity) {
     ids.forEach((id) => {
-      const e = document.getElementById(id)
+      const e = this._getSvgElementById(id)
 
       if (e) {
         e.addEventListener(`mouseover`, () => {
@@ -45,6 +48,36 @@ class Anatomogram extends React.Component {
     })
   }
 
+  _getSvgElementById(id) {
+    const efoLayerGroup = this._getEfoLayerGroup()
+
+    if (efoLayerGroup) {
+      for (let i = 0 ; i < efoLayerGroup.children.length ; i++) {
+        if (efoLayerGroup.children[i].id === id ) {
+          if (efoLayerGroup.children[i].attributes[`xlink:href`]) {
+            return this._getSvgElementById(efoLayerGroup.children[i].attributes[`xlink:href`].value.substring(1))
+          }
+          else {
+            return efoLayerGroup.children[i]
+          }
+        }
+      }
+    }
+
+    return undefined
+  }
+
+  _getEfoLayerGroup() {
+    const svgGroups = ReactDOM.findDOMNode(this.svgRef).getElementsByTagName(`g`)
+    for (let i = 0 ; i < svgGroups.length ; i++) {
+      if (svgGroups[i].id === `LAYER_EFO`) {
+        return svgGroups[i]
+      }
+    }
+
+    return undefined
+  }
+
   _attachListeners() {
     const {showIds, showColour, showOpacity,
            highlightIds, highlightColour, highlightOpacity,
@@ -56,6 +89,14 @@ class Anatomogram extends React.Component {
 
     this._attachMouseOverMouseOutListeners([...showIds, ...highlightIds], selectColour, selectOpacity)
     this._attachMouseOverMouseOutListeners(selectIds, selectColour, selectOpacity + 0.1)
+  }
+
+  componentDidUpdate() {
+    this._attachListeners()
+  }
+
+  componentDidMount() {
+    this._attachListeners()
   }
 
   render() {
@@ -76,8 +117,9 @@ class Anatomogram extends React.Component {
     return (
       <div style={this.props.style}>
         <ReactSVG
+          ref={(svgRef) => { this.svgRef = svgRef }}
           path={URI(`svg/${this.props.filename}`, this.props.urlToResources).toString()}
-          callback={this._attachListeners}
+
           style={sizeStyle}
         />
       </div>
