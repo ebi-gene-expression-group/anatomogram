@@ -27,3 +27,4 @@
 - A tissue shape cannot have another group inside. It must be formed by basic shapes only.
 - A tissue shape should have a `<title>` attribute with the name of the tissue.
 - The top `<svg ...>` tag must have the attributes `viewbox="0 0 [height] [value]"` and `preserveAspectRatio="none"`. These may be added with a text editor after saving the SVG to look up the `height` and `width` attributes.
+- The attribution icon links to `https://www.ebi.ac.uk/gxa/licence.html` and its size is `<width> *  φ / 10`, where  [*φ*=1.618034](https://en.wikipedia.org/wiki/Golden_ratio). It will be located, in order of preference, to the bottom right, bottom centre or bottom left.

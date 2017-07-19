@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="91.01709"
@@ -16,7 +17,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="arabidopsis_thaliana_whole_plant.svg">
+   sodipodi:docname="arabidopsis_thaliana.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -27,10 +28,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="-48.470128"
-     inkscape:cy="87.856743"
+     inkscape:cx="17.292232"
+     inkscape:cy="67.653692"
      inkscape:document-units="px"
-     inkscape:current-layer="svg2"
+     inkscape:current-layer="LAYER_OUTLINE"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -57,7 +58,31 @@
   <g
      id="LAYER_OUTLINE"
      inkscape:groupmode="layer"
-     inkscape:label="Outline">
+     inkscape:label="Outline"
+     style="display:inline">
+    <a
+       transform="matrix(1.1496351,0,0,1.1496351,-57.296227,96.774646)"
+       id="a4174"
+       xlink:href="https://www.ebi.ac.uk/gxa/licence.html">
+      <g
+         id="g3"
+         transform="matrix(0.07645089,0,0,0.07645089,123.6957,51.617633)">
+        <circle
+           id="circle5"
+           r="28.275999"
+           cy="28.806"
+           cx="37.637001"
+           style="fill:#ffffff" />
+        <g
+           id="g7">
+          <path
+             style="fill:#009600;fill-opacity:1"
+             id="path9"
+             d="M 37.443,-3.5 C 46.431,-3.5 54.013,-0.415 60.185,5.757 66.393,11.967 69.5,19.548 69.5,28.5 69.5,37.491 66.451,44.976 60.355,50.956 53.879,57.319 46.242,60.5 37.443,60.5 28.794,60.5 21.29,57.356 14.929,51.07 8.644,44.784 5.5,37.262 5.5,28.5 5.5,19.739 8.644,12.158 14.929,5.758 21.101,-0.415 28.604,-3.5 37.443,-3.5 Z M 37.557,2.272 C 30.281,2.272 24.129,4.825 19.1,9.929 13.88,15.263 11.271,21.454 11.271,28.501 11.271,35.587 13.861,41.721 19.041,46.899 24.222,52.081 30.393,54.67 37.555,54.67 44.678,54.67 50.889,52.063 56.184,46.842 61.213,42.004 63.727,35.89 63.727,28.499 63.727,21.223 61.174,15.034 56.071,9.928 50.967,4.824 44.795,2.272 37.557,2.272 Z M 46.129,20.557 46.129,33.642 42.473,33.642 42.473,49.184 32.529,49.184 32.529,33.643 28.873,33.643 28.873,20.557 C 28.873,19.985 29.073,19.5 29.472,19.1 29.873,18.701 30.359,18.5 30.929,18.5 L 44.073,18.5 C 44.606,18.5 45.083,18.7 45.501,19.1 45.918,19.5 46.129,19.986 46.129,20.557 Z M 33.042,12.329 C 33.042,9.321 34.527,7.815 37.5,7.815 40.473,7.815 41.957,9.319 41.957,12.329 41.957,15.3 40.471,16.786 37.5,16.786 34.529,16.786 33.042,15.3 33.042,12.329 Z"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+    </a>
     <path
        sodipodi:nodetypes="cscscsccccsccscssscsssssssssscscsccsccscccscsssssscsccscccsssssccccsscccsccsssccscscccssssscsccccscccccsccssscsscccccscsssssscscsccscscsccccccccccsscssssscccccccssssssssssccssssssssssscsccssssccccsssscsssssssssssssssssssscssssscsssssssssccssssscsssssscssssssssscssscssssssscssssssssssssssssssssssssscsssssssssssssscscsccsccssssssssssssscssssssssssscssssscsssssscccsccssssssssscssssssscsssssssssscssscssscsccsscccscccscssscsssssscsssssssccccsssccccscccsssscsscccscccccccssccssccssssscsscsscccccsccccsccssssscssccssscccscsscsssssccscccccccccscccsssssccsccsscccsscsssssscsssssssssssscssssscccssscsscsssssccssccsssscsccssccsscccccsssscsscssssscscccssccsscsscccssssccssscccscssccccssscsscssssssssssscssccssccccccscccccscccssscscssccscccsscscsccsscccccssccssscsscssssssccsssccscscssccscccssccccscscccsscsccccccscssssccscsssccsscsccccccscsccscscsscsscccssssssccccscsscsccsccsscscscsssscsccccsscccccsssssccssscscccscssssscccsssccsssscccssscsssssscssscscssscssccscscssscscccccccssccssscsscsssscsssccssccccscssscccsssscssssssssccssccscsssssscccccscccssccscccccsscsscccccsscccsssscsscscssssscssssssssssssscsssssssssssccccccsssccssssssssscccccssccccssscssssscsccccscsssssssssssccssssccsssssssssssssssssssssscsssssccssssssscsssssscssssccssssssssscscscccssssssssccccssssssccsssssssssssssssssssscscccssccssssssssssscscccsccsccsssscssccssssssccsssssssssscsssssscsssssssssssssscsccscccsccssssscsssssssssssssssscssscsssccsssssssssssssssssssssssssssscssssssssssscsssscsssscsscscsscscccsssssssssscssscssssssccssscsss"
        inkscape:label="arabidopsis_outline"
@@ -69,7 +94,8 @@
   <g
      inkscape:label="EFO"
      id="LAYER_EFO"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     style="display:inline">
     <path
        inkscape:label="leaf"
        sodipodi:nodetypes="ccccccccscscsccccccccccccccccccccsccccccccccssccsccccssccccccccccsssccsscccccccscscc"
