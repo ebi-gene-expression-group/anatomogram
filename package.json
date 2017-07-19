@@ -8,7 +8,7 @@
     "prepublish": "yarn run build",
     "coverage": "jest --coverage",
     "test": "yarn run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "parseSvgs": "node src/utils/svgMetadataParser.js src/svg src/json/svgsMetadata.json "
+    "parseSvgs": "node src/utils/svgParse.js src/svg src/json/svgsMetadata.json "
   },
   "jest": {
     "moduleNameMapper": {
