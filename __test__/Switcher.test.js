@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer'
 import sinon from 'sinon'
 
 import Switcher from '../src/Switcher'
-import availableSpecies from '../src/svgs.json'
+import availableSpecies from '../src/json/svgs.json'
 
 describe(`Anatomogram switcher`, () => {
   const requiredProps = {

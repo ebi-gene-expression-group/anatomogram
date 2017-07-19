@@ -25,12 +25,12 @@ exports[`Anatomogram switcher matches snapshot for brachypodium_distachyon 1`] =
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="selected_flower_parts.png"
+    src="img/selected_flower_parts.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_whole_plant.png"
+    src="img/unselected_whole_plant.png"
   />
 </div>
 `;
@@ -48,17 +48,17 @@ exports[`Anatomogram switcher matches snapshot for homo_sapiens 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="selected_brain.png"
+    src="img/selected_brain.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_female.png"
+    src="img/unselected_female.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_male.png"
+    src="img/unselected_male.png"
   />
 </div>
 `;
@@ -70,12 +70,12 @@ exports[`Anatomogram switcher matches snapshot for hordeum_vulgare 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="selected_flower_parts.png"
+    src="img/selected_flower_parts.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_whole_plant.png"
+    src="img/unselected_whole_plant.png"
   />
 </div>
 `;
@@ -99,17 +99,17 @@ exports[`Anatomogram switcher matches snapshot for mus_musculus 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="selected_brain.png"
+    src="img/selected_brain.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_female.png"
+    src="img/unselected_female.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_male.png"
+    src="img/unselected_male.png"
   />
 </div>
 `;
@@ -121,12 +121,12 @@ exports[`Anatomogram switcher matches snapshot for oryza_sativa 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="selected_flower_parts.png"
+    src="img/selected_flower_parts.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_whole_plant.png"
+    src="img/unselected_whole_plant.png"
   />
 </div>
 `;
@@ -150,12 +150,12 @@ exports[`Anatomogram switcher matches snapshot for solanum_lycopersicum 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="selected_flower_parts.png"
+    src="img/selected_flower_parts.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_whole_plant.png"
+    src="img/unselected_whole_plant.png"
   />
 </div>
 `;
@@ -173,12 +173,12 @@ exports[`Anatomogram switcher matches snapshot for sorghum_bicolor 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="selected_flower_parts.png"
+    src="img/selected_flower_parts.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_whole_plant.png"
+    src="img/unselected_whole_plant.png"
   />
 </div>
 `;
@@ -196,12 +196,12 @@ exports[`Anatomogram switcher matches snapshot for triticum_aestivum 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="selected_flower_parts.png"
+    src="img/selected_flower_parts.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_whole_plant.png"
+    src="img/unselected_whole_plant.png"
   />
 </div>
 `;
@@ -219,12 +219,12 @@ exports[`Anatomogram switcher matches snapshot for zea_mays 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="selected_flower_parts.png"
+    src="img/selected_flower_parts.png"
   />
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="unselected_whole_plant.png"
+    src="img/unselected_whole_plant.png"
   />
 </div>
 `;

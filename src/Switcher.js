@@ -6,7 +6,7 @@ import URI from 'urijs'
 import './Switcher.css'
 
 const resolveUrlToIcon = (urlToResources, selectedType, anatomogramType, ) =>
-  URI(`${selectedType === anatomogramType ? `` : `un`}selected${anatomogramType}.png`, urlToResources).toString()
+  URI(`img/${selectedType === anatomogramType ? `` : `un`}selected${anatomogramType}.png`, urlToResources).toString()
 
 const Switcher = (props) =>
   <div style={props.style}>

@@ -1,719 +1,657 @@
-[
-  {
-    "anolis_carolinensis.svg": {
-      "width": "129.00903",
-      "height": "56.242912",
-      "ids": [
-        "UBERON_0000955",
-        "UBERON_0000948",
-        "UBERON_0002113",
-        "UBERON_0014892"
-      ]
-    }
+{
+  "anolis_carolinensis.svg": {
+    "width": 129.00903,
+    "height": 56.242912,
+    "ids": [
+      "UBERON_0000955",
+      "UBERON_0000948",
+      "UBERON_0002113",
+      "UBERON_0014892"
+    ]
   },
-  {
-    "arabidopsis_thaliana.svg": {
-      "width": "91.01709",
-      "height": "161.43347",
-      "ids": [
-        "PO_0025034",
-        "PO_0009005",
-        "PO_0009046",
-        "PO_0009001"
-      ]
-    }
+  "arabidopsis_thaliana.svg": {
+    "width": 91.01709,
+    "height": 161.43347,
+    "ids": [
+      "PO_0025034",
+      "PO_0009005",
+      "PO_0009046",
+      "PO_0009001"
+    ]
   },
-  {
-    "bos_taurus.svg": {
-      "width": "108.98891",
-      "height": "60.884159",
-      "ids": [
-        "UBERON_0001013",
-        "UBERON_0014892",
-        "UBERON_0002114",
-        "UBERON_0000955",
-        "UBERON_0002113",
-        "UBERON_0002048",
-        "UBERON_0001155",
-        "UBERON_0000948",
-        "UBERON_0002107",
-        "UBERON_0002016",
-        "UBERON_0001898"
-      ]
-    }
+  "bos_taurus.svg": {
+    "width": 108.98891,
+    "height": 60.884159,
+    "ids": [
+      "UBERON_0001013",
+      "UBERON_0014892",
+      "UBERON_0002114",
+      "UBERON_0000955",
+      "UBERON_0002113",
+      "UBERON_0002048",
+      "UBERON_0001155",
+      "UBERON_0000948",
+      "UBERON_0002107",
+      "UBERON_0002016",
+      "UBERON_0001898"
+    ]
   },
-  {
-    "brachypodium_distachyon_flower_parts.svg": {
-      "width": "127.44675",
-      "height": "158.60735",
-      "ids": [
-        "PO_0009066",
-        "PO_0009030",
-        "PO_0009001",
-        "PO_0009009",
-        "PO_0009089"
-      ]
-    }
+  "brachypodium_distachyon_flower_parts.svg": {
+    "width": 127.44675,
+    "height": 158.60735,
+    "ids": [
+      "PO_0009066",
+      "PO_0009030",
+      "PO_0009001",
+      "PO_0009009",
+      "PO_0009089"
+    ]
   },
-  {
-    "brachypodium_distachyon_whole_plant.svg": {
-      "width": "81.542793",
-      "height": "177.13345",
-      "ids": [
-        "PO_0009010",
-        "PO_0009049",
-        "PO_0025034"
-      ]
-    }
+  "brachypodium_distachyon_whole_plant.svg": {
+    "width": 81.542793,
+    "height": 177.13345,
+    "ids": [
+      "PO_0009010",
+      "PO_0009049",
+      "PO_0025034"
+    ]
   },
-  {
-    "gallus_gallus.svg": {
-      "width": "118.43517",
-      "height": "137.11394",
-      "ids": [
-        "UBERON_0000955",
-        "UBERON_0000948",
-        "UBERON_0002113",
-        "UBERON_0002107",
-        "UBERON_0001155",
-        "UBERON_0002106",
-        "UBERON_0002048",
-        "UBERON_0014892"
-      ]
-    }
+  "gallus_gallus.svg": {
+    "width": 118.43517,
+    "height": 137.11394,
+    "ids": [
+      "UBERON_0000955",
+      "UBERON_0000948",
+      "UBERON_0002113",
+      "UBERON_0002107",
+      "UBERON_0001155",
+      "UBERON_0002106",
+      "UBERON_0002048",
+      "UBERON_0014892"
+    ]
   },
-  {
-    "homo_sapiens_brain.svg": {
-      "width": "143.50569",
-      "height": "121.65815",
-      "ids": [
-        "UBERON_0002148",
-        "UBERON_0001894",
-        "UBERON_0001896",
-        "UBERON_0002771",
-        "UBERON_0002702",
-        "UBERON_0002021",
-        "UBERON_0001905",
-        "UBERON_0001897",
-        "UBERON_0001898",
-        "UBERON_0002421",
-        "UBERON_0003027",
-        "UBERON_0001876",
-        "UBERON_0001870",
-        "UBERON_0001871",
-        "UBERON_0001882",
-        "UBERON_0002285",
-        "UBERON_0001873",
-        "UBERON_0001872",
-        "UBERON_0002038",
-        "UBERON_0001874",
-        "UBERON_0001875",
-        "UBERON_0002360",
-        "UBERON_0000451",
-        "UBERON_0000956",
-        "UBERON_0002037",
-        "UBERON_0002363",
-        "UBERON_0001954",
-        "UBERON_0002245"
-      ]
-    }
+  "homo_sapiens_brain.svg": {
+    "width": 143.50569,
+    "height": 121.65815,
+    "ids": [
+      "UBERON_0002148",
+      "UBERON_0001894",
+      "UBERON_0001896",
+      "UBERON_0002771",
+      "UBERON_0002702",
+      "UBERON_0002021",
+      "UBERON_0001905",
+      "UBERON_0001897",
+      "UBERON_0001898",
+      "UBERON_0002421",
+      "UBERON_0003027",
+      "UBERON_0001876",
+      "UBERON_0001870",
+      "UBERON_0001871",
+      "UBERON_0001882",
+      "UBERON_0002285",
+      "UBERON_0001873",
+      "UBERON_0001872",
+      "UBERON_0002038",
+      "UBERON_0001874",
+      "UBERON_0001875",
+      "UBERON_0002360",
+      "UBERON_0000451",
+      "UBERON_0000956",
+      "UBERON_0002037",
+      "UBERON_0002363",
+      "UBERON_0001954",
+      "UBERON_0002245"
+    ]
   },
-  {
-    "homo_sapiens_female.svg": {
-      "width": "105.43713",
-      "height": "194.70567",
-      "ids": [
-        null,
-        "UBERON_0000178",
-        "UBERON_0001637",
-        "CL_0000236",
-        "CL_0000084",
-        "CL_0000623",
-        "CL_0000576",
-        "CL_0000233",
-        "UBERON_0000966",
-        "UBERON_0001831",
-        "UBERON_0001013",
-        "UBERON_0000948",
-        "UBERON_0001135",
-        "UBERON_0000955",
-        "UBERON_0000310",
-        "UBERON_0002369",
-        "UBERON_0000029",
-        "UBERON_0001134",
-        "UBERON_0000992",
-        "CL_0000738",
-        "UBERON_0001044",
-        "UBERON_0003889",
-        "UBERON_0000995",
-        "UBERON_0000002",
-        "UBERON_0001021",
-        "UBERON_0006618",
-        "UBERON_0012249",
-        "UBERON_0002421",
-        "UBERON_0000977",
-        "UBERON_0002185",
-        "UBERON_0003126",
-        "UBERON_0002048",
-        "UBERON_0002372",
-        "UBERON_0000970",
-        "UBERON_0001876",
-        "UBERON_0001736",
-        "UBERON_0001264",
-        "UBERON_0002107",
-        "UBERON_0001155",
-        "UBERON_0002371",
-        "UBERON_0001255",
-        "UBERON_0000945",
-        "UBERON_0002114",
-        "UBERON_0001043",
-        "UBERON_0002110",
-        "UBERON_0002106",
-        "UBERON_0002108",
-        "UBERON_0001987",
-        "UBERON_0001295",
-        "UBERON_0000996",
-        "UBERON_0000947",
-        "UBERON_0000007",
-        "UBERON_0007650",
-        "UBERON_0001153",
-        "UBERON_0001154",
-        "UBERON_0002116",
-        "UBERON_0002079",
-        "UBERON_0002084",
-        "UBERON_0002146",
-        "UBERON_0002135",
-        "UBERON_0001103",
-        "UBERON_0002481",
-        "UBERON_0007844",
-        "UBERON_0000341",
-        "UBERON_0001052",
-        "UBERON_0001706",
-        "UBERON_0001728",
-        "UBERON_0002037",
-        "UBERON_0002245",
-        "UBERON_0000451",
-        "UBERON_0001870",
-        "UBERON_0000004",
-        "UBERON_0001871",
-        "UBERON_0000956",
-        "UBERON_0002113",
-        "UBERON_0001225",
-        "UBERON_0001621",
-        "UBERON_0002134",
-        "UBERON_0002046",
-        "UBERON_0000014",
-        "UBERON_0000167",
-        "UBERON_0001723"
-      ]
-    }
+  "homo_sapiens_female.svg": {
+    "width": 105.43713,
+    "height": 194.70567,
+    "ids": [
+      "UBERON_0001981",
+      "UBERON_0000178",
+      "UBERON_0001637",
+      "CL_0000236",
+      "CL_0000084",
+      "CL_0000623",
+      "CL_0000576",
+      "CL_0000233",
+      "UBERON_0000966",
+      "UBERON_0001831",
+      "UBERON_0001013",
+      "UBERON_0000948",
+      "UBERON_0001135",
+      "UBERON_0000955",
+      "UBERON_0000310",
+      "UBERON_0002369",
+      "UBERON_0000029",
+      "UBERON_0001134",
+      "UBERON_0000992",
+      "CL_0000738",
+      "UBERON_0001044",
+      "UBERON_0003889",
+      "UBERON_0000995",
+      "UBERON_0000002",
+      "UBERON_0001021",
+      "UBERON_0006618",
+      "UBERON_0012249",
+      "UBERON_0002421",
+      "UBERON_0000977",
+      "UBERON_0002185",
+      "UBERON_0003126",
+      "UBERON_0002048",
+      "UBERON_0002372",
+      "UBERON_0000970",
+      "UBERON_0001876",
+      "UBERON_0001736",
+      "UBERON_0001264",
+      "UBERON_0002107",
+      "UBERON_0001155",
+      "UBERON_0002371",
+      "UBERON_0001255",
+      "UBERON_0000945",
+      "UBERON_0002114",
+      "UBERON_0001043",
+      "UBERON_0002110",
+      "UBERON_0002106",
+      "UBERON_0002108",
+      "UBERON_0001987",
+      "UBERON_0001295",
+      "UBERON_0000996",
+      "UBERON_0000947",
+      "UBERON_0000007",
+      "UBERON_0007650",
+      "UBERON_0001153",
+      "UBERON_0001154",
+      "UBERON_0002116",
+      "UBERON_0002079",
+      "UBERON_0002084",
+      "UBERON_0002146",
+      "UBERON_0002135",
+      "UBERON_0001103",
+      "UBERON_0002481",
+      "UBERON_0007844",
+      "UBERON_0000341",
+      "UBERON_0001052",
+      "UBERON_0001706",
+      "UBERON_0001728",
+      "UBERON_0002037",
+      "UBERON_0002245",
+      "UBERON_0000451",
+      "UBERON_0001870",
+      "UBERON_0000004",
+      "UBERON_0001871",
+      "UBERON_0000956",
+      "UBERON_0002113",
+      "UBERON_0001225",
+      "UBERON_0001621",
+      "UBERON_0002134",
+      "UBERON_0002046",
+      "UBERON_0000014",
+      "UBERON_0000167",
+      "UBERON_0001723"
+    ]
   },
-  {
-    "homo_sapiens_male.svg": {
-      "width": "106.00675",
-      "height": "195.36273",
-      "ids": [
-        "UBERON_0000956",
-        "UBERON_0000977",
-        "UBERON_0000955",
-        "UBERON_0000948",
-        "UBERON_0000310",
-        "UBERON_0002369",
-        "UBERON_0000029",
-        "UBERON_0001013",
-        "UBERON_0001134",
-        "CL_0000738",
-        "UBERON_0001871",
-        "UBERON_0006618",
-        "UBERON_0001621",
-        "UBERON_0002421",
-        "UBERON_0001000",
-        "UBERON_0000998",
-        "UBERON_0000473",
-        "UBERON_0001301",
-        "UBERON_0000970",
-        "UBERON_0002372",
-        "UBERON_0002048",
-        "UBERON_0001876",
-        "UBERON_0003126",
-        "UBERON_0002185",
-        "UBERON_0001021",
-        "UBERON_0002037",
-        "UBERON_0002245",
-        "UBERON_0002113",
-        "UBERON_0001225",
-        "UBERON_0002046",
-        "UBERON_0002371",
-        "UBERON_0001870",
-        "UBERON_0000451",
-        "UBERON_0000007",
-        "UBERON_0000947",
-        "UBERON_0007650",
-        "UBERON_0002084",
-        "UBERON_0001153",
-        "UBERON_0002116",
-        "UBERON_0001052",
-        "UBERON_0000004",
-        "UBERON_0001723",
-        "UBERON_0002079",
-        "UBERON_0002146",
-        "UBERON_0002135",
-        "UBERON_0000989",
-        "UBERON_0001728",
-        "UBERON_0002240",
-        "UBERON_0000341",
-        "UBERON_0002134",
-        "UBERON_0001103",
-        "UBERON_0002107",
-        "UBERON_0000945",
-        "UBERON_0002106",
-        "UBERON_0002114",
-        "UBERON_0002110",
-        "UBERON_0001264",
-        "UBERON_0001155",
-        "UBERON_0002108",
-        "UBERON_0001154",
-        "UBERON_0001135",
-        "UBERON_0001255",
-        "UBERON_00024818",
-        "UBERON_0007844",
-        "UBERON_0001043",
-        "UBERON_0001044",
-        "UBERON_0001831",
-        "UBERON_0001736",
-        "UBERON_0000014",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "UBERON_0001954",
-        null,
-        "UBERON_0001706",
-        "UBERON_0000167",
-        "UBERON_0002367"
-      ]
-    }
+  "homo_sapiens_male.svg": {
+    "width": 106.00675,
+    "height": 195.36273,
+    "ids": [
+      "UBERON_0000956",
+      "UBERON_0000977",
+      "UBERON_0000955",
+      "UBERON_0000948",
+      "UBERON_0000310",
+      "UBERON_0002369",
+      "UBERON_0000029",
+      "UBERON_0001013",
+      "UBERON_0001134",
+      "CL_0000738",
+      "UBERON_0001871",
+      "UBERON_0006618",
+      "UBERON_0001621",
+      "UBERON_0002421",
+      "UBERON_0001000",
+      "UBERON_0000998",
+      "UBERON_0000473",
+      "UBERON_0001301",
+      "UBERON_0000970",
+      "UBERON_0002372",
+      "UBERON_0002048",
+      "UBERON_0001876",
+      "UBERON_0003126",
+      "UBERON_0002185",
+      "UBERON_0001021",
+      "UBERON_0002037",
+      "UBERON_0002245",
+      "UBERON_0002113",
+      "UBERON_0001225",
+      "UBERON_0002046",
+      "UBERON_0002371",
+      "UBERON_0001870",
+      "UBERON_0000451",
+      "UBERON_0000007",
+      "UBERON_0000947",
+      "UBERON_0007650",
+      "UBERON_0002084",
+      "UBERON_0001153",
+      "UBERON_0002116",
+      "UBERON_0001052",
+      "UBERON_0000004",
+      "UBERON_0001723",
+      "UBERON_0002079",
+      "UBERON_0002146",
+      "UBERON_0002135",
+      "UBERON_0000989",
+      "UBERON_0001728",
+      "UBERON_0002240",
+      "UBERON_0000341",
+      "UBERON_0002134",
+      "UBERON_0001103",
+      "UBERON_0002107",
+      "UBERON_0000945",
+      "UBERON_0002106",
+      "UBERON_0002114",
+      "UBERON_0002110",
+      "UBERON_0001264",
+      "UBERON_0001155",
+      "UBERON_0002108",
+      "UBERON_0001154",
+      "UBERON_0001135",
+      "UBERON_0001255",
+      "UBERON_00024818",
+      "UBERON_0007844",
+      "UBERON_0001043",
+      "UBERON_0001044",
+      "UBERON_0001831",
+      "UBERON_0001736",
+      "UBERON_0000014",
+      "UBERON_0000178",
+      "UBERON_0001981",
+      "UBERON_0001637",
+      "CL_0000236",
+      "CL_0000084",
+      "CL_0000623",
+      "CL_0000576",
+      "CL_0000233",
+      "UBERON_0001954",
+      "UBERON_0000966",
+      "UBERON_0001706",
+      "UBERON_0000167",
+      "UBERON_0002367"
+    ]
   },
-  {
-    "hordeum_vulgare_flower_parts.svg": {
-      "width": "138.40977",
-      "height": "145.59451",
-      "ids": [
-        "PO_0009001",
-        "PO_0009030",
-        "PO_0009073",
-        "PO_0009072",
-        "PO_0009009",
-        "PO_0009066"
-      ]
-    }
+  "hordeum_vulgare_flower_parts.svg": {
+    "width": 138.40977,
+    "height": 145.59451,
+    "ids": [
+      "PO_0009001",
+      "PO_0009030",
+      "PO_0009073",
+      "PO_0009072",
+      "PO_0009009",
+      "PO_0009066"
+    ]
   },
-  {
-    "hordeum_vulgare_whole_plant.svg": {
-      "width": "23.929974",
-      "height": "45.215504",
-      "ids": [
-        "PO_0020142",
-        "PO_0009005",
-        "PO_0009006",
-        "PO_0009049",
-        "PO_0025034"
-      ]
-    }
+  "hordeum_vulgare_whole_plant.svg": {
+    "width": 23.929974,
+    "height": 45.215504,
+    "ids": [
+      "PO_0020142",
+      "PO_0009005",
+      "PO_0009006",
+      "PO_0009049",
+      "PO_0025034"
+    ]
   },
-  {
-    "macaca_mulatta.svg": {
-      "width": "33.433189",
-      "height": "27.061121",
-      "ids": [
-        "UBERON_0000955",
-        "UBERON_0000451",
-        "UBERON_0002037",
-        "UBERON_0000948",
-        "UBERON_0002113",
-        "UBERON_0002107",
-        "UBERON_0000473"
-      ]
-    }
+  "macaca_mulatta.svg": {
+    "width": 33.433189,
+    "height": 27.061121,
+    "ids": [
+      "UBERON_0000955",
+      "UBERON_0000451",
+      "UBERON_0002037",
+      "UBERON_0000948",
+      "UBERON_0002113",
+      "UBERON_0002107",
+      "UBERON_0000473"
+    ]
   },
-  {
-    "monodelphis_domestica.svg": {
-      "width": "127.79726",
-      "height": "59.702709",
-      "ids": [
-        "UBERON_0000955",
-        "UBERON_0002037",
-        "UBERON_0000948",
-        "UBERON_0002113",
-        "UBERON_0002107",
-        "UBERON_0000473"
-      ]
-    }
+  "monodelphis_domestica.svg": {
+    "width": 127.79726,
+    "height": 59.702709,
+    "ids": [
+      "UBERON_0000955",
+      "UBERON_0002037",
+      "UBERON_0000948",
+      "UBERON_0002113",
+      "UBERON_0002107",
+      "UBERON_0000473"
+    ]
   },
-  {
-    "mus_musculus_brain.svg": {
-      "width": "142.0164",
-      "height": "81.638588",
-      "ids": [
-        "UBERON_0001896",
-        "UBERON_0000956",
-        "UBERON_0000369",
-        "UBERON_0001894",
-        "UBERON_0000007",
-        "UBERON_0002037",
-        "UBERON_0002298",
-        "UBERON_0001891",
-        "UBERON_0001897",
-        "UBERON_0001898",
-        "UBERON_0000004",
-        "UBERON_0002259",
-        "EFO_0000530"
-      ]
-    }
+  "mus_musculus_brain.svg": {
+    "width": 142.0164,
+    "height": 81.638588,
+    "ids": [
+      "UBERON_0001896",
+      "UBERON_0000956",
+      "UBERON_0000369",
+      "UBERON_0001894",
+      "UBERON_0000007",
+      "UBERON_0002037",
+      "UBERON_0002298",
+      "UBERON_0001891",
+      "UBERON_0001897",
+      "UBERON_0001898",
+      "UBERON_0000004",
+      "UBERON_0002259",
+      "EFO_0000530"
+    ]
   },
-  {
-    "mus_musculus_female.svg": {
-      "width": "82.377632",
-      "height": "156.22629",
-      "ids": [
-        "UBERON_0000947",
-        "UBERON_0001009",
-        "UBERON_0001348",
-        "UBERON_0001347",
-        "UBERON_0000945",
-        "UBERON_0002114",
-        "UBERON_0001264",
-        "UBERON_0002106",
-        "UBERON_0002369",
-        "UBERON_0002113",
-        "UBERON_0001155",
-        "UBERON_0002108",
-        "UBERON_0001153",
-        "UBERON_0002115",
-        "UBERON_0002116",
-        "UBERON_0001043",
-        "UBERON_0002110",
-        "UBERON_0000996",
-        "UBERON_0000995",
-        "UBERON_0001255",
-        "UBERON_0001831",
-        "UBERON_0001736",
-        "UBERON_0001723",
-        "UBERON_0001211",
-        "UBERON_0000981",
-        "UBERON_0002371",
-        "UBERON_0007844",
-        "UBERON_0001377",
-        "UBERON_0014892",
-        "UBERON_0002240",
-        "UBERON_0001103",
-        "UBERON_0002103",
-        "UBERON_0001645",
-        "UBERON_0000970",
-        "UBERON_0001242",
-        "UBERON_0000955",
-        "UBERON_0000948",
-        "UBERON_0002107",
-        "UBERON_0001322",
-        "UBERON_0001981",
-        "UBERON_0000014",
-        "UBERON_0001911",
-        "UBERON_0003134",
-        "UBERON_0000990",
-        "UBERON_0000029",
-        "UBERON_0001132",
-        "UBERON_0002370",
-        "UBERON_0002046",
-        "UBERON_0002048",
-        "UBERON_0000010",
-        "UBERON_0003126"
-      ]
-    }
+  "mus_musculus_female.svg": {
+    "width": 82.377632,
+    "height": 156.22629,
+    "ids": [
+      "UBERON_0000947",
+      "UBERON_0001009",
+      "UBERON_0001348",
+      "UBERON_0001347",
+      "UBERON_0000945",
+      "UBERON_0002114",
+      "UBERON_0001264",
+      "UBERON_0002106",
+      "UBERON_0002369",
+      "UBERON_0002113",
+      "UBERON_0001155",
+      "UBERON_0002108",
+      "UBERON_0001153",
+      "UBERON_0002115",
+      "UBERON_0002116",
+      "UBERON_0001043",
+      "UBERON_0002110",
+      "UBERON_0000996",
+      "UBERON_0000995",
+      "UBERON_0001255",
+      "UBERON_0001831",
+      "UBERON_0001736",
+      "UBERON_0001723",
+      "UBERON_0001211",
+      "UBERON_0000981",
+      "UBERON_0002371",
+      "UBERON_0007844",
+      "UBERON_0001377",
+      "UBERON_0014892",
+      "UBERON_0002240",
+      "UBERON_0001103",
+      "UBERON_0002103",
+      "UBERON_0001645",
+      "UBERON_0000970",
+      "UBERON_0001242",
+      "UBERON_0000955",
+      "UBERON_0000948",
+      "UBERON_0002107",
+      "UBERON_0001322",
+      "UBERON_0001981",
+      "UBERON_0000014",
+      "UBERON_0001911",
+      "UBERON_0003134",
+      "UBERON_0000990",
+      "UBERON_0000029",
+      "UBERON_0001132",
+      "UBERON_0002370",
+      "UBERON_0002046",
+      "UBERON_0002048",
+      "UBERON_0000010",
+      "UBERON_0003126"
+    ]
   },
-  {
-    "mus_musculus_male.svg": {
-      "width": "81.136559",
-      "height": "156.68759",
-      "ids": [
-        "UBERON_0000947",
-        "UBERON_0001348",
-        "UBERON_0001347",
-        "UBERON_0000945",
-        "UBERON_0002114",
-        "UBERON_0001264",
-        "UBERON_0002106",
-        "UBERON_0002369",
-        "UBERON_0002113",
-        "UBERON_0001155",
-        "UBERON_0002108",
-        "UBERON_0001153",
-        "UBERON_0002115",
-        "UBERON_0002116",
-        "UBERON_0001043",
-        "UBERON_0002110",
-        "UBERON_0001831",
-        "UBERON_0001736",
-        "UBERON_0000029",
-        "UBERON_0000998",
-        "UBERON_0000989",
-        "UBERON_0000981",
-        "UBERON_0002371",
-        "UBERON_0007844",
-        "UBERON_0001377",
-        "UBERON_0002240",
-        "UBERON_0002048",
-        "UBERON_0001103",
-        "UBERON_0003126",
-        "UBERON_0002103",
-        "UBERON_0001645",
-        "UBERON_0001322",
-        "UBERON_0001242",
-        "UBERON_0002107",
-        "UBERON_0000948",
-        "UBERON_0000955",
-        "UBERON_0014892",
-        "UBERON_0001009",
-        "UBERON_0001981",
-        "UBERON_0000014",
-        "UBERON_0001132",
-        "UBERON_0001211",
-        "UBERON_0002367",
-        "UBERON_0001000",
-        "UBERON_0001301",
-        "UBERON_0000473",
-        "UBERON_0001255",
-        "UBERON_0002370",
-        "UBERON_0000010",
-        "UBERON_0000970",
-        "UBERON_0001723"
-      ]
-    }
+  "mus_musculus_male.svg": {
+    "width": 81.136559,
+    "height": 156.68759,
+    "ids": [
+      "UBERON_0000947",
+      "UBERON_0001348",
+      "UBERON_0001347",
+      "UBERON_0000945",
+      "UBERON_0002114",
+      "UBERON_0001264",
+      "UBERON_0002106",
+      "UBERON_0002369",
+      "UBERON_0002113",
+      "UBERON_0001155",
+      "UBERON_0002108",
+      "UBERON_0001153",
+      "UBERON_0002115",
+      "UBERON_0002116",
+      "UBERON_0001043",
+      "UBERON_0002110",
+      "UBERON_0001831",
+      "UBERON_0001736",
+      "UBERON_0000029",
+      "UBERON_0000998",
+      "UBERON_0000989",
+      "UBERON_0000981",
+      "UBERON_0002371",
+      "UBERON_0007844",
+      "UBERON_0001377",
+      "UBERON_0002240",
+      "UBERON_0002048",
+      "UBERON_0001103",
+      "UBERON_0003126",
+      "UBERON_0002103",
+      "UBERON_0001645",
+      "UBERON_0001322",
+      "UBERON_0001242",
+      "UBERON_0002107",
+      "UBERON_0000948",
+      "UBERON_0000955",
+      "UBERON_0014892",
+      "UBERON_0001009",
+      "UBERON_0001981",
+      "UBERON_0000014",
+      "UBERON_0001132",
+      "UBERON_0001211",
+      "UBERON_0002367",
+      "UBERON_0001000",
+      "UBERON_0001301",
+      "UBERON_0000473",
+      "UBERON_0001255",
+      "UBERON_0002370",
+      "UBERON_0000010",
+      "UBERON_0000970",
+      "UBERON_0001723"
+    ]
   },
-  {
-    "oryza_sativa_flower_parts.svg": {
-      "width": "120.96103",
-      "height": "139.71811",
-      "ids": [
-        "PO_0009010",
-        "PO_0009009",
-        "PO_0009089",
-        "PO_0009030",
-        "PO_0009066"
-      ]
-    }
+  "oryza_sativa_flower_parts.svg": {
+    "width": 120.96103,
+    "height": 139.71811,
+    "ids": [
+      "PO_0009010",
+      "PO_0009009",
+      "PO_0009089",
+      "PO_0009030",
+      "PO_0009066"
+    ]
   },
-  {
-    "oryza_sativa_whole_plant.svg": {
-      "width": "95.575813",
-      "height": "151.60188",
-      "ids": [
-        "PO_0025034",
-        "PO_0009005",
-        "PO_0009049",
-        "PO_0009006",
-        "PO_0005052"
-      ]
-    }
+  "oryza_sativa_whole_plant.svg": {
+    "width": 95.575813,
+    "height": 151.60188,
+    "ids": [
+      "PO_0025034",
+      "PO_0009005",
+      "PO_0009049",
+      "PO_0009006",
+      "PO_0005052"
+    ]
   },
-  {
-    "papio_anubis.svg": {
-      "width": "144.21588",
-      "height": "122.64954",
-      "ids": [
-        "UBERON_0000948",
-        "UBERON_0002107",
-        "UBERON_0000945",
-        "UBERON_0001155",
-        "UBERON_0002371",
-        "UBERON_0002113",
-        "UBERON_0002106",
-        "UBERON_0014892",
-        "UBERON_0002370",
-        "UBERON_0000955",
-        "UBERON_0001871",
-        "UBERON_0001870",
-        "UBERON_0000007",
-        "UBERON_0002048",
-        "UBERON_0000029",
-        "UBERON_0002037"
-      ]
-    }
+  "papio_anubis.svg": {
+    "width": 144.21588,
+    "height": 122.64954,
+    "ids": [
+      "UBERON_0000948",
+      "UBERON_0002107",
+      "UBERON_0000945",
+      "UBERON_0001155",
+      "UBERON_0002371",
+      "UBERON_0002113",
+      "UBERON_0002106",
+      "UBERON_0014892",
+      "UBERON_0002370",
+      "UBERON_0000955",
+      "UBERON_0001871",
+      "UBERON_0001870",
+      "UBERON_0000007",
+      "UBERON_0002048",
+      "UBERON_0000029",
+      "UBERON_0002037"
+    ]
   },
-  {
-    "rattus_norvegicus.svg": {
-      "width": "123.11169",
-      "height": "89.384377",
-      "ids": [
-        "UBERON_0000955",
-        "UBERON_0002113",
-        "CL_0000336",
-        "UBERON_0001388",
-        "UBERON_0000948",
-        "UBERON_0002107",
-        "UBERON_0002048",
-        "UBERON_0002106",
-        "UBERON_0002370",
-        "UBERON_0000995",
-        "UBERON_0000473",
-        "UBERON_0001155"
-      ]
-    }
+  "rattus_norvegicus.svg": {
+    "width": 123.11169,
+    "height": 89.384377,
+    "ids": [
+      "UBERON_0000955",
+      "UBERON_0002113",
+      "CL_0000336",
+      "UBERON_0001388",
+      "UBERON_0000948",
+      "UBERON_0002107",
+      "UBERON_0002048",
+      "UBERON_0002106",
+      "UBERON_0002370",
+      "UBERON_0000995",
+      "UBERON_0000473",
+      "UBERON_0001155"
+    ]
   },
-  {
-    "solanum_lycopersicum_flower_parts.svg": {
-      "width": "140.86603",
-      "height": "110.25008",
-      "ids": [
-        "PO_0009084",
-        "PO_0009030",
-        "PO_0009072",
-        "PO_0009073",
-        "PO_0009074",
-        "PO_0009066",
-        "PO_0009010"
-      ]
-    }
+  "solanum_lycopersicum_flower_parts.svg": {
+    "width": 140.86603,
+    "height": 110.25008,
+    "ids": [
+      "PO_0009084",
+      "PO_0009030",
+      "PO_0009072",
+      "PO_0009073",
+      "PO_0009074",
+      "PO_0009066",
+      "PO_0009010"
+    ]
   },
-  {
-    "solanum_lycopersicum_whole_plant.svg": {
-      "width": "93.723885",
-      "height": "157.46359",
-      "ids": [
-        "PO_0025034",
-        "PO_0000056",
-        "PO_0009046",
-        "PO_0009001",
-        "PO_0009005"
-      ]
-    }
+  "solanum_lycopersicum_whole_plant.svg": {
+    "width": 93.723885,
+    "height": 157.46359,
+    "ids": [
+      "PO_0025034",
+      "PO_0000056",
+      "PO_0009046",
+      "PO_0009001",
+      "PO_0009005"
+    ]
   },
-  {
-    "solanum_tuberosum.svg": {
-      "width": "254.74318",
-      "height": "403.44812",
-      "ids": []
-    }
+  "solanum_tuberosum.svg": {
+    "width": 254.74318,
+    "height": 403.44812,
+    "ids": []
   },
-  {
-    "sorghum_bicolor_flower_parts.svg": {
-      "width": "136.8109",
-      "height": "131.06259",
-      "ids": [
-        "PO_0009049",
-        "PO_0009051",
-        "PO_0009001",
-        "PO_0009009",
-        "PO_0009089",
-        "PO_0009066",
-        "PO_0009030"
-      ]
-    }
+  "sorghum_bicolor_flower_parts.svg": {
+    "width": 136.8109,
+    "height": 131.06259,
+    "ids": [
+      "PO_0009049",
+      "PO_0009051",
+      "PO_0009001",
+      "PO_0009009",
+      "PO_0009089",
+      "PO_0009066",
+      "PO_0009030"
+    ]
   },
-  {
-    "sorghum_bicolor_whole_plant.svg": {
-      "width": "122.55083",
-      "height": "159.40355",
-      "ids": [
-        "PO_0009006",
-        "PO_0006079",
-        "PO_0009047",
-        "PO_0000230",
-        "PO_0009049",
-        "PO_0025034",
-        "PO_0009005"
-      ]
-    }
+  "sorghum_bicolor_whole_plant.svg": {
+    "width": 122.55083,
+    "height": 159.40355,
+    "ids": [
+      "PO_0009006",
+      "PO_0006079",
+      "PO_0009047",
+      "PO_0000230",
+      "PO_0009049",
+      "PO_0025034",
+      "PO_0009005"
+    ]
   },
-  {
-    "tetraodon_nigroviridis.svg": {
-      "width": "122.26315",
-      "height": "47.05262",
-      "ids": [
-        "UBERON_0000955",
-        "UBERON_0000948",
-        "UBERON_0002113",
-        "UBERON_0014892"
-      ]
-    }
+  "tetraodon_nigroviridis.svg": {
+    "width": 122.26315,
+    "height": 47.05262,
+    "ids": [
+      "UBERON_0000955",
+      "UBERON_0000948",
+      "UBERON_0002113",
+      "UBERON_0014892"
+    ]
   },
-  {
-    "triticum_aestivum_flower_parts.svg": {
-      "width": "132.27861",
-      "height": "154.28635",
-      "ids": [
-        "PO_0020033",
-        "PO_0020031",
-        "PO_0009089",
-        "PO_0009085",
-        "PO_0009086",
-        "PO_0009084",
-        "PO_0009009",
-        "PO_0009001",
-        "PO_0009088",
-        "PO_0009030",
-        "PO_0009066"
-      ]
-    }
+  "triticum_aestivum_flower_parts.svg": {
+    "width": 132.27861,
+    "height": 154.28635,
+    "ids": [
+      "PO_0020033",
+      "PO_0020031",
+      "PO_0009089",
+      "PO_0009085",
+      "PO_0009086",
+      "PO_0009084",
+      "PO_0009009",
+      "PO_0009001",
+      "PO_0009088",
+      "PO_0009030",
+      "PO_0009066"
+    ]
   },
-  {
-    "triticum_aestivum_whole_plant.svg": {
-      "width": "78.069733",
-      "height": "158.28831",
-      "ids": [
-        "PO_0009047",
-        "PO_0009005",
-        "PO_0009049",
-        "PO_0025034"
-      ]
-    }
+  "triticum_aestivum_whole_plant.svg": {
+    "width": 78.069733,
+    "height": 158.28831,
+    "ids": [
+      "PO_0009047",
+      "PO_0009005",
+      "PO_0009049",
+      "PO_0025034"
+    ]
   },
-  {
-    "xenopus_tropicalis.svg": {
-      "width": "122.72871",
-      "height": "107.09201",
-      "ids": [
-        "UBERON_0000955",
-        "UBERON_0002113",
-        "UBERON_0014892",
-        "UBERON_0000948",
-        "UBERON_0002107"
-      ]
-    }
+  "xenopus_tropicalis.svg": {
+    "width": 122.72871,
+    "height": 107.09201,
+    "ids": [
+      "UBERON_0000955",
+      "UBERON_0002113",
+      "UBERON_0014892",
+      "UBERON_0000948",
+      "UBERON_0002107"
+    ]
   },
-  {
-    "zea_mays_flower_parts.svg": {
-      "width": "140.97224",
-      "height": "156.4857",
-      "ids": [
-        "PO_0009001",
-        "PO_0020033",
-        "PO_0020031",
-        "PO_0020136",
-        "PO_0025597",
-        "PO_0009066",
-        "PO_0009009",
-        "PO_0009089",
-        "PO_0009084"
-      ]
-    }
+  "zea_mays_flower_parts.svg": {
+    "width": 140.97224,
+    "height": 156.4857,
+    "ids": [
+      "PO_0009001",
+      "PO_0020033",
+      "PO_0020031",
+      "PO_0020136",
+      "PO_0025597",
+      "PO_0009066",
+      "PO_0009009",
+      "PO_0009089",
+      "PO_0009084"
+    ]
   },
-  {
-    "zea_mays_whole_plant.svg": {
-      "width": "81.500832",
-      "height": "155.09863",
-      "ids": [
-        "PO_0020126",
-        "PO_0020136",
-        "PO_0020142",
-        "PO_0020127",
-        "PO_0009005",
-        "PO_0009074",
-        "PO_0025034"
-      ]
-    }
+  "zea_mays_whole_plant.svg": {
+    "width": 81.500832,
+    "height": 155.09863,
+    "ids": [
+      "PO_0020126",
+      "PO_0020136",
+      "PO_0020142",
+      "PO_0020127",
+      "PO_0009005",
+      "PO_0009074",
+      "PO_0025034"
+    ]
   }
-]
+}
