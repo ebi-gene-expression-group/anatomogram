@@ -88,8 +88,8 @@ class Anatomogram extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return hash.MD5([nextProps.showIds, nextProps.highlightIds, nextProps.selectIds]) !==
-           hash.MD5([this.props.showIds, this.props.highlightIds, this.props.selectIds])
+    return hash.MD5([nextProps.filename, nextProps.showIds, nextProps.highlightIds, nextProps.selectIds]) !==
+           hash.MD5([this.props.filename, this.props.showIds, this.props.highlightIds, this.props.selectIds])
   }
 
   // ReactSVG loads the SVG file asynchronously (hence the callback prop). We don’t use componentDidUpdate or
