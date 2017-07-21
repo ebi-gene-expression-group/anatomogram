@@ -42,33 +42,48 @@ class AnatomogramContainer extends React.Component {
         <Switcher urlToResources={urlToResources}
                   anatomogramTypes={availableAnatomograms[this.props.species]}
                   selectedType={this.state.selectedAnatomogramType}
-                  onClick={this._switchAnatomogramType}
-                  style={{float: `left`}} />
+                  onClick={this._switchAnatomogramType} />
 
         <Anatomogram urlToResources={urlToResources}
                      filename={svgFilename}
-                     showIds={this.props.showIds}
-                     highlightIds={this.props.highlightIds}
-                     selectIds={this.props.selectIds}
-                     width={this.props.width}
-                     style={{float: `left`}} />
+                     {...this.props} />
       </div>
     )
   }
 }
 
 AnatomogramContainer.propTypes = {
-  atlasUrl: PropTypes.string.isRequired,
-  pathToResources: PropTypes.string.isRequired,
+  atlasUrl: PropTypes.string,
+  pathToResources: PropTypes.string,
   species: PropTypes.string.isRequired,
-  showIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  highlightIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  width: PropTypes.number
+  width: PropTypes.number,
+
+  showIds: PropTypes.arrayOf(PropTypes.string),
+  highlightIds: PropTypes.arrayOf(PropTypes.string),
+  selectIds: PropTypes.arrayOf(PropTypes.string),
+
+  showColour: PropTypes.string,
+  highlightColour: PropTypes.string,
+  selectColour: PropTypes.string,
+
+  onMouseOver: PropTypes.func,
+  onMouseOut: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 AnatomogramContainer.defaultProps = {
-  width: 500
+  atlasUrl: ``,
+  pathToResources: ``,
+  width: 500,
+  showColour: `grey`,
+  highlightColour: `red`,
+  selectColour: `purple`,
+  showOpacity: 0.4,
+  highlightOpacity: 0.4,
+  selectOpacity: 0.4,
+  onMouseOver: () => {},
+  onMouseOut: () => {},
+  onClick: () => {}
 }
 
 export default AnatomogramContainer

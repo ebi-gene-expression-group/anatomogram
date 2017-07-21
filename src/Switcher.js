@@ -9,7 +9,7 @@ const resolveUrlToIcon = (urlToResources, selectedType, anatomogramType, ) =>
   URI(`img/${selectedType === anatomogramType ? `` : `un`}selected${anatomogramType}.png`, urlToResources).toString()
 
 const Switcher = (props) =>
-  <div style={props.style}>
+  <div style={{float: `left`}}>
     {props.anatomogramTypes.map((anatomogramType) =>
       <img key={anatomogramType}
            className={`gxa-selection-icon`}
@@ -22,8 +22,7 @@ Switcher.propTypes = {
   anatomogramTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedType: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  urlToResources: PropTypes.string.isRequired,
-  style: PropTypes.object
+  urlToResources: PropTypes.string.isRequired
 }
 
 export default Switcher
