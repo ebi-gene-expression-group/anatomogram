@@ -4,10 +4,8 @@ import ReactSVG from 'react-svg'
 
 import URI from 'urijs'
 
-import svgsMetadata from './json/svgsMetadata.json'
-
 const arrayDifference = (arr1, arr2) =>
-  arr1.filter((e) => !arr2.includes(e))
+  Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter((e) => !arr2.includes(e)) : arr1
 
 const getSvgElementById = (svgDomNode) => {
   const getEfoLayerGroup = (svgDomNode) => {
