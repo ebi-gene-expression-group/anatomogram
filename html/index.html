@@ -20,16 +20,13 @@
 </div>
 </body>
 
-<script src="../dist/vendorCommons.bundle.js"></script>
-<script src="../dist/anatomogram.bundle.js"></script>
+<script src="vendorCommons.bundle.js"></script>
+<script src="anatomogram.bundle.js"></script>
 
 <!-- Set to http://localhost:8080/gxa/ or http://localhost:8080/gxa_sc/ -->
 <!-- Remmeber the trailing slash! -->
 <script>
-  anatomogram.render({
-    atlasUrl: 'http://localhost:9000/',
-    pathToResources: 'dist/'
-  }, 'target')
+  anatomogram.render({}, 'target')
 </script>
 
 </html>
