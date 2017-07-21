@@ -1,39 +1,32 @@
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
 
-    <title>Highcharts heatmap demo</title>
-
-    <meta charset="utf-8">
+<html lang="en">
+<head>
+    <title>Anatomogram demo</title>
     <title>Expression Atlas &lt; Demo pages</title>
-    <meta name="HandheldFriendly" content="true" />
-    <meta name="MobileOptimized" content="width" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#70BDBD"> <!-- Android Chrome mobile browser tab color -->
 
-    <!-- CSS: implied media=all -->
-    <!-- CSS concatenated and minified via ant build script-->
-    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.1/libraries/foundation-6/css/foundation.css" type="text/css" media="all">
-    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.1/css/ebi-global.css" type="text/css" media="all">
-    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Icon-fonts/v1.1/fonts.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/libraries/foundation-6/css/foundation.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/css/ebi-global.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Icon-fonts/v1.2/fonts.css" type="text/css" media="all" />
 
-    <!-- Use this CSS file for any custom styling -->
     <link rel="stylesheet" href="https://www.ebi.ac.uk/gxa/resources/css/foundation/atlas.css" type="text/css" media="all">
-
-    <!-- also inform ES so we can host your colour palette file -->
-    <link rel="stylesheet" href="https://www.ebi.ac.uk/gxa/resources/css/foundation/theme-atlas.css" type="text/css" media="all">
 </head>
 
 <body>
-    <div id="content" role="main" class="row">
-        <div id="main"></div>
+<div id="wrapper" class="row">
+    <div id="content" class="small-12 columns">
+        <div id="target">
+        </div>
     </div>
+</div>
 </body>
 
-<script type="text/javascript" src="../dist/vendor.bundle.js"></script>
-<script type="text/javascript" src="../dist/demoRenderer.bundle.js"></script>
+<script src="vendorCommons.bundle.js"></script>
+<script src="anatomogram.bundle.js"></script>
 
+<!-- Set to http://localhost:8080/gxa/ or http://localhost:8080/gxa_sc/ -->
+<!-- Remmeber the trailing slash! -->
 <script>
-    demoRenderer.default(document.getElementById('main'));
+  anatomogram.render({}, 'target')
 </script>
+
 </html>
