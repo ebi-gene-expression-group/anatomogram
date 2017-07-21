@@ -111,7 +111,10 @@ class AnatomogramDemo extends React.Component {
             </div>
 
             <div className="row column">
-              <p>Use the first checkbox to show the tissue, the second to highlight it, and the third to select. Hover over a tissue display its name and visually highlight it. Click on it to select it.</p>
+              <p>
+                Use the first checkbox to show the tissue, the second to highlight it, and the third to select it.
+                Hover over a tissue to display its name. Click on it to select it.
+              </p>
             </div>
 
             <div className="row column">
