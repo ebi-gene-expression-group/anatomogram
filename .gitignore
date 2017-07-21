@@ -61,3 +61,7 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Build files
+dist/*
+lib/*
