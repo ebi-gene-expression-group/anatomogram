@@ -56,7 +56,6 @@ AnatomogramContainer.propTypes = {
   atlasUrl: PropTypes.string,
   pathToResources: PropTypes.string,
   species: PropTypes.string.isRequired,
-  width: PropTypes.number,
 
   showIds: PropTypes.arrayOf(PropTypes.string),
   highlightIds: PropTypes.arrayOf(PropTypes.string),
@@ -68,13 +67,12 @@ AnatomogramContainer.propTypes = {
 
   onMouseOver: PropTypes.func,
   onMouseOut: PropTypes.func,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 }
 
 AnatomogramContainer.defaultProps = {
   atlasUrl: ``,
   pathToResources: ``,
-  width: 500,
   showColour: `grey`,
   highlightColour: `red`,
   selectColour: `purple`,

@@ -111,27 +111,12 @@ class Anatomogram extends React.Component {
   }
   
   render() {
-    const aspectRatio = svgsMetadata[this.props.filename].width / svgsMetadata[this.props.filename].height
-    const {height, width} = this.props
-
-    const sizeStyle = {}
-    if (height && width) {
-      sizeStyle.width = width
-      sizeStyle.height = height
-    } else if (height) {
-      sizeStyle.height = height
-      sizeStyle.width = height * aspectRatio
-    } else {  // if (width)
-      sizeStyle.width = width
-      sizeStyle.height = width / aspectRatio
-    }
     return (
-      <div style={{float: `left`}}>
+      <div style={{display: `inline-block`, verticalAlign: `top`, width: `93%`}}>
         <ReactSVG
-          ref={(svgRef) => { this.svgRef = svgRef }}
           path={URI(`svg/${this.props.filename}`, this.props.urlToResources).toString()}
           callback={svgDomNode => { this._initialiseSvgElements(getSvgElementById(svgDomNode)) }}
-          style={sizeStyle}
+          style={{width: `100%`, height: `auto`}}
         />
       </div>
     )
@@ -141,8 +126,6 @@ class Anatomogram extends React.Component {
 Anatomogram.propTypes = {
   urlToResources: PropTypes.string.isRequired,
   filename: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number,
 
   showIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   highlightIds: PropTypes.arrayOf(PropTypes.string).isRequired,

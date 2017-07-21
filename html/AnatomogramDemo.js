@@ -85,7 +85,7 @@ class AnatomogramDemo extends React.Component {
         <div className="row">
           <div className="small-4 columns" id="anatomogramContainer">
             <AnatomogramContainer {...this.props}
-                                  width={300}
+                                  // width={300}
                                   species={this.state.selectedSpecies}
                                   showIds={this.state.showIds}
                                   highlightIds={this.state.highlightIds}
