@@ -9,7 +9,7 @@
     "dist": "NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
     "coverage": "jest --coverage",
     "test": "yarn run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "prepublish": "yarn run coverage && yarn run build && yarn run dist"
+    "prepublish": "yarn run coverage && yarn run build"
   },
   "jest": {
     "moduleNameMapper": {
