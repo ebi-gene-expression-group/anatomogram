@@ -6,6 +6,9 @@ import URI from 'urijs'
 
 import svgsMetadata from './json/svgsMetadata.json'
 
+const arrayDifference = (arr1, arr2) =>
+  arr1.filter((e) => !arr2.includes(e))
+
 const getSvgElementById = (svgDomNode) => {
   const getEfoLayerGroup = (svgDomNode) => {
     const svgGroups = svgDomNode.getElementsByTagName(`g`)
@@ -91,17 +94,20 @@ class Anatomogram extends React.Component {
            highlightIds, highlightColour, highlightOpacity,
            selectIds, selectColour, selectOpacity} = this.props
 
-    paintIds(showIds, showColour, showOpacity, getSvgElementById)
-    paintIds(highlightIds, highlightColour, highlightOpacity, getSvgElementById)
+    const uniqueShowIds = arrayDifference(showIds, [...highlightIds, ...selectIds])
+    const uniqueHighlightIds = arrayDifference(highlightIds, selectIds)
+
+    paintIds(uniqueShowIds, showColour, showOpacity, getSvgElementById)
+    paintIds(uniqueHighlightIds, highlightColour, highlightOpacity, getSvgElementById)
     paintIds(selectIds, selectColour, selectOpacity, getSvgElementById)
 
-    addMouseOverMouseOutListeners(showIds, highlightColour, highlightOpacity, getSvgElementById)
-    addMouseOverMouseOutListeners(highlightIds, highlightColour, highlightOpacity + 0.2, getSvgElementById)
+    addMouseOverMouseOutListeners(uniqueShowIds, highlightColour, highlightOpacity, getSvgElementById)
+    addMouseOverMouseOutListeners(uniqueHighlightIds, highlightColour, highlightOpacity + 0.2, getSvgElementById)
     addMouseOverMouseOutListeners(selectIds, selectColour, selectOpacity + 0.2, getSvgElementById)
 
-    attachCallbacks([...showIds, ...highlightIds, ...selectIds], `mouseover`, this.props.onMouseOver, getSvgElementById)
-    attachCallbacks([...showIds, ...highlightIds, ...selectIds], `mouseout`, this.props.onMouseOut, getSvgElementById)
-    attachCallbacks([...showIds, ...highlightIds, ...selectIds], `click`, this.props.onClick, getSvgElementById)
+    attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `mouseover`, this.props.onMouseOver, getSvgElementById)
+    attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `mouseout`, this.props.onMouseOut, getSvgElementById)
+    attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `click`, this.props.onClick, getSvgElementById)
   }
   
   render() {
