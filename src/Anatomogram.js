@@ -49,7 +49,7 @@ const paintIds = (ids, colour, opacity, getSvgElementById) => {
   })
 }
 
-const addMouseOverMouseOutListeners = (ids, mouseOverColour, mouseOverOpacity, getSvgElementById) => {
+const addMouseOverMouseOutListeners = (ids, mouseOverColour, mouseOverOpacity, mouseOverCallback, mouseOutCallback, getSvgElementById) => {
   ids.forEach((id) => {
     const e = getSvgElementById(id)
 
@@ -57,6 +57,7 @@ const addMouseOverMouseOutListeners = (ids, mouseOverColour, mouseOverOpacity, g
       e.addEventListener(`mouseover`, () => {
         e.style.fill = mouseOverColour
         e.style.opacity = mouseOverOpacity
+        mouseOverCallback(id)
       })
 
       const originalColour = e.style.fill
@@ -64,6 +65,7 @@ const addMouseOverMouseOutListeners = (ids, mouseOverColour, mouseOverOpacity, g
       e.addEventListener(`mouseout`, () => {
         e.style.fill = originalColour
         e.style.opacity = originalOpacity
+        mouseOutCallback(id)
       })
     }
   })
@@ -90,7 +92,8 @@ class Anatomogram extends React.Component {
   _initialiseSvgElements(getSvgElementById) {
     const {showIds, showColour, showOpacity,
            highlightIds, highlightColour, highlightOpacity,
-           selectIds, selectColour, selectOpacity} = this.props
+           selectIds, selectColour, selectOpacity,
+           onMouseOver, onMouseOut} = this.props
 
     const uniqueShowIds = arrayDifference(showIds, [...highlightIds, ...selectIds])
     const uniqueHighlightIds = arrayDifference(highlightIds, selectIds)
@@ -99,12 +102,10 @@ class Anatomogram extends React.Component {
     paintIds(uniqueHighlightIds, highlightColour, highlightOpacity, getSvgElementById)
     paintIds(selectIds, selectColour, selectOpacity, getSvgElementById)
 
-    addMouseOverMouseOutListeners(uniqueShowIds, highlightColour, highlightOpacity, getSvgElementById)
-    addMouseOverMouseOutListeners(uniqueHighlightIds, highlightColour, highlightOpacity + 0.2, getSvgElementById)
+    addMouseOverMouseOutListeners(uniqueShowIds, highlightColour, highlightOpacity, onMouseOver, onMouseOut, getSvgElementById)
+    addMouseOverMouseOutListeners(uniqueHighlightIds, highlightColour, highlightOpacity + 0.2, onMouseOver, onMouseOut, getSvgElementById)
     addMouseOverMouseOutListeners(selectIds, selectColour, selectOpacity + 0.2, getSvgElementById)
 
-    attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `mouseover`, this.props.onMouseOver, getSvgElementById)
-    attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `mouseout`, this.props.onMouseOut, getSvgElementById)
     attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `click`, this.props.onClick, getSvgElementById)
   }
   
