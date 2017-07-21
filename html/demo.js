@@ -7,121 +7,77 @@ import availableAnatomograms from '../src/json/svgs.json'
 import svgsMetadata from '../src/json/svgsMetadata.json'
 
 const onlyUnique = (e, i, arr) => arr.indexOf(e) === i
+const getAllIds = (species) =>
+    Object.keys(svgsMetadata)
+      .filter((svgFilename) => svgFilename.startsWith(species))
+      .reduce((acc, svgFilename) => acc.concat(svgsMetadata[svgFilename].ids), [])
+      .filter(onlyUnique)
+      .sort()
 
 class AnatomogramDemo extends React.Component {
 
   constructor(props) {
     super(props)
 
+    const selectedSpecies = Object.keys(availableAnatomograms)[0]
+
     this.state = {
-      selectedSpecies: Object.keys(availableAnatomograms)[0],
+      selectedSpecies: selectedSpecies,
+      allIds: getAllIds(selectedSpecies),
       showIds: [],
-      selectIds: [],
-      highlightIds: []
+      highlightIds: [],
+      selectIds: []
     }
 
-    this._handleChange = this._handleChange.bind(this)
-
-    this._handleShowCheckboxOnChange = this._handleShowCheckboxOnChange.bind(this)
-    this._handleShowAllOnClick = this._handleShowAllOnClick.bind(this)
-    this._handleHideAllOnClick = this._handleHideAllOnClick.bind(this)
-
-    this._handleSelectCheckboxOnChange = this._handleSelectCheckboxOnChange.bind(this)
-    this._handleSelectAllOnClick = this._handleSelectAllOnClick.bind(this)
-    this._handleUnselectAllOnClick = this._handleUnselectAllOnClick.bind(this)
-
-    this._handleCheckboxOnMouseOver = this._handleCheckboxOnMouseOver.bind(this)
+    this._handleSelectOnChange = this._handleSelectOnChange.bind(this)
+    this._handleCheckboxOnChange = this._handleCheckboxOnChange.bind(this)
+    this._handleOnClick = this._handleOnClick.bind(this)
+    this._addRemoveFromSelectIds = this._addRemoveFromSelectIds.bind(this)
   }
 
-  _handleChange(event) {
+  _handleSelectOnChange(event) {
     this.setState({
-      selectedSpecies: event.target.value
+      selectedSpecies: event.target.value,
+      allIds: getAllIds(event.target.value)
     })
   }
 
-  _handleShowCheckboxOnChange(event) {
-    const checked = event.target.checked
+  _handleCheckboxOnChange(event, stateField) {
     const newShowIds =
-      checked ?
-        this.state.showIds.concat(event.target.value) :
-        this.state.showIds.filter((id) => id !== event.target.value)
+      event.target.checked ?
+        this.state[stateField].concat(event.target.value) :
+        this.state[stateField].filter((id) => event.target.value !== id)
 
     this.setState({
-      showIds: newShowIds
+      [stateField]: newShowIds
     })
   }
 
-  _handleSelectCheckboxOnChange(event) {
-    const checked = event.target.checked
+  _handleOnClick(allOrNone, stateField) {
+    this.setState({
+      [stateField]: allOrNone ? Array.from(this.state.allIds) : []
+    })
+  }
+
+  _addRemoveFromSelectIds(id) {
     const newSelectIds =
-      checked ?
-        this.state.selectIds.concat(event.target.value) :
-        this.state.selectIds.filter((id) => id !== event.target.value)
+      this.state.selectIds.includes(id) ?
+        this.state.selectIds.filter((_id) => id !== id) :
+        this.state.selectIds.concat(id)
 
     this.setState({
       selectIds: newSelectIds
     })
   }
 
-  _handleShowAllOnClick() {
-    const allIds =
-      Object.keys(svgsMetadata)
-        .filter((svgFilename) => svgFilename.startsWith(this.state.selectedSpecies))
-        .reduce((acc, svgFilename) => acc.concat(svgsMetadata[svgFilename].ids), [])
-        .filter(onlyUnique)
-        .sort()
-
-    this.setState({
-      showIds: allIds
-    })
-  }
-
-  _handleHideAllOnClick() {
-    this.setState({
-      showIds: []
-    })
-  }
-
-  _handleSelectAllOnClick() {
-    const allIds =
-      Object.keys(svgsMetadata)
-        .filter((svgFilename) => svgFilename.startsWith(this.state.selectedSpecies))
-        .reduce((acc, svgFilename) => acc.concat(svgsMetadata[svgFilename].ids), [])
-        .filter(onlyUnique)
-        .sort()
-
-    this.setState({
-      selectIds: allIds
-    })
-  }
-
-  _handleUnselectAllOnClick() {
-    this.setState({
-      selectIds: []
-    })
-  }
-
-  _handleCheckboxOnMouseOver(id) {
-    this.setState({
-      highlightIds: [id]
-    })
-  }
-
   render() {
-    const allIds =
-      Object.keys(svgsMetadata)
-        .filter((svgFilename) => svgFilename.startsWith(this.state.selectedSpecies))
-        .reduce((acc, svgFilename) => acc.concat(svgsMetadata[svgFilename].ids), [])
-        .filter(onlyUnique)
-        .sort()
-
     return (
       <div className="row">
 
         <div className="row">
           <div className="small-3 small-centered columns">
-            <select value={this.state.selectedSpecies} onChange={this._handleChange}>
-              {Object.keys(availableAnatomograms).map((species) => <option key={species}>{species}</option>)}
+            <select value={this.state.selectedSpecies} onChange={this._handleSelectOnChange}>
+              {Object.keys(availableAnatomograms).sort().map((species) => <option key={species}>{species}</option>)}
             </select>
           </div>
         </div>
@@ -133,35 +89,47 @@ class AnatomogramDemo extends React.Component {
                                   species={this.state.selectedSpecies}
                                   showIds={this.state.showIds}
                                   highlightIds={this.state.highlightIds}
-                                  selectIds={this.state.selectIds} />
+                                  selectIds={this.state.selectIds}
+                                  onClick={this._addRemoveFromSelectIds}
+            />
           </div>
 
           <div className="small-8 columns">
-            <div className="row column">
-              <button className="button margin-right-small" onClick={this._handleShowAllOnClick}>Show all</button>
-              <button className="button" onClick={this._handleHideAllOnClick}>Hide all</button>
-            </div>
-            <div className="row column">
-              <button className="button margin-right-small" onClick={this._handleSelectAllOnClick}>Select all</button>
-              <button className="button" onClick={this._handleUnselectAllOnClick}>Unselect all</button>
+            <div className="row">
+              <div className="small-4 columns">
+                <button className="button" onClick={() => {this._handleOnClick(true, `showIds`)}}>Show all</button>
+                <button className="button" onClick={() => {this._handleOnClick(false, `showIds`)}}>Hide all</button>
+              </div>
+              <div className="small-4 columns">
+                <button className="button" onClick={() => {this._handleOnClick(true, `highlightIds`)}}>Highlight all</button>
+                <button className="button" onClick={() => {this._handleOnClick(false, `highlightIds`)}}>Unhighlight all</button>
+              </div>
+              <div className="small-4 columns">
+                <button className="button" onClick={() => {this._handleOnClick(true, `selectIds`)}}>Select all</button>
+                <button className="button" onClick={() => {this._handleOnClick(false, `selectIds`)}}>Unselect all</button>
+              </div>
             </div>
 
             <div className="row column">
-              <p>Click on the first checkbox to show the tissue, on the second to select it, hover to higlight</p>
+              <p>Click on the first checkbox to show the tissue, on the second to select it, hover to highlight.</p>
             </div>
 
             <div className="row column">
-              {allIds.map((id) =>
+              {Array.from(this.state.allIds).sort().map((id) =>
                 <div key={id} style={{display: `inline-block`}}>
                   <input type="checkbox"
                          name="showIds" value={id}
-                         onChange={this._handleShowCheckboxOnChange}
+                         onChange={(e) => {this._handleCheckboxOnChange(e, `showIds`)}}
                          checked={this.state.showIds.includes(id)}/>
                   <input type="checkbox"
+                         name="highlightIds" value={id}
+                         onChange={(e) => {this._handleCheckboxOnChange(e, `highlightIds`)}}
+                         checked={this.state.highlightIds.includes(id)}/>
+                  <input type="checkbox"
                          name="selectIds" value={id}
-                         onChange={this._handleSelectCheckboxOnChange}
+                         onChange={(e) => {this._handleCheckboxOnChange(e, `selectIds`)}}
                          checked={this.state.selectIds.includes(id)}/>
-                  <label onMouseOver={() => {this._handleCheckboxOnMouseOver(id)}} onMouseOut={() => {this._handleCheckboxOnMouseOver()}}>{id}</label>
+                  <label>{id}</label>
                 </div>)}
             </div>
           </div>
@@ -173,8 +141,8 @@ class AnatomogramDemo extends React.Component {
 }
 
 AnatomogramDemo.propTypes = {
-  atlasUrl: PropTypes.string.isRequired,
-  pathToResources: PropTypes.string.isRequired
+  atlasUrl: PropTypes.string,
+  pathToResources: PropTypes.string
 }
 
 const render = function (options, target) {
