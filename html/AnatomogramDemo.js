@@ -62,7 +62,7 @@ class AnatomogramDemo extends React.Component {
   _addRemoveFromSelectIds(id) {
     const newSelectIds =
       this.state.selectIds.includes(id) ?
-        this.state.selectIds.filter((_id) => id !== id) :
+        this.state.selectIds.filter((_id) => _id !== id) :
         this.state.selectIds.concat(id)
 
     this.setState({
@@ -111,7 +111,7 @@ class AnatomogramDemo extends React.Component {
             </div>
 
             <div className="row column">
-              <p>Click on the first checkbox to show the tissue, on the second to select it, hover to highlight.</p>
+              <p>Use the first checkbox to show the tissue, the second to highlight it, and the third to select. Hover over a tissue display its name and visually highlight it. Click on it to select it.</p>
             </div>
 
             <div className="row column">
@@ -149,4 +149,4 @@ const render = function (options, target) {
   ReactDOM.render(<AnatomogramDemo {...options}/>, document.getElementById(target))
 }
 
-export {render}
+export {AnatomogramDemo as default, render}
