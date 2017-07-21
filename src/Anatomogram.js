@@ -112,7 +112,7 @@ class Anatomogram extends React.Component {
   
   render() {
     return (
-      <div style={{display: `inline-block`, verticalAlign: `top`, width: `93%`}}>
+      <div style={{display: `inline-block`, verticalAlign: `top`, width: `90%`}}>
         <ReactSVG
           path={URI(`svg/${this.props.filename}`, this.props.urlToResources).toString()}
           callback={svgDomNode => { this._initialiseSvgElements(getSvgElementById(svgDomNode)) }}

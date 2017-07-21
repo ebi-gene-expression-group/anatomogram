@@ -9,7 +9,7 @@ const resolveUrlToIcon = (urlToResources, selectedType, anatomogramType, ) =>
   URI(`img/${selectedType === anatomogramType ? `` : `un`}selected${anatomogramType}.png`, urlToResources).toString()
 
 const Switcher = (props) =>
-  <div style={{display: `inline-block`, verticalAlign: `top`, width: `7%`}}>
+  <div style={{display: `inline-block`, verticalAlign: `top`, width: `10%`, maxWidth: `32px`}}>
     {props.anatomogramTypes.map((anatomogramType) =>
       <img key={anatomogramType}
            className={`gxa-selection-icon`}
