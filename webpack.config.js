@@ -26,7 +26,12 @@ module.exports = {
             filename: 'vendorCommons.bundle.js',
             minChunks: Infinity     // Explicit definition-based split, see dependencies entry
         }),
-        new CopyWebpackPlugin([{ from: './src/svg', to: './svg' }, { from: './src/img', to: './img' }])
+        new CopyWebpackPlugin([{ from: './src/svg', to: './svg' }, { from: './src/img', to: './img' }]),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: process.env.NODE_ENV === 'production' ? JSON.stringify("production") : JSON.stringify("development")
+            }
+        })
         // new webpack.HotModuleReplacementPlugin(),
         // enable HMR globally, necessary along with devServer.hot: true (see below) for HMR to work as expected 🤔
         // new webpack.NamedModulesPlugin()

@@ -4,11 +4,12 @@
   "description": "Anatomogram component for Expression Atlas heatmap",
   "main": "lib/index.js",
   "scripts": {
+    "parseSvgs": "node src/utils/svgParse.js src/svg src/json/svgsMetadata.json ",
     "build": "yarn run parseSvgs && rm -rf lib && babel src -d lib --ignore '**/*.less','**/*.sass' --copy-files",
-    "prepublish": "yarn run build",
+    "dist": "NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
     "coverage": "jest --coverage",
     "test": "yarn run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "parseSvgs": "node src/utils/svgParse.js src/svg src/json/svgsMetadata.json "
+    "prepublish": "yarn run coverage && yarn run build && yarn run dist"
   },
   "jest": {
     "moduleNameMapper": {
