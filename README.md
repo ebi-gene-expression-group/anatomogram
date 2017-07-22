@@ -5,7 +5,7 @@ Expression Atlas Anatomogram
 
 This is an anatomogram for [Expression Atlas](http://www.ebi.ac.uk/gxa) that we use to illustrate the experiments.
 
-[See demo here](https://gxa.github.io/anatomogram/html/)
+[See demo here](https://gxa.github.io/anatomogram-demo/index.html).
 
 The ontology IDs are sourced from [Uberon](www.uberon.org), [EFO](www.ebi.ac.uk/efo) and [Plant Ontology](www.plantontology.org/).
 
