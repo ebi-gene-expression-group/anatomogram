@@ -8,7 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        anatomogram: './html/AnatomogramDemo.js',
+        anatomogramDemo: './html/AnatomogramDemo.js',
         dependencies: ['prop-types', 'react', 'react-dom', 'urijs']
     },
 
