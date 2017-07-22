@@ -17,41 +17,13 @@ You can reuse it as a React component or add a non-React wrapper. For example us
 Contribute
 ----------
 
+To update the anatomograms or ontology IDs read our [authoring guidelines](https://github.com/gxa/anatomogram/blob/master/svg-assets/README.md). Run `npm run parseSvgs` to parse the updated IDs.
 
-##### Development
-
-Required:
-```
-npm, webpack, webpack-dev-server
-```
-
-To update the anatomograms or ontology IDs edit them in the `resources/svg` directory, then run
-```
-scripts/idsForSvgs.py
-```
-This regenerates the file `resources/json/idsForSvgs.svg`.
-
-To add new anatomograms put them in the `resources/svg` directory, then edit the config `resources/json/svgsForSpecies.json`.
-
+To add new anatomograms put them in the `svg-assets` directory, then edit the config `src/json/svgs.json`. The format is pretty straightforward.
 
 When you are finished run a local copy of the demo page:
 ```
 webpack-dev-server -d
 ```
-Go to localhost:9000/html and see that the tissues show up like you want them to.
 
-##### Publish
-Regenerate the bundled files:
-```
-webpack
-```
-Examine the output and see that there were no errors.
-```
-git add . && git commit -m "Example update"
-git show # see the changes you made
-git push
-```
-Go to the demo page and see that the change shows up there.
-
-Optionally:
-bump the package version, publish on npm, then in Atlas require the newest version, and reinstall it.
+Go to `localhost:9000/html` and see that the tissues show up like you want them to.
