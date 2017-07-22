@@ -99,7 +99,7 @@ class Anatomogram extends React.Component {
     const {showIds, showColour, showOpacity,
            highlightIds, highlightColour, highlightOpacity,
            selectIds, selectColour, selectOpacity,
-           onMouseOver, onMouseOut} = this.props
+           onMouseOver, onMouseOut, onClick} = this.props
 
     const uniqueShowIds = arrayDifference(showIds, [...highlightIds, ...selectIds])
     const uniqueHighlightIds = arrayDifference(highlightIds, selectIds)
@@ -110,9 +110,9 @@ class Anatomogram extends React.Component {
 
     addMouseOverMouseOutListeners(uniqueShowIds, highlightColour, highlightOpacity, onMouseOver, onMouseOut, getSvgElementById)
     addMouseOverMouseOutListeners(uniqueHighlightIds, highlightColour, highlightOpacity + 0.2, onMouseOver, onMouseOut, getSvgElementById)
-    addMouseOverMouseOutListeners(selectIds, selectColour, selectOpacity + 0.2, getSvgElementById)
+    addMouseOverMouseOutListeners(selectIds, selectColour, selectOpacity + 0.2, onMouseOver, onMouseOut, getSvgElementById)
 
-    attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `click`, this.props.onClick, getSvgElementById)
+    attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `click`, onClick, getSvgElementById)
   }
   
   render() {
