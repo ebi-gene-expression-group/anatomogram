@@ -10,7 +10,7 @@ describe(`Anatomogram switcher`, () => {
   const requiredProps = {
     anatomogramTypes: [`female`, `male`],
     selectedType: `female`,
-    onClick: () => {},
+    onChangeSelectedType: () => {},
     urlToResources: ``
   }
 
