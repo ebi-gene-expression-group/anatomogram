@@ -26,7 +26,7 @@ describe(`Anatomogram switcher`, () => {
 
   test(`should respond to onClick events with the anatomogram type`, () => {
     const onButtonClick = sinon.spy()
-    const wrapper = shallow(<Switcher {...requiredProps} onClick={onButtonClick}/>)
+    const wrapper = shallow(<Switcher {...requiredProps} onChangeSelectedType={onButtonClick}/>)
     wrapper.find(`img`).first().simulate(`click`);
     wrapper.find(`img`).last().simulate(`click`);
     expect(onButtonClick.calledTwice).toBe(true);

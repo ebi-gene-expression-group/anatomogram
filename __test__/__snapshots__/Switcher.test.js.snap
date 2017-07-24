@@ -1,43 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Anatomogram switcher matches snapshot for anolis_carolinensis 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for anolis_carolinensis 1`] = `null`;
 
-exports[`Anatomogram switcher matches snapshot for arabidopsis_thaliana 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for arabidopsis_thaliana 1`] = `null`;
 
-exports[`Anatomogram switcher matches snapshot for bos_taurus 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for bos_taurus 1`] = `null`;
 
 exports[`Anatomogram switcher matches snapshot for brachypodium_distachyon 1`] = `
 <div
@@ -63,18 +30,7 @@ exports[`Anatomogram switcher matches snapshot for brachypodium_distachyon 1`] =
 </div>
 `;
 
-exports[`Anatomogram switcher matches snapshot for gallus_gallus 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for gallus_gallus 1`] = `null`;
 
 exports[`Anatomogram switcher matches snapshot for homo_sapiens 1`] = `
 <div
@@ -90,7 +46,7 @@ exports[`Anatomogram switcher matches snapshot for homo_sapiens 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="img/selected_brain.png"
+    src="img/selected_male.png"
   />
   <img
     className="gxa-selection-icon"
@@ -100,7 +56,7 @@ exports[`Anatomogram switcher matches snapshot for homo_sapiens 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="img/unselected_male.png"
+    src="img/unselected_brain.png"
   />
 </div>
 `;
@@ -129,31 +85,9 @@ exports[`Anatomogram switcher matches snapshot for hordeum_vulgare 1`] = `
 </div>
 `;
 
-exports[`Anatomogram switcher matches snapshot for macaca_mulatta 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for macaca_mulatta 1`] = `null`;
 
-exports[`Anatomogram switcher matches snapshot for monodelphis_domestica 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for monodelphis_domestica 1`] = `null`;
 
 exports[`Anatomogram switcher matches snapshot for mus_musculus 1`] = `
 <div
@@ -169,7 +103,7 @@ exports[`Anatomogram switcher matches snapshot for mus_musculus 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="img/selected_brain.png"
+    src="img/selected_male.png"
   />
   <img
     className="gxa-selection-icon"
@@ -179,7 +113,7 @@ exports[`Anatomogram switcher matches snapshot for mus_musculus 1`] = `
   <img
     className="gxa-selection-icon"
     onClick={[Function]}
-    src="img/unselected_male.png"
+    src="img/unselected_brain.png"
   />
 </div>
 `;
@@ -208,31 +142,9 @@ exports[`Anatomogram switcher matches snapshot for oryza_sativa 1`] = `
 </div>
 `;
 
-exports[`Anatomogram switcher matches snapshot for papio_anubis 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for papio_anubis 1`] = `null`;
 
-exports[`Anatomogram switcher matches snapshot for rattus_norvegicus 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for rattus_norvegicus 1`] = `null`;
 
 exports[`Anatomogram switcher matches snapshot for solanum_lycopersicum 1`] = `
 <div
@@ -258,18 +170,7 @@ exports[`Anatomogram switcher matches snapshot for solanum_lycopersicum 1`] = `
 </div>
 `;
 
-exports[`Anatomogram switcher matches snapshot for solanum_tuberosum 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for solanum_tuberosum 1`] = `null`;
 
 exports[`Anatomogram switcher matches snapshot for sorghum_bicolor 1`] = `
 <div
@@ -295,18 +196,7 @@ exports[`Anatomogram switcher matches snapshot for sorghum_bicolor 1`] = `
 </div>
 `;
 
-exports[`Anatomogram switcher matches snapshot for tetraodon_nigroviridis 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for tetraodon_nigroviridis 1`] = `null`;
 
 exports[`Anatomogram switcher matches snapshot for triticum_aestivum 1`] = `
 <div
@@ -332,18 +222,7 @@ exports[`Anatomogram switcher matches snapshot for triticum_aestivum 1`] = `
 </div>
 `;
 
-exports[`Anatomogram switcher matches snapshot for xenopus_tropicalis 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline-block",
-      "maxWidth": "32px",
-      "verticalAlign": "top",
-      "width": "10%",
-    }
-  }
-/>
-`;
+exports[`Anatomogram switcher matches snapshot for xenopus_tropicalis 1`] = `null`;
 
 exports[`Anatomogram switcher matches snapshot for zea_mays 1`] = `
 <div

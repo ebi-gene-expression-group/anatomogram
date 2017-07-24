@@ -7,12 +7,37 @@ import Switcher from './Switcher.js'
 import Anatomogram from './Anatomogram.js'
 import availableAnatomograms from './json/svgs.json'
 
+const getAvailableAnatomograms = (species) => {
+    const canonicalSpecies = (species || "").trim().toLowerCase().replace(/ +/, "_")
+
+    const as = availableAnatomograms[canonicalSpecies]
+
+    return (
+        ! as
+        ? []
+        : ! as.length
+            ? [{
+                fileName: canonicalSpecies+".svg",
+                type: ""
+            }]
+            : as.map(type => ({
+                fileName: canonicalSpecies+type+".svg",
+                type
+            }))
+
+    )
+}
+
+const firstAvailableAnatomogramType = (species) => (
+    (getAvailableAnatomograms(species)[0] || {type: ""}).type
+)
+
 class AnatomogramContainer extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      selectedAnatomogramType: availableAnatomograms[this.props.species][0] || ``
+      selectedAnatomogramType: firstAvailableAnatomogramType(this.props.species)
     }
 
     this._switchAnatomogramType = this._switchAnatomogramType.bind(this)
@@ -28,26 +53,29 @@ class AnatomogramContainer extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.species !== nextProps.species) {
       this.setState({
-        selectedAnatomogramType: availableAnatomograms[nextProps.species][0] || ``
+        selectedAnatomogramType: firstAvailableAnatomogramType(nextProps.species)
       })
     }
   }
 
   render() {
-    const svgFilename = this.props.species + this.state.selectedAnatomogramType + `.svg`
     const urlToResources = URI(this.props.pathToResources, this.props.atlasUrl).toString()
 
-    return (
-      <div>
-        <Switcher urlToResources={urlToResources}
-                  anatomogramTypes={availableAnatomograms[this.props.species]}
-                  selectedType={this.state.selectedAnatomogramType}
-                  onClick={this._switchAnatomogramType} />
+    const availableAnatomograms = getAvailableAnatomograms(this.props.species)
 
-        <Anatomogram urlToResources={urlToResources}
-                     filename={svgFilename}
-                     {...this.props} />
-      </div>
+    const currentAnatomogram = availableAnatomograms.find(a => a.type === this.state.selectedAnatomogramType)
+    return (
+        !! currentAnatomogram &&
+        <div>
+            <Switcher urlToResources={urlToResources}
+                      anatomogramTypes={availableAnatomograms.map(a => a.type)}
+                      selectedType={currentAnatomogram.type}
+                      onChangeSelectedType={this._switchAnatomogramType} />
+
+            <Anatomogram urlToResources={urlToResources}
+                         filename={currentAnatomogram.fileName}
+                         {...this.props} />
+        </div>
     )
   }
 }

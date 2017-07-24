@@ -8,20 +8,22 @@ import './Switcher.css'
 const resolveUrlToIcon = (urlToResources, selectedType, anatomogramType, ) =>
   URI(`img/${selectedType === anatomogramType ? `` : `un`}selected${anatomogramType}.png`, urlToResources).toString()
 
-const Switcher = (props) =>
-  <div style={{display: `inline-block`, verticalAlign: `top`, width: `10%`, maxWidth: `32px`}}>
-    {props.anatomogramTypes.map((anatomogramType) =>
-      <img key={anatomogramType}
-           className={`gxa-selection-icon`}
-           onClick={() => {props.onClick(anatomogramType)}}
-           src={resolveUrlToIcon(props.urlToResources, props.selectedType, anatomogramType)} />
-    )}
-  </div>
+const Switcher = ({anatomogramTypes, urlToResources, selectedType, onChangeSelectedType}) => (
+    anatomogramTypes.length > 1 &&
+    <div style={{display: `inline-block`, verticalAlign: `top`, width: `10%`, maxWidth: `32px`}}>
+        {anatomogramTypes.map((anatomogramType) =>
+          <img key={anatomogramType}
+               className={`gxa-selection-icon`}
+               onClick={() => onChangeSelectedType(anatomogramType)}
+               src={resolveUrlToIcon(urlToResources, selectedType, anatomogramType)} />
+        )}
+    </div>
+)
 
 Switcher.propTypes = {
   anatomogramTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedType: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onChangeSelectedType: PropTypes.func.isRequired,
   urlToResources: PropTypes.string.isRequired
 }
 

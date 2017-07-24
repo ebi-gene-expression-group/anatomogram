@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactSVG from 'react-svg'
 
-import hash from 'object-hash'
+import {MD5 as objectHash} from 'object-hash'
 import URI from 'urijs'
 
 const arrayDifference = (arr1, arr2) =>
@@ -88,8 +88,8 @@ class Anatomogram extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return hash.MD5([nextProps.filename, nextProps.showIds, nextProps.highlightIds, nextProps.selectIds]) !==
-           hash.MD5([this.props.filename, this.props.showIds, this.props.highlightIds, this.props.selectIds])
+    return objectHash([nextProps.filename, nextProps.showIds, nextProps.highlightIds, nextProps.selectIds]) !==
+           objectHash([this.props.filename, this.props.showIds, this.props.highlightIds, this.props.selectIds])
   }
 
   // ReactSVG loads the SVG file asynchronously (hence the callback prop). We don’t use componentDidUpdate or
@@ -114,7 +114,7 @@ class Anatomogram extends React.Component {
 
     attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `click`, onClick, getSvgElementById)
   }
-  
+
   render() {
     return (
       <div style={{display: `inline-block`, verticalAlign: `top`, width: `90%`}}>
