@@ -1,4 +1,4 @@
-import parseSvg from '../src/utils/svgParserModule'
+import parseSvg from 'scripts/utils/svgParserModule'
 
 describe(`SVG parser`, () => {
 
