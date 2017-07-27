@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ReactSVG from 'react-svg'
 
 import {MD5 as objectHash} from 'object-hash'
-import URI from 'urijs'
+import {resolveUrlToAnatomogram} from './Assets.js'
 
 const arrayDifference = (arr1, arr2) =>
   Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter((e) => !arr2.includes(e)) : arr1
@@ -119,7 +119,7 @@ class Anatomogram extends React.Component {
     return (
       <div style={{display: `inline-block`, verticalAlign: `top`, width: `90%`}}>
         <ReactSVG
-          path={URI(`svg/${this.props.filename}`, this.props.urlToResources).toString()}
+          path={resolveUrlToAnatomogram(this.props.urlToResources,this.props.filename)}
           callback={svgDomNode => { this._initialiseSvgElements(getSvgElementById(svgDomNode)) }}
           style={{width: `100%`, height: `auto`}}
         />

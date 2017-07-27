@@ -26,7 +26,6 @@ module.exports = {
             filename: 'vendorCommons.bundle.js',
             minChunks: Infinity     // Explicit definition-based split, see dependencies entry
         }),
-        new CopyWebpackPlugin([{ from: './src/svg', to: './svg' }, { from: './src/img', to: './img' }]),
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: process.env.NODE_ENV === 'production' ? JSON.stringify("production") : JSON.stringify("development")

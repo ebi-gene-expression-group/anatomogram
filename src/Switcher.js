@@ -5,8 +5,7 @@ import URI from 'urijs'
 
 import './Switcher.css'
 
-const resolveUrlToIcon = (urlToResources, selectedType, anatomogramType, ) =>
-  URI(`img/${selectedType === anatomogramType ? `` : `un`}selected${anatomogramType}.png`, urlToResources).toString()
+import {resolveUrlToIcon} from './Assets.js'
 
 const Switcher = ({anatomogramTypes, urlToResources, selectedType, onChangeSelectedType}) => (
     anatomogramTypes.length > 1 &&
