@@ -2,16 +2,24 @@ const fs = require('fs')
 const path = require('path')
 const parseSvg = require('./svgParserModule.js')
 
-const parseSvgFile = (filename) => ({
-  [path.basename(filename)]: parseSvg(fs.readFileSync(filename, {encoding: `utf8`}))
-})
-
 if (process.argv.length < 3) {
-  process.stdout.write(`svgMetadataParser: no input files\n\n`)
+  process.stdout.write(`svgParse: no input files\n\n`)
   process.stdout.write(`usage: node svgMetadataParser.js <source> \n\n`)
   process.stdout.write(`Source can be a SVG file or a directory containing one or more SVG files.\n`)
   process.stdout.write(`If source is set to "-" input is read from stdin.\n`)
   process.exit(1)
+}
+
+const parseSvgFile = (filename) => {
+  const [species, type] = path.basename(filename, `.svg`).split(`.`)
+  const speciesAttributes = {
+    species: species,
+    type: type ? type : ``
+  }
+  return {
+    [path.basename(filename)]:
+      Object.assign(speciesAttributes, parseSvg(fs.readFileSync(filename, {encoding: `utf8`})))
+  }
 }
 
 if (process.argv[2] === `-`) {
