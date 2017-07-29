@@ -1,3 +1,10 @@
+.gxa-anatomogram-switcher {
+  display: inline-block;
+  vertical-align: top;
+  width: 10%;
+  max-width: 44px;
+}
+
 .gxa-selection-icon {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -9,13 +16,4 @@
   border: 1px solid orange;
   background: lightgoldenrodyellow;
   cursor: pointer;
-}
-.rounded-corners {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-.right-dimensions {
-  width: 100%;
-  height: auto;
-  padding: 2px;
 }

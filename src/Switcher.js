@@ -9,7 +9,7 @@ import {resolveUrlToIcon} from './Assets.js'
 
 const Switcher = ({anatomogramTypes, urlToResources, selectedType, onChangeSelectedType}) => (
     anatomogramTypes.length > 1 &&
-    <div style={{display: `inline-block`, verticalAlign: `top`, width: `10%`, maxWidth: `32px`}}>
+    <div className={`gxa-anatomogram-switcher`}>
         {anatomogramTypes.map((anatomogramType) =>
           <img key={anatomogramType}
                className={`gxa-selection-icon`}

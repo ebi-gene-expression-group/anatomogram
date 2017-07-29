@@ -1,0 +1,12 @@
+.gxa-anatomogram {
+  display: inline-block;
+  vertical-align: top;
+  width: 90%;
+}
+
+.gxa-anatomogram-svg {
+  width: 95%;
+  height: auto;
+  display: block;
+  margin: auto;
+}

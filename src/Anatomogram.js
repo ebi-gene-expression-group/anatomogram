@@ -5,6 +5,8 @@ import ReactSVG from 'react-svg'
 import {MD5 as objectHash} from 'object-hash'
 import {resolveUrlToAnatomogram} from './Assets.js'
 
+import './Anatomogram.css'
+
 const arrayDifference = (arr1, arr2) =>
   Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter((e) => !arr2.includes(e)) : arr1
 
@@ -117,11 +119,11 @@ class Anatomogram extends React.Component {
 
   render() {
     return (
-      <div style={{display: `inline-block`, verticalAlign: `top`, width: `90%`}}>
+      <div className={`gxa-anatomogram`}>
         <ReactSVG
           path={resolveUrlToAnatomogram(this.props.urlToResources,this.props.filename)}
           callback={svgDomNode => { this._initialiseSvgElements(getSvgElementById(svgDomNode)) }}
-          style={{width: `100%`, height: `auto`}}
+          className={`gxa-anatomogram-svg`}
         />
       </div>
     )
