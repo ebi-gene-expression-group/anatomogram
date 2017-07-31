@@ -1,29 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import URI from 'urijs'
-
+import {getAnatomogramViews} from './Assets'
 import './Switcher.css'
 
-import {resolveUrlToIcon} from './Assets.js'
+const loadIcon = (view, selectedView) =>
+  require('./img/' + view + '.' + (view === selectedView ? '' : 'un') + 'selected.png')
 
-const Switcher = ({anatomogramTypes, urlToResources, selectedType, onChangeSelectedType}) => (
-    anatomogramTypes.length > 1 &&
-    <div className={`gxa-anatomogram-switcher`}>
-        {anatomogramTypes.map((anatomogramType) =>
-          <img key={anatomogramType}
-               className={`gxa-selection-icon`}
-               onClick={() => onChangeSelectedType(anatomogramType)}
-               src={resolveUrlToIcon(urlToResources, selectedType, anatomogramType)} />
-        )}
-    </div>
-)
+const Switcher = ({species, selectedView, onChangeView}) =>
+  <div className={`gxa-anatomogram-switcher`}>
+    {getAnatomogramViews(species).map((view) =>
+      <img key={view} className={`gxa-anatomogram-switcher-icon`} onClick={() => onChangeView(view)}
+           src={loadIcon(view, selectedView)} />
+    )}
+  </div>
 
 Switcher.propTypes = {
-  anatomogramTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedType: PropTypes.string.isRequired,
-  onChangeSelectedType: PropTypes.func.isRequired,
-  urlToResources: PropTypes.string.isRequired
+  species: PropTypes.string.isRequired,
+  selectedView: PropTypes.string,
+  onChangeView: PropTypes.func.isRequired
 }
 
 export default Switcher
