@@ -11,14 +11,12 @@ if (process.argv.length < 3) {
 }
 
 const parseSvgFile = (filename) => {
-  const [species, type] = path.basename(filename, `.svg`).split(`.`)
-  const speciesAttributes = {
-    species: species,
-    type: type ? type : ``
-  }
+  const [species, view] = path.basename(filename, `.svg`).split(`.`)
   return {
-    [path.basename(filename)]:
-      Object.assign(speciesAttributes, parseSvg(fs.readFileSync(filename, {encoding: `utf8`})))
+    filename: path.basename(filename),
+    species: species,
+    view: view ? view : ``,
+    ids: parseSvg(fs.readFileSync(filename, {encoding: `utf8`}))
   }
 }
 
@@ -41,10 +39,7 @@ else {
         fs.readdirSync(process.argv[2])
           .filter((filename) => path.extname(filename) === `.svg`)
           .map((filename) => path.resolve(process.argv[2], filename))
-          .reduce((acc, pathToFile) => {
-            const parsed = parseSvgFile(pathToFile)
-            return Object.assign(acc, parsed)
-          }, {}),
+          .map(parseSvgFile),
         null, 2))
 
   } else {
