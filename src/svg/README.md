@@ -1,6 +1,7 @@
 # SVG authoring guidelines
 
-- Anatomogram SVGs are edited with Inkscape and saved first as *Inkscape SVG* in the `src/svg` directory.
+- Anatomogram SVGs are edited with Inkscape and saved as *Inkscape SVG* in the `src/svg` directory.
+- To ensure that the correct `height` and `width` are set remember to do the following before saving: go to *File* → *Document Properties...* → *Page* tab → *Custom size*, then set *Units* to `px` and click on *Resize page to drawing or selection*.
 - The structure of the SVG must be as follows:
 ```
 <svg ...>
