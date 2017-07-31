@@ -7,10 +7,6 @@ import {resolveUrlToAnatomogram} from './Assets.js'
 
 import './Anatomogram.css'
 
-import {groupBy} from 'lodash'
-
-const groupIntoPairs = (arr,f) => Object.entries(groupBy(arr,f))
-
 const arrayDifference = (arr1, arr2) =>
   Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter((e) => !arr2.includes(e)) : arr1
 
@@ -44,15 +40,48 @@ const getSvgElementById = (svgDomNode) => {
   return _getSvgElementById
 }
 
-const paintSvgElement = (element, elementMarkup) => element && elementMarkup && Object.assign(element.style, elementMarkup)
+const paintIds = (ids, colour, opacity, getSvgElementById) => {
+  ids.forEach((id) => {
+    const e = getSvgElementById(id)
 
-const elementMarkup = (colour, opacity) => ({fill: colour, opacity: opacity})
+    // We might be showing an ID which is not part of the displayed anatomogram (e.g. heart in brain)
+    if (e) {
+      e.style.fill = colour
+      e.style.opacity = opacity
+    }
+  })
+}
 
-const registerEvent = (element, eventType, elementMarkup, callback) => {
-    element && element.addEventListener(eventType, () => {
-        paintSvgElement(element)
-        callback()
-    })
+const addMouseOverMouseOutListeners = (ids, mouseOverColour, mouseOverOpacity, mouseOverCallback, mouseOutCallback, getSvgElementById) => {
+  ids.forEach((id) => {
+    const e = getSvgElementById(id)
+
+    if (e) {
+      e.addEventListener(`mouseover`, () => {
+        e.style.fill = mouseOverColour
+        e.style.opacity = mouseOverOpacity
+        mouseOverCallback(id)
+      })
+
+      const originalColour = e.style.fill
+      const originalOpacity = e.style.opacity
+      e.addEventListener(`mouseout`, () => {
+        e.style.fill = originalColour
+        e.style.opacity = originalOpacity
+        mouseOutCallback(id)
+      })
+    }
+  })
+}
+
+const attachCallbacks = (ids, eventName, callback, getSvgElementById) => {
+  ids.forEach((id) => {
+    const e = getSvgElementById(id)
+
+    if (e) {
+      e.addEventListener(eventName, () => { callback(id) })
+    }
+  })
 }
 
 class Anatomogram extends React.Component {
@@ -77,43 +106,15 @@ class Anatomogram extends React.Component {
     const uniqueShowIds = arrayDifference(showIds, [...highlightIds, ...selectIds])
     const uniqueHighlightIds = arrayDifference(highlightIds, selectIds)
 
+    paintIds(uniqueShowIds, showColour, showOpacity, getSvgElementById)
+    paintIds(uniqueHighlightIds, highlightColour, highlightOpacity, getSvgElementById)
+    paintIds(selectIds, selectColour, selectOpacity, getSvgElementById)
 
-    //Given an element and its ids, we take the first element of this array having one of the ids
-    const markups = [].concat(
-        selectIds.map(id => ({
-            id,
-            markupNormal: elementMarkup(selectColour, selectOpacity),
-            markupUnderFocus: elementMarkup(selectColour, selectOpacity+0.2)
-        })),
-        uniqueHighlightIds.map(id => ({
-            id,
-            markupNormal: elementMarkup(highlightColour, highlightOpacity),
-            markupUnderFocus: elementMarkup(highlightColour, highlightOpacity+0.2)
-        })),
-        uniqueShowIds.map(id => ({
-            id,
-            markupNormal: elementMarkup(showColour, showOpacity),
-            markupUnderFocus: elementMarkup(showColour, showOpacity)
-        })),
-    )
+    addMouseOverMouseOutListeners(uniqueShowIds, highlightColour, highlightOpacity, onMouseOver, onMouseOut, getSvgElementById)
+    addMouseOverMouseOutListeners(uniqueHighlightIds, highlightColour, highlightOpacity + 0.2, onMouseOver, onMouseOut, getSvgElementById)
+    addMouseOverMouseOutListeners(selectIds, selectColour, selectOpacity + 0.2, onMouseOver, onMouseOut, getSvgElementById)
 
-    //More than one id can correspond to an element - see the svg "use" elements
-    groupIntoPairs(
-        ([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds])
-        .map(id => [getSvgElementById(id),id]),
-        '[0].id'
-    )
-    .forEach(a => {
-        const element = a[1][0][0]
-        const ids = a[1].map(t => t[1])
-        const markupNormalAndUnderFocus = markups.find(m => ids.includes(m.id))
-
-        paintSvgElement(element, markupNormalAndUnderFocus.markupNormal)
-
-        registerEvent(element, "mouseover", markupNormalAndUnderFocus.markupUnderFocus, onMouseOver.bind(this, ids))
-        registerEvent(element, "mouseout", markupNormalAndUnderFocus.markupNormal, onMouseOut.bind(this, ids))
-        registerEvent(element, "click", {}, onClick.bind(this, ids))
-    })
+    attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `click`, onClick, getSvgElementById)
   }
 
   render() {

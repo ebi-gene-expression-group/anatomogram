@@ -93,7 +93,6 @@ AnatomogramContainer.propTypes = {
   highlightColour: PropTypes.string,
   selectColour: PropTypes.string,
 
-  //::List[OntologyId] -> ?
   onMouseOver: PropTypes.func,
   onMouseOut: PropTypes.func,
   onClick: PropTypes.func
