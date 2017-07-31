@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
+    "lodash": "^4.17.4",
     "object-hash": "^1.1.8",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
