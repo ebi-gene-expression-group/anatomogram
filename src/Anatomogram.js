@@ -50,7 +50,7 @@ const elementMarkup = (colour, opacity) => ({fill: colour, opacity: opacity})
 
 const registerEvent = (element, eventType, elementMarkup, callback) => {
     element && element.addEventListener(eventType, () => {
-        paintSvgElement(element, elementMarkup)
+        paintSvgElement(element)
         callback()
     })
 }
@@ -93,7 +93,7 @@ class Anatomogram extends React.Component {
         uniqueShowIds.map(id => ({
             id,
             markupNormal: elementMarkup(showColour, showOpacity),
-            markupUnderFocus: elementMarkup(highlightColour, highlightOpacity)
+            markupUnderFocus: elementMarkup(showColour, showOpacity)
         })),
     )
 
