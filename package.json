@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "parseSvgs": "node scripts/svgParse.js src/svg > src/json/svgsMetadata.json ",
-    "prepublish": "yarn run parseSvgs && rm -rf lib && babel src -d lib --ignore '**/*.less','**/*.sass' --copy-files",
+    "prepublishOnly": "yarn run parseSvgs && rm -rf lib && babel src -d lib --ignore '**/*.less','**/*.sass' --copy-files",
     "dist": "NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
     "test": "jest --coverage || echo 'LOL tests failed'",
     "posttest": "./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info || echo 'LOL coveralls upload failed'"
