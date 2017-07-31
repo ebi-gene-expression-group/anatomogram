@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/gxa/atlas-anatomogram.svg?branch=master)](https://travis-ci.org/gxa/atlas-anatomogram) [![Coverage Status](https://coveralls.io/repos/github/gxa/atlas-anatomogram/badge.svg?branch=master)](https://coveralls.io/github/gxa/atlas-anatomogram?branch=master) [![Dependency Status](https://gemnasium.com/badges/github.com/gxa/atlas-anatomogram.svg)](https://gemnasium.com/github.com/gxa/atlas-anatomogram) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-This is an anatomogram for [Expression Atlas](http://www.ebi.ac.uk/gxa) that we use to illustrate the experiments.
+This is an anatomogram for [Expression Atlas](https://www.ebi.ac.uk/gxa) that we use to illustrate the experiments.
 
 [See demo here](https://gxa.github.io/anatomogram-demo/index.html).
 
@@ -63,8 +63,8 @@ automatically generated every time the package is published.
 
 All three callbacks take a single string argument, the ID of the tissue affected by the mouse event.
 
-The state of a tissue is either not shown, shown, highlighted or selected. On `mouseover` the opacity is increased in 
-0.2. You can read a more inclined description of the anatomogram behaviour in [the 
+The state of a tissue is either not shown, shown, highlighted or selected. On `mouseover` the opacity is increased by 
+0.2. You can read a more inclined description of the anatomogram behaviour in [the repository 
 wiki](https://github.com/gxa/anatomogram/wiki).
 
 ## Building
@@ -76,10 +76,12 @@ npm run dist -- --output-public-path <URL>
 code knows where to look for static assets (i.e. SVGs and PNGs). You can read more about this option in [Webpack’s 
 documentation site](https://webpack.js.org/configuration/output/#output-publicpath).
 
+After building, deployment of `anatomogramDemo.bundle.js` is optional, only if you want to host the demo component.
+
 ## Contribute
 
-Read carefully [the authoring guidelines](https://github.com/gxa/anatomogram/blob/master/src/svg/README.md) before adding new 
-tissues or IDs to an existing anatomogram or adding a new SVG.
+Read carefully [our authoring guidelines](https://github.com/gxa/anatomogram/blob/master/src/svg/README.md) before 
+adding new tissues or updating IDs in an existing anatomogram or adding a new SVG.
  
 Run `npm run parseSvgs` to parse the updated IDs. When you are finished run a local copy of the demo page:
 ```
