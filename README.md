@@ -63,10 +63,13 @@ automatically generated every time the package is published.
 
 All three callbacks take a single string argument, the ID of the tissue affected by the mouse event.
 
+The state of a tissue is either not shown, shown, highlighted or selected. On `mouseover` the opacity is increased in 
+0.2. You can read a more inclined description of the anatomogram behaviour in [the 
+wiki](https://github.com/gxa/anatomogram/wiki).
+
 ## Building
 ```
 npm run dist -- --output-public-path <URL>
-
 ```
 
 `<URL>` is the URL (absolute or relative) from which you’ll be serving the anatomogram. This is required so that the 
@@ -75,7 +78,7 @@ documentation site](https://webpack.js.org/configuration/output/#output-publicpa
 
 ## Contribute
 
-Read carefully [the authoring guidelines](https://github.com/gxa/anatomogram/tree/master/src/svg) before adding new 
+Read carefully [the authoring guidelines](https://github.com/gxa/anatomogram/blob/master/src/svg/README.md) before adding new 
 tissues or IDs to an existing anatomogram or adding a new SVG.
  
 Run `npm run parseSvgs` to parse the updated IDs. When you are finished run a local copy of the demo page:
