@@ -4,9 +4,10 @@
   "description": "Anatomogram component for Expression Atlas heatmap",
   "main": "lib/index.js",
   "scripts": {
-    "parseSvgs": "node scripts/svgParse.js src/svg > src/json/svgsMetadata.json ",
-    "prepublishOnly": "yarn run parseSvgs && rm -rf lib && babel src -d lib --ignore '**/*.less','**/*.sass' --copy-files",
-    "dist": "NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
+    "parseSvgs": "node scripts/svgParse.js src/svg > src/json/svgsMetadata.json",
+    "prepublishOnly": "npm run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
+    "dist": "npm run parseSvgs && NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
+    "pretest": "npm run parseSvgs",
     "test": "jest --coverage || echo 'LOL tests failed'",
     "posttest": "./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info || echo 'LOL coveralls upload failed'"
   },
@@ -17,19 +18,19 @@
     }
   },
   "author": "Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
+  "contributors": [
+    "Wojciech Bazant <wbazant@ebi.ac.uk>"
+  ],
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/gxa/atlas-anatomogram.git"
   },
   "dependencies": {
-    "babel-preset-es2015": "^6.24.1",
-    "object-hash": "^1.1.8",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-svg": "^2.1.21",
-    "urijs": "^1.18.10"
+    "react-svg": "^2.1.21"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -40,11 +41,10 @@
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
-    "copy-webpack-plugin": "^4.0.1",
     "coveralls": "^2.13.1",
     "css-loader": "^0.28.4",
     "enzyme": "^2.9.1",
-    "fast-xml-parser": "^2.6.0",
+    "fast-xml-parser": "^2.7.2",
     "file-loader": "^0.11.2",
     "image-webpack-loader": "^3.3.1",
     "jest": "^20.0.4",

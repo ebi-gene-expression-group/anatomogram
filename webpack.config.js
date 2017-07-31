@@ -1,15 +1,12 @@
 var webpack = require('webpack');
 var path = require('path');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-
-// If you get the message “loaderUtils.parseQuery() received a non-string value...” uncomment next line
-// process.traceDeprecation = true;
 
 module.exports = {
     entry: {
         anatomogramDemo: './html/AnatomogramDemo.js',
-        dependencies: ['prop-types', 'react', 'react-dom', 'urijs']
+        anatomogram: './src/index.js',
+        dependencies: ['prop-types', 'react', 'react-dom', 'react-svg']
     },
 
     output: {
@@ -31,10 +28,6 @@ module.exports = {
                 NODE_ENV: process.env.NODE_ENV === 'production' ? JSON.stringify("production") : JSON.stringify("development")
             }
         })
-        // new webpack.HotModuleReplacementPlugin(),
-        // enable HMR globally, necessary along with devServer.hot: true (see below) for HMR to work as expected 🤔
-        // new webpack.NamedModulesPlugin()
-        // prints more readable module names in the browser console on HMR updates
     ],
 
     module: {
@@ -81,18 +74,7 @@ module.exports = {
             },
             {
                 test: /\.svg$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            query: {
-                                name: '[hash].[ext]',
-                                hash: 'sha512',
-                                digest: 'hex'
-                            }
-                        }
-                    }
-                ]
+                use: 'file-loader'
             },
             {
                 test: /\.js$/i,
@@ -103,9 +85,6 @@ module.exports = {
     },
 
     devServer: {
-        // hot: true,      // CLI --hot is equivalent to this option, but it also enables the HMR plugin (see above)
-        // hotOnly: true,  // Won’t inject modules if there’s a compilation error (without this a full page reload is
-                           // done after a successful build and we lose state)
         port: 9000
     }
 };

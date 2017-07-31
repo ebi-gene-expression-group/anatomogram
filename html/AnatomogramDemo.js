@@ -3,15 +3,21 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 import AnatomogramContainer from '../src/index'
-import availableAnatomograms from '../src/json/svgs.json'
 import svgsMetadata from '../src/json/svgsMetadata.json'
 
-const onlyUnique = (e, i, arr) => arr.indexOf(e) === i
+const unique = (value, index, self) => self.indexOf(value) === index
+
+const allSpecies =
+  svgsMetadata
+    .map((svgMetadata) => svgMetadata.species)
+    .filter(unique)
+    .sort()
+
 const getAllIds = (species) =>
-    Object.keys(svgsMetadata)
-      .filter((svgFilename) => svgFilename.startsWith(species))
-      .reduce((acc, svgFilename) => acc.concat(svgsMetadata[svgFilename].ids), [])
-      .filter(onlyUnique)
+    svgsMetadata
+      .filter((svgMetadata) => svgMetadata.species === species)
+      .reduce((acc, svgMetadata) => acc.concat(svgMetadata.ids), [])
+      .filter(unique)
       .sort()
 
 class AnatomogramDemo extends React.Component {
@@ -19,7 +25,7 @@ class AnatomogramDemo extends React.Component {
   constructor(props) {
     super(props)
 
-    const selectedSpecies = Object.keys(availableAnatomograms)[0]
+    const selectedSpecies = allSpecies[0]
 
     this.state = {
       selectedSpecies: selectedSpecies,
@@ -77,7 +83,7 @@ class AnatomogramDemo extends React.Component {
         <div className="row">
           <div className="small-3 small-centered columns">
             <select value={this.state.selectedSpecies} onChange={this._handleSelectOnChange}>
-              {Object.keys(availableAnatomograms).sort().map((species) => <option key={species}>{species}</option>)}
+              {allSpecies.map((species) => <option key={species}>{species}</option>)}
             </select>
           </div>
         </div>
@@ -89,8 +95,7 @@ class AnatomogramDemo extends React.Component {
                                   showIds={this.state.showIds}
                                   highlightIds={this.state.highlightIds}
                                   selectIds={this.state.selectIds}
-                                  onClick={this._addRemoveFromSelectIds}
-            />
+                                  onClick={this._addRemoveFromSelectIds} />
           </div>
 
           <div className="small-8 columns">

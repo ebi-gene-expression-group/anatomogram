@@ -1,20 +1,28 @@
-import URI from 'urijs'
+import svgsMetadata from './json/svgsMetadata.json'
 
-/*
-Note the require!
-We want webpack to bundle these up and replace them with context modules:
-https://webpack.github.io/docs/context.html
-*/
+const unique = (value, index, self) => self.indexOf(value) === index
+const isNotBlank = (str) => typeof str === `string` && str !== ``
 
-const resolveUrlToAnatomogram = (urlToResources,fileName) => (
-    URI(require(`./svg/${fileName}`), urlToResources).toString()
-)
+const anatomogramViews =
+  svgsMetadata
+    .map((svgMetadata) => svgMetadata.species)
+    .filter(unique)
+    .reduce((acc, species) => {
+      acc[species] =
+				svgsMetadata
+					.filter((svgMetadata) => svgMetadata.species === species)
+					.map((svgMetadata) => svgMetadata.view)
+					.filter(isNotBlank)
+					.sort()
+					.reverse()	// The order we want is `male`, `female`, `brain` and `whole_plant`, `flower_parts` :)
+      return acc
+    }, {})
 
-const resolveUrlToIcon = (urlToResources, selectedType, anatomogramType) => (
-	URI(require(
-		`./img/${selectedType === anatomogramType ? `` : `un`}selected${anatomogramType}.png`
-	), urlToResources)
-	.toString()
-)
+const getAnatomogramViews = (species) => {
+  const canonicalSpecies = typeof species === `string` ? species.trim().toLowerCase().replace(/ +/, `_`) : ``
+  return anatomogramViews[canonicalSpecies] || []
+}
 
-export {resolveUrlToAnatomogram, resolveUrlToIcon}
+const getDefaultView = (species) => getAnatomogramViews(species)[0]
+
+export {getAnatomogramViews, getDefaultView}

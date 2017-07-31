@@ -16,32 +16,32 @@ module.exports = (svgData) => {
       {ignoreTextNodeAttr: false, ignoreNonTextNodeAttr: false, textAttrConversion: true}
     ).svg
 
-  const metadata = {}
-  const metadataAttributes = [`width`, `height`]
-  metadataAttributes.forEach((attr) => {
+  const requiredAttributes = [`width`, `height`, `viewBox`]
+  requiredAttributes.forEach((attr) => {
     if (!svgObj[`${attrPrefix}${attr}`]) {
       throw new Error(`Missing required attribute: ${attr}`)
     }
-    metadata[attr] = svgObj[`${attrPrefix}${attr}`]
   })
+
+  if (svgObj[`${attrPrefix}viewBox`].split(/\s+/)[2] !== svgObj[`${attrPrefix}width`].toString() ||
+      svgObj[`${attrPrefix}viewBox`].split(/\s+/)[3] !== svgObj[`${attrPrefix}height`].toString()) {
+    throw new Error(`viewBox does not match width/height`)
+  }
 
   const layers = svgObj.g ?
     Array.isArray(svgObj.g) ? svgObj.g : [svgObj.g] :
     []
 
   if (!layers.some((g) => g[`${attrPrefix}id`] === `LAYER_EFO`)) {
-    metadata.ids = []
+    return []
   } else {
     const efoLayerGroup = layers.find((g) => g[`${attrPrefix}id`] === `LAYER_EFO`)
-    // Alternatively we can declare shapeTypes explicitly: const shapeTypes = [`g`, `path`, `ellipse`, `rect`...]
+    // Alternatively we can define shapeTypes explicitly: const shapeTypes = [`g`, `path`, `ellipse`, `rect`...]
     const shapeTypes = Object.keys(efoLayerGroup).filter((node) => !node.startsWith(attrPrefix) && node !== `#text`)
 
-    metadata.ids =
-      shapeTypes.reduce((acc, shapeType) => {
+    return shapeTypes.reduce((acc, shapeType) => {
         const shapes = Array.isArray(efoLayerGroup[shapeType]) ? efoLayerGroup[shapeType] : [efoLayerGroup[shapeType]]
         return acc.concat(shapes.map((shape) => shape[`${attrPrefix}id`]))
       }, [])
   }
-
-  return metadata
 }

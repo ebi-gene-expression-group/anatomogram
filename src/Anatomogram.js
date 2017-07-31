@@ -1,154 +1,69 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactSVG from 'react-svg'
 
-import {MD5 as objectHash} from 'object-hash'
-import {resolveUrlToAnatomogram} from './Assets.js'
-
-import './Anatomogram.css'
-
-const arrayDifference = (arr1, arr2) =>
-  Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter((e) => !arr2.includes(e)) : arr1
-
-const getSvgElementById = (svgDomNode) => {
-  const getEfoLayerGroup = (svgDomNode) => {
-    const svgGroups = svgDomNode.getElementsByTagName(`g`)
-    for (let i = 0 ; i < svgGroups.length ; i++) {
-      if (svgGroups[i].id === `LAYER_EFO`) {
-        return svgGroups[i]
-      }
-    }
-  }
-
-  const efoLayerGroup = getEfoLayerGroup(svgDomNode)
-
-  function _getSvgElementById(id) {
-    if (efoLayerGroup) {
-      for (let i = 0 ; i < efoLayerGroup.children.length ; i++) {
-        if (efoLayerGroup.children[i].id === id ) {
-          if (efoLayerGroup.children[i].attributes[`xlink:href`]) {
-            return _getSvgElementById(efoLayerGroup.children[i].attributes[`xlink:href`].value.substring(1))
-          }
-          else {
-            return efoLayerGroup.children[i]
-          }
-        }
-      }
-    }
-  }
-
-  return _getSvgElementById
-}
-
-const paintIds = (ids, colour, opacity, getSvgElementById) => {
-  ids.forEach((id) => {
-    const e = getSvgElementById(id)
-
-    // We might be showing an ID which is not part of the displayed anatomogram (e.g. heart in brain)
-    if (e) {
-      e.style.fill = colour
-      e.style.opacity = opacity
-    }
-  })
-}
-
-const addMouseOverMouseOutListeners = (ids, mouseOverColour, mouseOverOpacity, mouseOverCallback, mouseOutCallback, getSvgElementById) => {
-  ids.forEach((id) => {
-    const e = getSvgElementById(id)
-
-    if (e) {
-      e.addEventListener(`mouseover`, () => {
-        e.style.fill = mouseOverColour
-        e.style.opacity = mouseOverOpacity
-        mouseOverCallback(id)
-      })
-
-      const originalColour = e.style.fill
-      const originalOpacity = e.style.opacity
-      e.addEventListener(`mouseout`, () => {
-        e.style.fill = originalColour
-        e.style.opacity = originalOpacity
-        mouseOutCallback(id)
-      })
-    }
-  })
-}
-
-const attachCallbacks = (ids, eventName, callback, getSvgElementById) => {
-  ids.forEach((id) => {
-    const e = getSvgElementById(id)
-
-    if (e) {
-      e.addEventListener(eventName, () => { callback(id) })
-    }
-  })
-}
+import Switcher from './Switcher'
+import AnatomogramSvg from './AnatomogramSvg'
+import {getDefaultView} from './Assets'
 
 class Anatomogram extends React.Component {
   constructor(props) {
     super(props)
+    this.state = { selectedView: getDefaultView(props.species) }
+    this._switchAnatomogramView = this._switchAnatomogramView.bind(this)
   }
 
-  shouldComponentUpdate(nextProps) {
-    return objectHash([nextProps.filename, nextProps.showIds, nextProps.highlightIds, nextProps.selectIds]) !==
-           objectHash([this.props.filename, this.props.showIds, this.props.highlightIds, this.props.selectIds])
+  _switchAnatomogramView(anatomogramView) {
+    this.setState({ selectedView: anatomogramView })
   }
 
-  // ReactSVG loads the SVG file asynchronously (hence the callback prop). We don’t use componentDidUpdate or
-  // componentDidMount because they can’t guarantee that the SVG is already loaded when they’re run. We can see this
-  // happening when we Show All in human, and we switch to male/female for the first time, only the outline is shown.
-  _initialiseSvgElements(getSvgElementById) {
-    const {showIds, showColour, showOpacity,
-           highlightIds, highlightColour, highlightOpacity,
-           selectIds, selectColour, selectOpacity,
-           onMouseOver, onMouseOut, onClick} = this.props
-
-    const uniqueShowIds = arrayDifference(showIds, [...highlightIds, ...selectIds])
-    const uniqueHighlightIds = arrayDifference(highlightIds, selectIds)
-
-    paintIds(uniqueShowIds, showColour, showOpacity, getSvgElementById)
-    paintIds(uniqueHighlightIds, highlightColour, highlightOpacity, getSvgElementById)
-    paintIds(selectIds, selectColour, selectOpacity, getSvgElementById)
-
-    addMouseOverMouseOutListeners(uniqueShowIds, highlightColour, highlightOpacity, onMouseOver, onMouseOut, getSvgElementById)
-    addMouseOverMouseOutListeners(uniqueHighlightIds, highlightColour, highlightOpacity + 0.2, onMouseOver, onMouseOut, getSvgElementById)
-    addMouseOverMouseOutListeners(selectIds, selectColour, selectOpacity + 0.2, onMouseOver, onMouseOut, getSvgElementById)
-
-    attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `click`, onClick, getSvgElementById)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.species !== this.props.species) {
+      this.setState({ selectedView: getDefaultView(nextProps.species) })
+    }
   }
 
   render() {
     return (
-      <div className={`gxa-anatomogram`}>
-        <ReactSVG
-          path={resolveUrlToAnatomogram(this.props.urlToResources,this.props.filename)}
-          callback={svgDomNode => { this._initialiseSvgElements(getSvgElementById(svgDomNode)) }}
-          className={`gxa-anatomogram-svg`}
-        />
-      </div>
+        <div>
+            <Switcher species={this.props.species}
+                      selectedView={this.state.selectedView}
+                      onChangeView={this._switchAnatomogramView} />
+
+            <AnatomogramSvg {...this.props}
+                            selectedView={this.state.selectedView} />
+        </div>
     )
   }
 }
 
 Anatomogram.propTypes = {
-  urlToResources: PropTypes.string.isRequired,
-  filename: PropTypes.string.isRequired,
+  species: PropTypes.string.isRequired,
 
-  showIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  highlightIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  showIds: PropTypes.arrayOf(PropTypes.string),
+  highlightIds: PropTypes.arrayOf(PropTypes.string),
+  selectIds: PropTypes.arrayOf(PropTypes.string),
 
-  showColour: PropTypes.string.isRequired,
-  highlightColour: PropTypes.string.isRequired,
-  selectColour: PropTypes.string.isRequired,
+  showColour: PropTypes.string,
+  highlightColour: PropTypes.string,
+  selectColour: PropTypes.string,
 
-  showOpacity: PropTypes.number.isRequired,
-  highlightOpacity: PropTypes.number.isRequired,
-  selectOpacity: PropTypes.number.isRequired,
+  onMouseOver: PropTypes.func,
+  onMouseOut: PropTypes.func,
+  onClick: PropTypes.func
+}
 
-  onMouseOver: PropTypes.func.isRequired,
-  onMouseOut: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
+Anatomogram.defaultProps = {
+  showColour: `grey`,
+  highlightColour: `red`,
+  selectColour: `purple`,
+
+  showOpacity: 0.4,
+  highlightOpacity: 0.4,
+  selectOpacity: 0.4,
+
+  onMouseOver: () => {},
+  onMouseOut: () => {},
+  onClick: () => {}
 }
 
 export default Anatomogram

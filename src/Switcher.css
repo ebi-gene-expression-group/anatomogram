@@ -5,14 +5,14 @@
   max-width: 44px;
 }
 
-.gxa-selection-icon {
+.gxa-anatomogram-switcher-icon {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
   height: auto;
   padding: 2px;
 }
-.gxa-selection-icon:hover {
+.gxa-anatomogram-switcher-icon:hover {
   border: 1px solid orange;
   background: lightgoldenrodyellow;
   cursor: pointer;
