@@ -53,6 +53,10 @@ Anatomogram.propTypes = {
 }
 
 Anatomogram.defaultProps = {
+  showIds: [],
+  highlightIds: [],
+  selectIds: [],
+
   showColour: `grey`,
   highlightColour: `red`,
   selectColour: `purple`,
