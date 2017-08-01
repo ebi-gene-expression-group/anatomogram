@@ -6,7 +6,8 @@ This is an anatomogram for [Expression Atlas](https://www.ebi.ac.uk/gxa) that we
 
 [See demo here](https://gxa.github.io/anatomogram-demo/index.html).
 
-The ontology IDs are sourced from [Uberon](www.uberon.org), [EFO](www.ebi.ac.uk/efo) and [Plant Ontology](www.plantontology.org/).
+The ontology IDs are sourced from [Uberon](www.uberon.org), [EFO](www.ebi.ac.uk/efo) and [Plant 
+Ontology](www.plantontology.org/).
 
 To install:
 `npm install --save anatomogram`
@@ -41,21 +42,21 @@ experiments](https://www.ebi.ac.uk/gxa/search?geneQuery=[{%22value%22:%22zinc%20
 
 ## Props
 
-| Name              | Type     | Default value    | Description                                                          |
-|-------------------|----------|:----------------:|----------------------------------------------------------------------|
-| species           | string   |       -          |                                                                      |
-| showIds           | array    |       -          |                                                                      |
-| highlightIds      | array    |       -          |                                                                      |
-| selectIds         | array    |       -          |                                                                      |
-| showColour        | string   | grey             |                                                                      |
-| highlightColour   | string   | red              |                                                                      |
-| selectColour      | string   | purple           |                                                                      |
-| showOpacity       | number   | 0.4              |                                                                      |
-| highlightOpacity  | number   | 0.4              |                                                                      |
-| selectOpacity     | number   | 0.4              |                                                                      |
-| onMouseOver       | function |   `() => {}`     | Callback invoked when the mouse is hovered on a tissue               |
-| onMouseOut        | function |   `() => {}`     | Callback invoked when the mouse is hovered off a tissue              |
-| onClick           | function |   `() => {}`     | Callback invoked when a tissue is clicked                            |
+| Name             | Type     | Default value  | Description                                                          |
+|------------------|----------|:--------------:|----------------------------------------------------------------------|
+| species          | string   |       -        | This is the only required attribute of the anatomogram               |
+| showIds          | array    |       []       |                                                                      |
+| highlightIds     | array    |       []       |                                                                      |
+| selectIds        | array    |       []       |                                                                      |
+| showColour       | string   | grey           |                                                                      |
+| highlightColour  | string   | red            |                                                                      |
+| selectColour     | string   | purple         |                                                                      |
+| showOpacity      | number   | 0.4            |                                                                      |
+| highlightOpacity | number   | 0.4            |                                                                      |
+| selectOpacity    | number   | 0.4            |                                                                      |
+| onMouseOver      | function |   `() => {}`   | Callback invoked when the mouse is hovered on a tissue               |
+| onMouseOut       | function |   `() => {}`   | Callback invoked when the mouse is hovered off a tissue              |
+| onClick          | function |   `() => {}`   | Callback invoked when a tissue is clicked                            |
 
 For a list of available species and IDs have a look at 
 [`src/json/svgsMetadata.json`](https://github.com/gxa/anatomogram/blob/master/src/json/svgsMetadata.json). The file is 
@@ -68,15 +69,31 @@ The state of a tissue is either not shown, shown, highlighted or selected. On `m
 wiki](https://github.com/gxa/anatomogram/wiki).
 
 ## Building
+To use the anatomogram in a browser you need to build and bundle the package:
 ```
 npm run dist -- --output-public-path <URL>
 ```
 
-`<URL>` is the URL (absolute or relative) from which you’ll be serving the anatomogram. This is required so that the 
-code knows where to look for static assets (i.e. SVGs and PNGs). You can read more about this option in [Webpack’s 
-documentation site](https://webpack.js.org/configuration/output/#output-publicpath).
+`<URL>` is the URL (absolute or relative) from which you’ll be serving the anatomogram. **Remember to append a final 
+slash!** This is required so that the code knows where to look for static assets (i.e. SVGs and PNGs). You can read more 
+about this option in [Webpack’s documentation site](https://webpack.js.org/configuration/output/#output-publicpath).
 
 After building, deployment of `anatomogramDemo.bundle.js` is optional, only if you want to host the demo component.
+
+Include the following in your HTML:
+```
+<script src="<URL>/vendorCommons.bundle.js"></script>
+<script src="<URL>/anatomogram.bundle.js"></script>
+
+<script>
+anatomogram.render(options, target)
+</script>
+```
+
+### Building for a particular species
+You can take out all the unnecessary SVGs and PNGs and change 
+[`Anatomogram.defaultProps.species`](https://github.com/gxa/anatomogram/blob/master/src/Anatomogram.js#L56) to any of 
+the supported species. You can see an example in [the `mouse` branch](https://github.com/gxa/anatomogram/tree/mouse). 
 
 ## Contribute
 
