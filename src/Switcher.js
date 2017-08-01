@@ -4,8 +4,7 @@ import PropTypes from 'prop-types'
 import {getAnatomogramViews} from './Assets'
 import './Switcher.css'
 
-const loadIcon = (view, selectedView) =>
-  require('./img/' + view + '.' + (view === selectedView ? '' : 'un') + 'selected.png')
+const loadIcon = (view, selectedView) => require(`./img/${view}.${view === selectedView ? `` : `un`}selected.png`)
 
 const Switcher = ({species, selectedView, onChangeView}) =>
   <div className={`gxa-anatomogram-switcher`}>

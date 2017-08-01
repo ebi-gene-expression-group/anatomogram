@@ -101,8 +101,7 @@ const initialiseSvgElements = (getSvgElementById, props) => {
   attachCallbacks([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds], `click`, onClick, getSvgElementById)
 }
 
-const loadSvg = (species, selectedView) =>
-  require('./svg/' + species + (selectedView ? '.' + selectedView : '') + '.svg')
+const loadSvg = (species, selectedView) => require(`./svg/${species}${selectedView ? `.${selectedView}` : ``}.svg`)
 
 // ReactSVG loads the SVG file asynchronously (hence the callback prop). We don’t use componentDidUpdate or
 // componentDidMount because they can’t guarantee that the SVG is already loaded when they’re run. If
