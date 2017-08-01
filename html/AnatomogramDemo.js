@@ -83,7 +83,7 @@ class AnatomogramDemo extends React.Component {
         <div className="row">
           <div className="small-3 small-centered columns">
             <select value={this.state.selectedSpecies} onChange={this._handleSelectOnChange}>
-              {allSpecies.map((species) => <option key={species}>{species}</option>)}
+              {[...allSpecies, `foobar`].map((species) => <option key={species}>{species}</option>)}
             </select>
           </div>
         </div>

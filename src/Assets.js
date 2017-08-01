@@ -3,10 +3,13 @@ import svgsMetadata from './json/svgsMetadata.json'
 const unique = (value, index, self) => self.indexOf(value) === index
 const isNotBlank = (str) => typeof str === `string` && str !== ``
 
-const anatomogramViews =
+const supportedSpecies =
   svgsMetadata
     .map((svgMetadata) => svgMetadata.species)
     .filter(unique)
+
+const anatomogramViews =
+  supportedSpecies
     .reduce((acc, species) => {
       acc[species] =
 				svgsMetadata
@@ -25,4 +28,4 @@ const getAnatomogramViews = (species) => {
 
 const getDefaultView = (species) => getAnatomogramViews(species)[0]
 
-export {getAnatomogramViews, getDefaultView}
+export {getAnatomogramViews, getDefaultView, supportedSpecies}

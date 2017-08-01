@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Switcher from './Switcher'
 import AnatomogramSvg from './AnatomogramSvg'
-import {getDefaultView} from './Assets'
+import {getDefaultView, supportedSpecies} from './Assets'
 
 class Anatomogram extends React.Component {
   constructor(props) {
@@ -24,14 +24,16 @@ class Anatomogram extends React.Component {
 
   render() {
     return (
+      supportedSpecies.includes(this.props.species) ?
         <div>
-            <Switcher species={this.props.species}
-                      selectedView={this.state.selectedView}
-                      onChangeView={this._switchAnatomogramView} />
+          <Switcher species={this.props.species}
+                    selectedView={this.state.selectedView}
+                    onChangeView={this._switchAnatomogramView} />
 
-            <AnatomogramSvg {...this.props}
-                            selectedView={this.state.selectedView} />
-        </div>
+          <AnatomogramSvg {...this.props}
+                          selectedView={this.state.selectedView} />
+        </div> :
+        null
     )
   }
 }
