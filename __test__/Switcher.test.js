@@ -43,6 +43,10 @@ describe(`Anatomogram switcher`, () => {
     expect(onButtonClick.calledWith(getAnatomogramViews(`homo_sapiens`)[2])).toBe(true);
   })
 
+  test(`species case/formatting is ok`, () => {
+    expect(shallow(<Switcher {...requiredProps} species={`Homo   sApienS`}/>).find(`.gxa-anatomogram-switcher-icon`)).toHaveLength(3)
+  })
+
   allSpecies.forEach((species) => {
     test(`matches snapshot for ${species}`, () => {
       const tree = renderer.create(<Switcher {...requiredProps} species={species} selectedView={``}/>).toJSON()
