@@ -85,7 +85,7 @@ class AnatomogramDemo extends React.Component {
         <div className="row">
           <div className="small-3 small-centered columns">
             <select value={this.state.selectedSpecies} onChange={this._handleSelectOnChange}>
-              {[...allSpecies, `foobar`].map((species) => <option key={species}>{capitalizeFirstLetter(species.replace(`_`, ` `))}</option>)}
+              {[...allSpecies, `foobar`].map((species) => <option key={species} value={species}>{capitalizeFirstLetter(species.replace(`_`, ` `))}</option>)}
             </select>
           </div>
         </div>
