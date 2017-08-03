@@ -6,7 +6,7 @@ import sinon from 'sinon'
 import Switcher from '../src/Switcher'
 
 import svgsMetadata from '../src/json/svgsMetadata.json'
-import {getAnatomogramViews} from '../src/Assets'
+import {getAnatomogramViews, getDefaultView} from '../src/Assets'
 
 const unique = (value, index, self) => self.indexOf(value) === index
 const allSpecies = svgsMetadata
@@ -20,16 +20,12 @@ describe(`Anatomogram switcher`, () => {
   }
 
   test(`should contain as many buttons as views are defined for a species`, function() {
-    expect(shallow(<Switcher {...requiredProps} species={``} />).find(`img`)).toHaveLength(0)
-    expect(shallow(<Switcher {...requiredProps} species={`foobar`} />).find(`img`)).toHaveLength(0)
-
     allSpecies.forEach((species) => {
       expect(shallow(<Switcher {...requiredProps} species={species}/>).find(`img`)).toHaveLength(getAnatomogramViews(species).length)
     })
   })
 
   test(`should contain img selectable by class "gxa-anatomogram-switcher-icon"`, () => {
-    expect(shallow(<Switcher {...requiredProps} species={``} />).find(`.gxa-anatomogram-switcher-icon`)).toHaveLength(0)
     expect(shallow(<Switcher {...requiredProps} species={`homo_sapiens`}/>).find(`.gxa-anatomogram-switcher-icon`)).toHaveLength(3)
   })
 
@@ -43,13 +39,9 @@ describe(`Anatomogram switcher`, () => {
     expect(onButtonClick.calledWith(getAnatomogramViews(`homo_sapiens`)[2])).toBe(true);
   })
 
-  test(`species case/formatting is ok`, () => {
-    expect(shallow(<Switcher {...requiredProps} species={`Homo   sApienS`}/>).find(`.gxa-anatomogram-switcher-icon`)).toHaveLength(3)
-  })
-
   allSpecies.forEach((species) => {
     test(`matches snapshot for ${species}`, () => {
-      const tree = renderer.create(<Switcher {...requiredProps} species={species} selectedView={``}/>).toJSON()
+      const tree = renderer.create(<Switcher {...requiredProps} species={species} selectedView={getDefaultView(species)}/>).toJSON()
       expect(tree).toMatchSnapshot()
     })
   })

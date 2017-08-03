@@ -28,9 +28,15 @@ const anatomogramViews =
     }, {})
 
 const getAnatomogramViews = (species) => {
-  return anatomogramViews[species] || []
+	if (supportedSpecies.includes(species)) {
+    return anatomogramViews[species] || []
+	}
 }
 
-const getDefaultView = (species) => getAnatomogramViews(species)[0]
+const getDefaultView = (species) => {
+	if (supportedSpecies.includes(species)) {
+		return getAnatomogramViews(species)[0] || null
+  }
+}
 
 export {getAnatomogramViews, getDefaultView, supportedSpecies}

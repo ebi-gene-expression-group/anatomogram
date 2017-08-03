@@ -1,10 +1,10 @@
-import {getAnatomogramViews} from '../src/Assets'
+import {getAnatomogramViews, getDefaultView, supportedSpecies} from '../src/Assets'
 import fs from 'fs'
 import path from 'path'
 
 const unique = (value, index, self) => self.indexOf(value) === index
 
-describe(`Assets`, () => {
+describe(`Assets module`, () => {
 
   const expectedSpecies =
     fs.readdirSync(path.resolve(__dirname, `../src/svg`))
@@ -27,6 +27,32 @@ describe(`Assets`, () => {
     test(`contains the right views for ${species}`, () => {
       expect(getAnatomogramViews(species)).toEqual(expectedViews[species])
     })
+  })
+
+  test(`default view for human is male`, () => {
+    expect(getDefaultView(`homo_sapiens`)).toEqual(`male`)
+  })
+
+  test(`default view for single-view species is null`, () => {
+    const species = `solanum_tuberosum`
+    expect(supportedSpecies.includes(species)).toBe(true)
+    expect(getDefaultView(species)).toBe(null)
+  })
+
+  test(`default view for unknown species is undefined`, () => {
+    expect(getDefaultView(`foobar`)).toBe(undefined)
+  })
+
+  test(`anatomogram views for single-view species is an empty array`, () => {
+    const species = `solanum_tuberosum`
+    expect(supportedSpecies.includes(species)).toBe(true)
+    expect(getAnatomogramViews(species)).toEqual([])
+  })
+
+  test(`anatomogram views for unknown species is undefined`, () => {
+    const species = `foobar`
+    expect(supportedSpecies.includes(species)).toBe(false)
+    expect(getAnatomogramViews(species)).toBe(undefined)
   })
 
 })
