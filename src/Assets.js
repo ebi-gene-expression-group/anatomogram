@@ -8,8 +8,14 @@ const supportedSpecies =
     .map((svgMetadata) => svgMetadata.species)
     .filter(unique)
 
+const multipleViewsSpecies =
+  svgsMetadata
+		.filter((svgMetadata) => svgMetadata.view !== ``)
+    .map((svgMetadata) => svgMetadata.species)
+    .filter(unique)
+
 const anatomogramViews =
-  supportedSpecies
+  multipleViewsSpecies
     .reduce((acc, species) => {
       acc[species] =
 				svgsMetadata
@@ -22,8 +28,7 @@ const anatomogramViews =
     }, {})
 
 const getAnatomogramViews = (species) => {
-  const canonicalSpecies = typeof species === `string` ? species.trim().toLowerCase().replace(/ +/, `_`) : ``
-  return anatomogramViews[canonicalSpecies] || []
+  return anatomogramViews[species] || []
 }
 
 const getDefaultView = (species) => getAnatomogramViews(species)[0]
