@@ -7,6 +7,8 @@ import svgsMetadata from '../src/json/svgsMetadata.json'
 
 const unique = (value, index, self) => self.indexOf(value) === index
 
+const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1)
+
 const allSpecies =
   svgsMetadata
     .map((svgMetadata) => svgMetadata.species)
@@ -83,7 +85,7 @@ class AnatomogramDemo extends React.Component {
         <div className="row">
           <div className="small-3 small-centered columns">
             <select value={this.state.selectedSpecies} onChange={this._handleSelectOnChange}>
-              {[...allSpecies, `foobar`].map((species) => <option key={species}>{species}</option>)}
+              {[...allSpecies, `foobar`].map((species) => <option key={species}>{capitalizeFirstLetter(species.replace(`_`, ` `))}</option>)}
             </select>
           </div>
         </div>

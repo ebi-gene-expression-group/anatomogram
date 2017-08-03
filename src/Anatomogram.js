@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import tx from 'transform-props-with'
+
 import Switcher from './Switcher'
 import AnatomogramSvg from './AnatomogramSvg'
 import {getDefaultView, supportedSpecies} from './Assets'
@@ -8,7 +10,10 @@ import {getDefaultView, supportedSpecies} from './Assets'
 class Anatomogram extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { selectedView: getDefaultView(props.species) }
+
+    this.state = {
+      selectedView: getDefaultView(props.species)
+    }
     this._switchAnatomogramView = this._switchAnatomogramView.bind(this)
   }
 
@@ -72,4 +77,13 @@ Anatomogram.defaultProps = {
   onClick: () => {}
 }
 
-export default Anatomogram
+const normaliseSpecies = (oldProps) => {
+  const { species, ...props } = oldProps
+
+  return {
+    species: species.toLowerCase().replace(/ +/, `_`),
+    ...props
+  }
+}
+
+export default tx(normaliseSpecies)(Anatomogram)
