@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import AnatomogramContainer from '../src/index'
 import svgsMetadata from '../src/json/svgsMetadata.json'
 
+import {xor} from 'lodash'
+
 const unique = (value, index, self) => self.indexOf(value) === index
 
 const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1)
@@ -67,14 +69,10 @@ class AnatomogramDemo extends React.Component {
     })
   }
 
-  _addRemoveFromSelectIds(id) {
-    const newSelectIds =
-      this.state.selectIds.includes(id) ?
-        this.state.selectIds.filter((_id) => _id !== id) :
-        this.state.selectIds.concat(id)
+  _addRemoveFromSelectIds(ids) {
 
     this.setState({
-      selectIds: newSelectIds
+      selectIds: xor(this.state.selectIds, ids)
     })
   }
 
