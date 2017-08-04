@@ -7,6 +7,46 @@ import Switcher from './Switcher'
 import AnatomogramSvg from './AnatomogramSvg'
 import {getDefaultView, supportedSpecies} from './Assets'
 
+
+const arrayDifference = (arr1, arr2) =>
+  Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter((e) => !arr2.includes(e)) : arr1
+
+const elementMarkup = (colour, opacity) => ({fill: colour, opacity: opacity})
+
+const idsWithMarkupAccordingToCurrentColoringScheme = ({
+    showIds,
+    showColour,
+    showOpacity,
+    highlightIds,
+    highlightColour,
+    highlightOpacity,
+    selectIds,
+    selectColour,
+    selectOpacity}) => {
+    const uniqueShowIds = arrayDifference(showIds, [...highlightIds, ...selectIds])
+    const uniqueHighlightIds = arrayDifference(highlightIds, selectIds)
+
+
+    //Given an element and its ids, we take the first element of this array having one of the ids
+    return [].concat(
+        selectIds.map(id => ({
+            id,
+            markupNormal: elementMarkup(selectColour, selectOpacity),
+            markupUnderFocus: elementMarkup(selectColour, selectOpacity+0.2)
+        })),
+        uniqueHighlightIds.map(id => ({
+            id,
+            markupNormal: elementMarkup(highlightColour, highlightOpacity),
+            markupUnderFocus: elementMarkup(highlightColour, highlightOpacity+0.2)
+        })),
+        uniqueShowIds.map(id => ({
+            id,
+            markupNormal: elementMarkup(showColour, showOpacity),
+            markupUnderFocus: elementMarkup(highlightColour, highlightOpacity+0.2)
+        })),
+    )
+}
+
 class Anatomogram extends React.Component {
   constructor(props) {
     super(props)
@@ -29,16 +69,18 @@ class Anatomogram extends React.Component {
 
   render() {
     return (
-      supportedSpecies.includes(this.props.species) ?
+      supportedSpecies.includes(this.props.species) &&
         <div>
-          <Switcher species={this.props.species}
-                    selectedView={this.state.selectedView}
-                    onChangeView={this._switchAnatomogramView} />
+          <Switcher
+            species={this.props.species}
+            selectedView={this.state.selectedView}
+            onChangeView={this._switchAnatomogramView} />
 
-          <AnatomogramSvg {...this.props}
-                          selectedView={this.state.selectedView} />
-        </div> :
-        null
+          <AnatomogramSvg
+            {...this.props}
+            idsWithMarkup={idsWithMarkupAccordingToCurrentColoringScheme(this.props)}
+            selectedView={this.state.selectedView} />
+        </div>
     )
   }
 }

@@ -8,9 +8,6 @@ import {groupBy} from 'lodash'
 
 const groupIntoPairs = (arr,f) => Object.entries(groupBy(arr,f))
 
-const arrayDifference = (arr1, arr2) =>
-  Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter((e) => !arr2.includes(e)) : arr1
-
 const getSvgElementById = (svgDomNode) => {
   const getEfoLayerGroup = (svgDomNode) => {
     const svgGroups = svgDomNode.getElementsByTagName(`g`)
@@ -43,8 +40,6 @@ const getSvgElementById = (svgDomNode) => {
 
 const paintSvgElement = (element, elementMarkup) => element && elementMarkup && Object.assign(element.style, elementMarkup)
 
-const elementMarkup = (colour, opacity) => ({fill: colour, opacity: opacity})
-
 const registerEvent = (element, eventType, elementMarkup, callback) => {
     element && element.addEventListener(eventType, () => {
         paintSvgElement(element, elementMarkup)
@@ -53,45 +48,20 @@ const registerEvent = (element, eventType, elementMarkup, callback) => {
 }
 
 
-const initialiseSvgElements = (getSvgElementById, props) => {
-  const {showIds, showColour, showOpacity,
-    highlightIds, highlightColour, highlightOpacity,
-    selectIds, selectColour, selectOpacity,
-    onMouseOver, onMouseOut, onClick} = props
-
-  const uniqueShowIds = arrayDifference(showIds, [...highlightIds, ...selectIds])
-  const uniqueHighlightIds = arrayDifference(highlightIds, selectIds)
-
-
-  //Given an element and its ids, we take the first element of this array having one of the ids
-  const markups = [].concat(
-      selectIds.map(id => ({
-          id,
-          markupNormal: elementMarkup(selectColour, selectOpacity),
-          markupUnderFocus: elementMarkup(selectColour, selectOpacity+0.2)
-      })),
-      uniqueHighlightIds.map(id => ({
-          id,
-          markupNormal: elementMarkup(highlightColour, highlightOpacity),
-          markupUnderFocus: elementMarkup(highlightColour, highlightOpacity+0.2)
-      })),
-      uniqueShowIds.map(id => ({
-          id,
-          markupNormal: elementMarkup(showColour, showOpacity),
-          markupUnderFocus: elementMarkup(highlightColour, highlightOpacity+0.2)
-      })),
-  )
-
+const initialiseSvgElements = (getSvgElementById, {idsWithMarkup, onMouseOver,onMouseOut,onClick}) => {
   //More than one id can correspond to an element - see the svg "use" elements
   groupIntoPairs(
-      ([...uniqueShowIds, ...uniqueHighlightIds, ...selectIds])
-      .map(id => [getSvgElementById(id),id]),
+      idsWithMarkup
+        .map(e=>e.id)
+        .filter((e,ix,self)=> self.indexOf(e)==ix)
+        .map(id => [getSvgElementById(id),id]),
       '[0].id'
   )
   .forEach(a => {
       const element = a[1][0][0]
       const ids = a[1].map(t => t[1])
-      const markupNormalAndUnderFocus = markups.find(m => ids.includes(m.id))
+      //Given an element and its ids, we take the first element of the idsWithMarkup array that is one of the ids
+      const markupNormalAndUnderFocus = idsWithMarkup.find(m => ids.includes(m.id))
 
       paintSvgElement(element, markupNormalAndUnderFocus.markupNormal)
 
