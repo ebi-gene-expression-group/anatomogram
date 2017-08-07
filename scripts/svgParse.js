@@ -11,7 +11,9 @@ if (process.argv.length < 3) {
 }
 
 const parseSvgFile = (filename) => {
-  const [species, view] = path.basename(filename, `.svg`).split(`.`)
+  const xs = path.basename(filename, `.svg`).split(`.`)
+  const species = xs[0]
+  const view = xs[1]
   return {
     filename: path.basename(filename),
     species: species,
