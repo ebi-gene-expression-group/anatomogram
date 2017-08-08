@@ -27,11 +27,12 @@
     "url": "https://github.com/gxa/anatomogram.git"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-svg": "^2.1.21",
-    "transform-props-with": "^2.2.0"
+    "recompose": "^0.24.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

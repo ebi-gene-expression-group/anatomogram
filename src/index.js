@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Anatomogram from './Anatomogram'
+import Anatomogram from './Main'
 import {supportedSpecies} from './Assets'
 
 const render = function (options, target) {

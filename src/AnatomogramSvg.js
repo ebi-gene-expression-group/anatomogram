@@ -87,19 +87,11 @@ const AnatomogramSvg = (props) =>
 AnatomogramSvg.propTypes = {
   species: PropTypes.string.isRequired,
   selectedView: PropTypes.string,
-
-  showIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  highlightIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-
-  showColour: PropTypes.string.isRequired,
-  highlightColour: PropTypes.string.isRequired,
-  selectColour: PropTypes.string.isRequired,
-
-  showOpacity: PropTypes.number.isRequired,
-  highlightOpacity: PropTypes.number.isRequired,
-  selectOpacity: PropTypes.number.isRequired,
-
+  idsWithMarkup: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      markupNormal: PropTypes.object.isRequired,
+      markupUnderFocus: PropTypes.object.isRequired
+  })).isRequired,
   onMouseOver: PropTypes.func.isRequired,
   onMouseOut: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired
