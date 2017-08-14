@@ -48,6 +48,8 @@ Anatomogram.propTypes = {
   species: PropTypes.string.isRequired
 }
 
-
+Anatomogram.defaultProps = {
+  atlasUrl: `https://www.ebi.ac.uk/gxa/`
+}
 
 export default Anatomogram

@@ -32,7 +32,8 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-svg": "^2.1.21",
-    "recompose": "^0.24.0"
+    "recompose": "^0.24.0",
+    "urijs": "^1.18.12"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
