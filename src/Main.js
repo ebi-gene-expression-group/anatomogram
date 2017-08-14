@@ -72,6 +72,7 @@ const addDefaultCallbacks = defaultProps({
 })
 
 const definePropTypes = setPropTypes({
+  atlasUrl: PropTypes.string.isRequired,
 	species: PropTypes.string.isRequired,
 	idsWithMarkup: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.string.isRequired,
@@ -83,4 +84,8 @@ const definePropTypes = setPropTypes({
 	onClick: PropTypes.func.isRequired
 })
 
-export default compose(addColoringScheme, onlyUpdateForPropTypes, definePropTypes, addDefaultCallbacks, normaliseSpecies)(Anatomogram)
+const defineDefaultProps = defaultProps({
+  atlasUrl: `https://www.ebi.ac.uk/gxa/`
+})
+
+export default compose(addColoringScheme, onlyUpdateForPropTypes, definePropTypes, defineDefaultProps, addDefaultCallbacks, normaliseSpecies)(Anatomogram)

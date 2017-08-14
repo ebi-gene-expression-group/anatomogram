@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactSVG from 'react-svg'
 
+import URI from 'urijs'
+
 import './AnatomogramSvg.css'
 
 import {groupBy} from 'lodash'
@@ -78,13 +80,14 @@ const loadSvg = (species, selectedView) => require(`./svg/${species}${selectedVi
 const AnatomogramSvg = (props) =>
   <div className={`gxa-anatomogram-svg-wrapper`}>
     <ReactSVG
-      path={loadSvg(props.species, props.selectedView)}
+      path={URI(loadSvg(props.species, props.selectedView), this.props.atlasUrl)}
       callback={svgDomNode => { initialiseSvgElements(getSvgElementById(svgDomNode), props) }}
       className={`gxa-anatomogram-svg`}
       style={{paddingLeft: props.selectedView ? `10px` : ``}} />
   </div>
 
 AnatomogramSvg.propTypes = {
+  atlasUrl: PropTypes.string.isRequired,
   species: PropTypes.string.isRequired,
   selectedView: PropTypes.string,
   idsWithMarkup: PropTypes.arrayOf(PropTypes.shape({

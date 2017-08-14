@@ -30,11 +30,13 @@ class Anatomogram extends React.Component {
       supportedSpecies.includes(this.props.species) &&
         <div>
           <Switcher
+            atlasUrl={this.props.atlasUrl}
             species={this.props.species}
             selectedView={this.state.selectedView}
             onChangeView={this._switchAnatomogramView} />
 
           <AnatomogramSvg
+            atlasUrl={this.props.atlasUrl}
             {...this.props}
             selectedView={this.state.selectedView} />
         </div>
