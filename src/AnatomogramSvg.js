@@ -80,7 +80,7 @@ const loadSvg = (species, selectedView) => require(`./svg/${species}${selectedVi
 const AnatomogramSvg = (props) =>
   <div className={`gxa-anatomogram-svg-wrapper`}>
     <ReactSVG
-      path={URI(loadSvg(props.species, props.selectedView), this.props.atlasUrl)}
+      path={URI(loadSvg(props.species, props.selectedView), props.atlasUrl)}
       callback={svgDomNode => { initialiseSvgElements(getSvgElementById(svgDomNode), props) }}
       className={`gxa-anatomogram-svg`}
       style={{paddingLeft: props.selectedView ? `10px` : ``}} />
