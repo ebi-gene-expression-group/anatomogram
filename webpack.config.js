@@ -6,7 +6,7 @@ module.exports = {
     entry: {
         anatomogramDemo: './html/AnatomogramDemo.js',
         anatomogram: './src/index.js',
-        dependencies: ['prop-types', 'react', 'react-dom', 'react-svg', 'transform-props-with']
+        dependencies: ['lodash', 'prop-types', 'react', 'react-dom', 'react-svg', 'recompose']
     },
 
     output: {
