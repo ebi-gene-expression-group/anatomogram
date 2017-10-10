@@ -6,12 +6,13 @@ import {getAnatomogramViews} from './Assets'
 import './Switcher.css'
 
 const loadIcon = (view, selectedView) => require(`./img/${view}.${view === selectedView ? `` : `un`}selected.png`)
+const resolve = (uri, baseUrl) => URI(uri).is(`absolute`) ? URI(uri) : URI(uri, baseUrl)
 
 const Switcher = ({atlasUrl, species, selectedView, onChangeView}) =>
   <div className={`gxa-anatomogram-switcher`}>
     {getAnatomogramViews(species).map((view) =>
       <img key={view} className={`gxa-anatomogram-switcher-icon`} onClick={() => onChangeView(view)}
-           src={URI(loadIcon(view, selectedView), atlasUrl).toString()} />
+           src={resolve(loadIcon(view, selectedView), atlasUrl).toString()} />
     )}
   </div>
 
