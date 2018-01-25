@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "webpack-dev-server -d",
     "parseSvgs": "node scripts/svgParse.js src/svg > src/json/svgsMetadata.json",
-    "prepublishOnly": "npm run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
-    "dist": "npm run parseSvgs && NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
-    "pretest": "npm run parseSvgs",
-    "test": "jest --coverage || echo 'LOL tests failed'",
-    "posttest": "./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info || echo 'LOL coveralls upload failed'"
+    "prepublishOnly": "yarn run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
+    "dist": "yarn run parseSvgs && NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
+    "pretest": "yarn run parseSvgs",
+    "testOnly": "yarn run pretest && jest --coverage --verbose",
+    "test": "yarn run testOnly",
+    "posttest": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "jest": {
     "moduleNameMapper": {
@@ -30,32 +31,33 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-svg": "^2.1.22",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-svg": "^2.2.10",
     "recompose": "^0.26.0",
     "urijs": "^1.19.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-jest": "^21.2.0",
+    "babel-jest": "^22.1.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
     "coveralls": "^3.0.0",
-    "css-loader": "^0.28.7",
-    "enzyme": "^3.1.0",
-    "fast-xml-parser": "^2.7.4",
-    "file-loader": "^1.1.5",
-    "image-webpack-loader": "^3.4.2",
-    "jest": "^21.2.1",
-    "react-test-renderer": "^16.0.0",
-    "sinon": "^4.0.1",
-    "style-loader": "^0.19.0",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
+    "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "fast-xml-parser": "^2.9.2",
+    "file-loader": "^1.1.6",
+    "image-webpack-loader": "^4.0.0",
+    "jest": "^22.1.4",
+    "react-test-renderer": "^16.2.0",
+    "sinon": "^4.2.1",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }
