@@ -29,7 +29,7 @@ class AnatomogramDemo extends React.Component {
   constructor(props) {
     super(props)
 
-    const selectedSpecies = allSpecies[0]
+    const selectedSpecies = allSpecies.includes(`homo_sapiens`) ? `homo_sapiens` : allSpecies[0]
 
     this.state = {
       selectedSpecies: selectedSpecies,
