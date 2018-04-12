@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "webpack-dev-server -d",
     "parseSvgs": "node scripts/svgParse.js src/svg > src/json/svgsMetadata.json",
-    "prepublishOnly": "yarn run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
-    "dist": "yarn run parseSvgs && NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
-    "pretest": "yarn run parseSvgs",
-    "testOnly": "yarn run pretest && jest --coverage --verbose",
-    "test": "yarn run testOnly",
+    "prepublishOnly": "npm run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
+    "dist": "npm run parseSvgs && NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
+    "pretest": "npm run parseSvgs",
+    "testOnly": "npm run pretest && jest --coverage --verbose",
+    "test": "npm run testOnly",
     "posttest": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "jest": {
@@ -29,6 +29,7 @@
     "url": "https://github.com/gxa/anatomogram.git"
   },
   "dependencies": {
+    "ajv": "^6.4.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -50,14 +51,14 @@
     "css-loader": "^0.28.9",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "fast-xml-parser": "^3.3.6",
+    "fast-xml-parser": "^2.9.2",
     "file-loader": "^1.1.6",
     "image-webpack-loader": "^4.0.0",
     "jest": "^22.1.4",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.2.1",
     "style-loader": "^0.20.3",
-    "webpack": "^4.5.0",
-    "webpack-dev-server": "^3.1.3"
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }
