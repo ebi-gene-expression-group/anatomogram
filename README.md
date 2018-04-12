@@ -65,7 +65,7 @@ automatically generated every time the package is published.
 All three callbacks take a single string argument, the ID of the tissue affected by the mouse event.
 
 The state of a tissue is either not shown, shown, highlighted or selected. On `mouseover` the opacity is increased by
-0.2. You can read a more inclined description of the anatomogram behaviour in [the repository
+0.2. You can read a more technically inclined description of the anatomogram behaviour in [the repository
 wiki](https://github.com/gxa/anatomogram/wiki).
 
 ## Building
