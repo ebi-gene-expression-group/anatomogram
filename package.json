@@ -50,14 +50,14 @@
     "css-loader": "^0.28.9",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "fast-xml-parser": "^2.9.2",
+    "fast-xml-parser": "^3.3.6",
     "file-loader": "^1.1.6",
     "image-webpack-loader": "^4.0.0",
     "jest": "^22.1.4",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.2.1",
-    "style-loader": "^0.19.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "style-loader": "^0.20.3",
+    "webpack": "^4.5.0",
+    "webpack-dev-server": "^3.1.3"
   }
 }
