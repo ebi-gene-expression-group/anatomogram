@@ -37,7 +37,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-svg": "^2.2.10",
-    "recompose": "^0.26.0",
+    "recompose": "^0.27.0",
     "urijs": "^1.19.0"
   },
   "devDependencies": {
