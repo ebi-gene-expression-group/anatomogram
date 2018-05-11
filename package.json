@@ -58,7 +58,7 @@
     "image-webpack-loader": "^4.0.0",
     "jest": "^22.1.4",
     "react-test-renderer": "^16.2.0",
-    "sinon": "^4.2.1",
+    "sinon": "^5.0.1",
     "style-loader": "^0.20.3",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
