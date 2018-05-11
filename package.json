@@ -36,7 +36,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-svg": "^2.2.10",
+    "react-svg": "^3.0.0",
     "recompose": "^0.26.0",
     "urijs": "^1.19.0"
   },
