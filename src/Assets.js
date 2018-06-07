@@ -1,7 +1,7 @@
 import svgsMetadata from './json/svgsMetadata.json'
 
-const unique = (value, index, self) => self.indexOf(value) === index
-const isNotBlank = (str) => typeof str === `string` && str !== ``
+const unique = (element, index, array) => array.indexOf(element) === index
+const isNotBlank = (str) => typeof str === `string` && str.trim() !== ``
 
 const supportedSpecies =
   svgsMetadata
