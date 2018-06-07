@@ -2,7 +2,7 @@ const fs = require('fs')
 const fastXmlParser = require('fast-xml-parser')
 
 module.exports = (svgData) => {
-  if (fastXmlParser.validate(svgData) === false) {
+  if (fastXmlParser.validate(svgData) !== true) {
     throw new Error(`Invalid XML input\n`)
   }
 
@@ -11,10 +11,7 @@ module.exports = (svgData) => {
   // fast-xml-parser considers self closing tags to be text nodes:
   // https://github.com/NaturalIntelligence/fast-xml-parser/issues/18
   const svgObj =
-    fastXmlParser.parse(
-      svgData,
-      {ignoreTextNodeAttr: false, ignoreNonTextNodeAttr: false, textAttrConversion: true}
-    ).svg
+    fastXmlParser.parse(svgData, { ignoreAttributes: false, parseAttributeValue : true }).svg
 
   const requiredAttributes = [`width`, `height`, `viewBox`]
   requiredAttributes.forEach((attr) => {

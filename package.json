@@ -52,9 +52,9 @@
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "fast-xml-parser": "^2.9.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
+    "fast-xml-parser": "^3.11.1",
     "file-loader": "^1.1.11",
     "image-webpack-loader": "^4.3.0",
     "jest": "^23.1.0",
