@@ -4,7 +4,7 @@ import ReactSVG from 'react-svg'
 
 import URI from 'urijs'
 
-import './AnatomogramSvg.css'
+import styles from './AnatomogramSvg.css'
 
 import {groupBy} from 'lodash'
 
@@ -79,11 +79,11 @@ const resolve = (uri, baseUrl) => URI(uri).is(`absolute`) ? URI(uri) : URI(uri, 
 // ReactSVG loads the SVG file asynchronously (hence the callback prop). We don’t use componentDidUpdate or
 // componentDidMount because they can’t guarantee that the SVG is already loaded when they’re run.
 const AnatomogramSvg = (props) =>
-  <div className={`gxa-anatomogram-svg-wrapper`}>
+  <div className={styles.svgWrapper}>
     <ReactSVG
       path={resolve(loadSvg(props.species, props.selectedView), props.atlasUrl).toString()}
       onInjected={svgDomNode => { initialiseSvgElements(getSvgElementById(svgDomNode), props) }}
-      svgClassName={`gxa-anatomogram-svg`}
+      svgClassName={styles.svgImage}
       svgStyle={{paddingLeft: props.selectedView ? `10px` : ``}} />
   </div>
 

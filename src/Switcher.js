@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import URI from 'urijs'
 
 import {getAnatomogramViews} from './Assets'
-import './Switcher.css'
+import styles from './Switcher.css'
 
 const loadIcon = (view, selectedView) => require(`./img/${view}.${view === selectedView ? `` : `un`}selected.png`)
 const resolve = (uri, baseUrl) => URI(uri).is(`absolute`) ? URI(uri) : URI(uri, baseUrl)
 
 const Switcher = ({atlasUrl, species, selectedView, onChangeView}) =>
-  <div className={`gxa-anatomogram-switcher`}>
+  <div className={styles.switcher}>
     {getAnatomogramViews(species).map((view) =>
-      <img key={view} className={`gxa-anatomogram-switcher-icon`} onClick={() => onChangeView(view)}
+      <img key={view} className={styles.switcherIcon} onClick={() => onChangeView(view)}
            src={resolve(loadIcon(view, selectedView), atlasUrl).toString()} />
     )}
   </div>

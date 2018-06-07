@@ -1,4 +1,4 @@
-.gxa-anatomogram-switcher {
+.switcher {
   display: inline-block;
   vertical-align: top;
   width: 10%;
@@ -6,14 +6,15 @@
   line-height: 0;
 }
 
-.gxa-anatomogram-switcher-icon {
+.switcherIcon {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
   height: auto;
   padding: 2px;
 }
-.gxa-anatomogram-switcher-icon:hover {
+
+.switcherIcon:hover {
   border: 1px solid orange;
   background: lightgoldenrodyellow;
   cursor: pointer;

@@ -29,59 +29,58 @@ module.exports = {
         })
     ],
 
-    module: {
-        rules: [
-            {
-                test: /\.css$/i,
-                use: [ 'style-loader', 'css-loader' ]
-            },
-            {
-                test: /\.less$/i,
-                use: [ 'style-loader', 'css-loader', 'less-loader' ]
-            },
-            {
-                test: /\.(jpe?g|png|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            query: {
-                                name: '[hash].[ext]',
-                                hash: 'sha512',
-                                digest: 'hex'
-                            }
-                        }
-                    },
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            query: {
-                                bypassOnDebug: true,
-                                mozjpeg: {
-                                    progressive: true,
-                                },
-                                gifsicle: {
-                                    interlaced: true,
-                                },
-                                optipng: {
-                                    optimizationLevel: 7,
-                                }
-                            }
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.svg$/i,
-                use: 'file-loader'
-            },
-            {
-                test: /\.js$/i,
-                exclude: /node_modules\//,
-                use: 'babel-loader'
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          `style-loader`,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
             }
+          }
         ]
-    },
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        use: [
+          {
+            loader: `file-loader`,
+          },
+          {
+            loader: `image-webpack-loader`,
+            options: {
+              query: {
+                bypassOnDebug: true,
+                mozjpeg: {
+                  progressive: true,
+                },
+                gifsicle: {
+                  interlaced: true,
+                },
+                optipng: {
+                  optimizationLevel: 7,
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.svg$/i,
+        use: `file-loader`
+      },
+      {
+        test: /\.js$/i,
+        exclude: /node_modules\//,
+        use: `babel-loader`
+      }
+    ]
+  },
+}
 
     devServer: {
         port: 9000
