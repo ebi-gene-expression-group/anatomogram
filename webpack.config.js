@@ -1,33 +1,46 @@
-var webpack = require('webpack');
-var path = require('path');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require(`path`)
+const CleanWebpackPlugin = require(`clean-webpack-plugin`)
 
 module.exports = {
-    entry: {
-        anatomogramDemo: './html/AnatomogramDemo.js',
-        anatomogram: './src/index.js',
-        dependencies: ['lodash', 'prop-types', 'react', 'react-dom', 'react-svg', 'recompose']
-    },
+  entry: {
+    demo: `./html/AnatomogramDemo.js`,
+    // anatomogram: `./src/index.js`,
+    // vendors: [`lodash`, `prop-types`, `react`, `react-dom`, `react-svg`, `recompose`, `urijs`]
+  },
 
-    output: {
-        library: '[name]',
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js'
-    },
+  plugins: [
+    new CleanWebpackPlugin([`dist`])
+  ],
 
-    plugins: [
-        new CleanWebpackPlugin(['dist'], {verbose: true, dry: false}),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'dependencies',
-            filename: 'vendorCommons.bundle.js',
-            minChunks: Infinity     // Explicit definition-based split, see dependencies entry
-        }),
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: process.env.NODE_ENV === 'production' ? JSON.stringify("production") : JSON.stringify("development")
-            }
-        })
-    ],
+  output: {
+    library: `[name]`,
+    filename: `[name].bundle.js`,
+    // Must match module.exports.serve.dev.publicPath or the demo page will show broken images
+    publicPath: `/dist/`
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: `all`,
+      cacheGroups: {
+        anatomogram: {
+          test: /[\\/]src[\\/]/,
+          name: `anatomogram`,
+          priority: -20
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: `vendors`,
+          priority: -10
+        }
+      }
+    }
+  },
+
+  performance: {
+    maxEntrypointSize: 500000,
+    maxAssetSize: 2000000
+  },
 
   module: {
     rules: [
@@ -82,7 +95,10 @@ module.exports = {
   },
 }
 
-    devServer: {
-        port: 9000
-    }
-};
+module.exports.serve = {
+  content: path.resolve(__dirname, `html`),
+  dev: {
+    publicPath: `/dist/`
+  },
+  port: 9000
+}

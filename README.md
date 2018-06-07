@@ -102,7 +102,7 @@ adding new tissues or updating IDs in an existing anatomogram or adding a new SV
 
 Run `npm run parseSvgs` to parse the updated IDs. When you are finished run a local copy of the demo page:
 ```
-webpack-dev-server -d
+npx webpack-serve
 ```
 
-Go to `localhost:9000/html` and see that the tissues show up like you want them to.
+Go to `localhost:9000` and see that the tissues show up like you want them to.

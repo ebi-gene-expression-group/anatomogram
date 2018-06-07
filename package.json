@@ -3,11 +3,11 @@
   "version": "1.7.0",
   "description": "Anatomogram component for Expression Atlas heatmap",
   "main": "lib/index.js",
+  "sideEffects": false,
   "scripts": {
-    "dev": "webpack-dev-server -d",
     "parseSvgs": "node scripts/svgParse.js src/svg > src/json/svgsMetadata.json",
-    "dist": "npm run parseSvgs && NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
     "prepack": "npm run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
+    "dist": "npm run parseSvgs && webpack --run-prod",
     "pretest": "npm run parseSvgs",
     "test": "jest --coverage",
     "posttest": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
@@ -52,13 +52,14 @@
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
     "fast-xml-parser": "^3.11.1",
     "file-loader": "^1.1.11",
     "image-webpack-loader": "^4.3.0",
     "jest": "^23.1.0",
     "react-test-renderer": "^16.4.0",
     "style-loader": "^0.21.0",
+    "webpack": "^4.11.1",
+    "webpack-command": "^0.2.0",
+    "webpack-serve": "^1.0.2"
   }
 }
