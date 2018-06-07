@@ -4,7 +4,7 @@
 
 This is an anatomogram for [Expression Atlas](https://www.ebi.ac.uk/gxa) that we use to illustrate the experiments.
 
-[See demo here](https://gxa.github.io/anatomogram-demo/index.html).
+[See demo here](https://ebi-gene-expression-group.github.io/anatomogram/).
 
 The ontology IDs are sourced from [Uberon](www.uberon.org), [EFO](www.ebi.ac.uk/efo) and [Plant
 Ontology](www.plantontology.org/).
