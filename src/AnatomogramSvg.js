@@ -8,7 +8,7 @@ import './AnatomogramSvg.css'
 
 import {groupBy} from 'lodash'
 
-const groupIntoPairs = (arr,f) => Object.entries(groupBy(arr,f))
+const groupIntoPairs = (arr, f) => Object.entries(groupBy(arr, f))
 
 const getSvgElementById = (svgDomNode) => {
   const getEfoLayerGroup = (svgDomNode) => {
@@ -55,9 +55,9 @@ const initialiseSvgElements = (getSvgElementById, {idsWithMarkup, onMouseOver,on
   groupIntoPairs(
       idsWithMarkup
         .map(e=>e.id)
-        .filter((e,ix,self)=> self.indexOf(e)==ix)
+        .filter((e,ix,self)=> self.indexOf(e) == ix)
         .map(id => [getSvgElementById(id),id]),
-      '[0].id'
+      `[0].id`
   )
   .forEach(a => {
       const element = a[1][0][0]
@@ -67,9 +67,9 @@ const initialiseSvgElements = (getSvgElementById, {idsWithMarkup, onMouseOver,on
 
       paintSvgElement(element, markupNormalAndUnderFocus.markupNormal)
 
-      registerEvent(element, "mouseover", markupNormalAndUnderFocus.markupUnderFocus, onMouseOver.bind(this, ids))
-      registerEvent(element, "mouseout", markupNormalAndUnderFocus.markupNormal, onMouseOut.bind(this, ids))
-      registerEvent(element, "click", {}, onClick.bind(this, ids))
+      registerEvent(element, `mouseover`, markupNormalAndUnderFocus.markupUnderFocus, onMouseOver.bind(this, ids))
+      registerEvent(element, `mouseout`, markupNormalAndUnderFocus.markupNormal, onMouseOut.bind(this, ids))
+      registerEvent(element, `click`, {}, onClick.bind(this, ids))
   })
 }
 
