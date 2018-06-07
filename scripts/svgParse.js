@@ -4,7 +4,7 @@ const parseSvg = require('./svgParserModule.js')
 
 if (process.argv.length < 3) {
   process.stdout.write(`svgParse: no input files\n\n`)
-  process.stdout.write(`usage: node svgMetadataParser.js <source> \n\n`)
+  process.stdout.write(`usage: node svgParse <source> \n\n`)
   process.stdout.write(`Source can be a SVG file or a directory containing one or more SVG files.\n`)
   process.stdout.write(`If source is set to "-" input is read from stdin.\n`)
   process.exit(1)
