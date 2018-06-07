@@ -30,10 +30,6 @@ describe(`Anatomogram switcher`, () => {
     })
   })
 
-  test(`should contain img selectable by class "gxa-anatomogram-switcher-icon"`, () => {
-    expect(shallow(<Switcher {...requiredProps} species={`homo_sapiens`}/>).find(`.gxa-anatomogram-switcher-icon`)).toHaveLength(3)
-  })
-
   test(`should respond to onClick events with the anatomogram view`, () => {
     const onButtonClick = sinon.spy()
     const wrapper = shallow(<Switcher {...requiredProps} species={`homo_sapiens`} onChangeView={onButtonClick}/>)
