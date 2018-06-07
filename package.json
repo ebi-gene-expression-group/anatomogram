@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server -d",
     "parseSvgs": "node scripts/svgParse.js src/svg > src/json/svgsMetadata.json",
-    "prepublishOnly": "npm run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
     "dist": "npm run parseSvgs && NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
+    "prepack": "npm run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
     "pretest": "npm run parseSvgs",
     "testOnly": "npm run pretest && jest --coverage --verbose",
     "test": "npm run testOnly",
