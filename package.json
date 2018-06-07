@@ -9,8 +9,7 @@
     "dist": "npm run parseSvgs && NODE_ENV=production webpack --debug --optimize-minimize --output-pathinfo --display-chunks --display-modules",
     "prepack": "npm run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
     "pretest": "npm run parseSvgs",
-    "testOnly": "npm run pretest && jest --coverage --verbose",
-    "test": "npm run testOnly",
+    "test": "jest --coverage",
     "posttest": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "postversion": "npm publish",
     "postpublish": "git push && git push --tags"
