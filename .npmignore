@@ -1,6 +1,0 @@
-# Ignore everything
-*
-.*
-
-# But the build files...
-!lib/**
