@@ -4,8 +4,6 @@ import Enzyme from 'enzyme'
 import {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
-import sinon from 'sinon'
-
 import Switcher from '../src/Switcher'
 
 import svgsMetadata from '../src/json/svgsMetadata.json'
@@ -31,13 +29,13 @@ describe(`Anatomogram switcher`, () => {
   })
 
   test(`should respond to onClick events with the anatomogram view`, () => {
-    const onButtonClick = sinon.spy()
+    const onButtonClick = jest.fn()
     const wrapper = shallow(<Switcher {...requiredProps} species={`homo_sapiens`} onChangeView={onButtonClick}/>)
-    wrapper.find(`img`).first().simulate(`click`);
-    wrapper.find(`img`).last().simulate(`click`);
-    expect(onButtonClick.calledTwice).toBe(true);
-    expect(onButtonClick.calledWith(getAnatomogramViews(`homo_sapiens`)[0])).toBe(true);
-    expect(onButtonClick.calledWith(getAnatomogramViews(`homo_sapiens`)[2])).toBe(true);
+    wrapper.find(`img`).first().simulate(`click`)
+    wrapper.find(`img`).last().simulate(`click`)
+    expect(onButtonClick.mock.calls.length).toBe(2)
+    expect(onButtonClick.mock.calls[0][0]).toBe(getAnatomogramViews(`homo_sapiens`)[0])
+    expect(onButtonClick.mock.calls[1][0]).toBe(getAnatomogramViews(`homo_sapiens`)[2])
   })
 
   allSpecies.forEach((species) => {
