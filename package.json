@@ -30,11 +30,11 @@
     "url": "https://github.com/gxa/anatomogram.git"
   },
   "dependencies": {
-    "react-svg": "^2.2.10",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-svg": "^4.0.13",
     "recompose": "^0.27.1",
     "urijs": "^1.19.1"
   },

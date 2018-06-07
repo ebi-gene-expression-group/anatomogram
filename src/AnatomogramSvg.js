@@ -82,9 +82,9 @@ const AnatomogramSvg = (props) =>
   <div className={`gxa-anatomogram-svg-wrapper`}>
     <ReactSVG
       path={resolve(loadSvg(props.species, props.selectedView), props.atlasUrl).toString()}
-      callback={svgDomNode => { initialiseSvgElements(getSvgElementById(svgDomNode), props) }}
-      className={`gxa-anatomogram-svg`}
-      style={{paddingLeft: props.selectedView ? `10px` : ``}} />
+      onInjected={svgDomNode => { initialiseSvgElements(getSvgElementById(svgDomNode), props) }}
+      svgClassName={`gxa-anatomogram-svg`}
+      svgStyle={{paddingLeft: props.selectedView ? `10px` : ``}} />
   </div>
 
 AnatomogramSvg.propTypes = {
