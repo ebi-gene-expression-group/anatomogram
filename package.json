@@ -36,6 +36,7 @@
     "react-dom": "^16.4.0",
     "react-svg": "^4.0.13",
     "recompose": "^0.27.1",
+    "styled-components": "^3.3.2",
     "urijs": "^1.19.1"
   },
   "devDependencies": {
@@ -49,7 +50,6 @@
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "coveralls": "^3.0.1",
-    "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "fast-xml-parser": "^3.11.1",

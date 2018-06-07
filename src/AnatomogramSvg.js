@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactSVG from 'react-svg'
-
 import URI from 'urijs'
-
-import styles from './AnatomogramSvg.css'
+import styled from 'styled-components'
+import ReactSVG from 'react-svg'
 
 import {groupBy} from 'lodash'
 
@@ -76,16 +74,21 @@ const initialiseSvgElements = (getSvgElementById, {idsWithMarkup, onMouseOver,on
 const loadSvg = (species, selectedView) => require(`./svg/${species}${selectedView ? `.${selectedView}` : ``}.svg`)
 const resolve = (uri, baseUrl) => URI(uri).is(`absolute`) ? URI(uri) : URI(uri, baseUrl)
 
+const AnatomogramSvgWrapperDiv = styled.div`
+  display: inline-block;
+  vertical-align: top;
+  width: 90%;
+`
+
 // ReactSVG loads the SVG file asynchronously (hence the callback prop). We don’t use componentDidUpdate or
 // componentDidMount because they can’t guarantee that the SVG is already loaded when they’re run.
 const AnatomogramSvg = (props) =>
-  <div className={styles.svgWrapper}>
+  <AnatomogramSvgWrapperDiv>
     <ReactSVG
       path={resolve(loadSvg(props.species, props.selectedView), props.atlasUrl).toString()}
       onInjected={svgDomNode => { initialiseSvgElements(getSvgElementById(svgDomNode), props) }}
-      svgClassName={styles.svgImage}
-      svgStyle={{paddingLeft: props.selectedView ? `10px` : ``}} />
-  </div>
+      svgStyle={{width: `100%`, height: `auto`, paddingLeft: props.selectedView ? `10px` : ``}} />
+  </AnatomogramSvgWrapperDiv>
 
 AnatomogramSvg.propTypes = {
   atlasUrl: PropTypes.string.isRequired,

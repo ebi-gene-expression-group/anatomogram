@@ -45,19 +45,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          `style-loader`,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            }
-          }
-        ]
-      },
-      {
         test: /\.(jpe?g|png|gif)$/i,
         use: [
           {
