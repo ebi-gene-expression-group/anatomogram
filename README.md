@@ -71,7 +71,7 @@ wiki](https://github.com/gxa/anatomogram/wiki).
 ## Building
 To use the anatomogram in a browser you need to build and bundle the package:
 ```
-npm run dist -- --output-public-path <URL>
+npm run dist -- --output-public-path='<URL>'
 ```
 
 `<URL>` is the URL (absolute or relative) from which you’ll be serving the anatomogram. **Remember to append a final
