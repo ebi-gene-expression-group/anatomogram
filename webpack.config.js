@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require(`clean-webpack-plugin`)
 
 module.exports = {
   entry: {
-    demo: `./html/AnatomogramDemo.js`,
+    demo: `./html/AnatomogramDemo.js`
     // anatomogram: `./src/index.js`,
     // vendors: [`lodash`, `prop-types`, `react`, `react-dom`, `react-svg`, `recompose`, `urijs`]
   },
@@ -15,6 +15,8 @@ module.exports = {
   output: {
     library: `[name]`,
     filename: `[name].bundle.js`,
+    // Must match module.exports.serve.dev.publicPath or bad things may happen
+    publicPath: `/dist/`
   },
 
   optimization: {
@@ -42,19 +44,6 @@ module.exports = {
 
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: [
-          `style-loader`,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            }
-          }
-        ]
-      },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: [
