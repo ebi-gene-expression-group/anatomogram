@@ -1,30 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Anatomogram should render for a supported species 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Anatomogram
+<div>
+  <Switcher
     atlasUrl="https://www.ebi.ac.uk/gxa/"
-    species="tabula_muris"
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): false,
-  Symbol(enzyme.__nodes__): Array [
-    false,
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
+    onChangeView={[Function]}
+    selectedView="male"
+    species="mus_musculus"
+  />
+  <AnatomogramSvg
+    atlasUrl="https://www.ebi.ac.uk/gxa/"
+    idsWithMarkup={Array []}
+    onClick={[MockFunction]}
+    onInjectedCallback={[Function]}
+    onMouseOut={[MockFunction]}
+    onMouseOver={[MockFunction]}
+    selectedView="male"
+    species="mus_musculus"
+  />
+</div>
 `;

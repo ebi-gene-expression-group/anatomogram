@@ -85,9 +85,7 @@ const AnatomogramSvgWrapperDiv = styled.div`
 const AnatomogramSvg = (props) =>
   <AnatomogramSvgWrapperDiv>
     <ReactSVG
-      onInjected={(error, svgDomNode) => { 
-        console.log(error);
-        console.log(svgDomNode);
+      onInjected={(error, svgDomNode) => {
         if (error) {
           console.log(`ReactSVG Error: ${error}`);
         } else {

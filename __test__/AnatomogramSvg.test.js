@@ -1,9 +1,5 @@
 import React from 'react'
-import Enzyme from 'enzyme'
-import { shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-
-Enzyme.configure({ adapter: new Adapter() })
+import { mount, shallow } from 'enzyme'
 
 import AnatomogramSvg from '../src/AnatomogramSvg'
 
@@ -16,10 +12,10 @@ describe(`AnatomogramSvg`, () => {
         onClick={jest.fn()}
         onMouseOut={jest.fn()}
         onMouseOver={jest.fn()}
-        species={`tabula_muris`}
+        species={`mus_musculus`}
       />
     )).toMatchSnapshot();
-  })
+  });
 
   test(`should not render for an unsupported species`, () => {
     expect(
@@ -32,51 +28,20 @@ describe(`AnatomogramSvg`, () => {
         species={`ovis_aries`}
       />
     )).toMatchSnapshot();
-  })
+  });
 
-  describe('callbacks', () => {
-    it(`should call onClick`, () => {
-      const onClickSpy = jest.fn();
-      const wrapper = shallow(<AnatomogramSvg 
-        atlasUrl={''}
-        idsWithMarkup={[]}
-        onClick={onClickSpy}
-        onMouseOut={jest.fn()}
-        onMouseOver={jest.fn()}
-        species={`tabula_muris`}
-      />);
-
-      expect(wrapper).toMatchSnapshot();
-      // wrapper.find('svg').simulate('click');
-      // expect(onClickSpy).toHaveBeenCalledTimes(1);
-    })
-
-    it(`should call onMouseOut`, () => {
-      const onMouseOutSpy = jest.fn();
-      const wrapper = shallow(<AnatomogramSvg
-        atlasUrl={''}
-        idsWithMarkup={[]}
-        onClick={jest.fn()}
-        onMouseOut={onMouseOutSpy}
-        onMouseOver={jest.fn()}
-        species={`tabula_muris`}
-      />);
-    })
-
-    it(`should call onMouseOver`, () => {
-      const onMouseOverSpy = jest.fn();
-      const wrapper = shallow(<AnatomogramSvg
-        atlasUrl={''}
-        idsWithMarkup={[]}
-        onClick={jest.fn()}
-        onMouseOut={jest.fn()}
-        onMouseOver={onMouseOverSpy}
-        species={`tabula_muris`}
-      />);
-    })
-
-    
-
-    
-  })
-})
+  it(`should call onInjectedCallback when the svg is injected`, (done) => {
+    const onInjectedCallbackSpy = jest.fn(() => {
+      done();
+    });
+    mount(<AnatomogramSvg 
+      atlasUrl={'https://www.ebi.ac.uk/gxa/'}
+      idsWithMarkup={[]}
+      onClick={jest.fn()}
+      onInjectedCallback={onInjectedCallbackSpy}
+      onMouseOut={jest.fn()}
+      onMouseOver={jest.fn()}
+      species={`mus_musculus`}
+    />);
+  });
+});
