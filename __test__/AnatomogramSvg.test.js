@@ -14,8 +14,8 @@ describe(`AnatomogramSvg`, () => {
         onMouseOver={jest.fn()}
         species={`mus_musculus`}
       />
-    )).toMatchSnapshot();
-  });
+    )).toMatchSnapshot()
+  })
 
   test(`should not render for an unsupported species`, () => {
     expect(
@@ -27,21 +27,25 @@ describe(`AnatomogramSvg`, () => {
         onMouseOver={jest.fn()}
         species={`ovis_aries`}
       />
-    )).toMatchSnapshot();
-  });
+    )).toMatchSnapshot()
+  })
 
-  it(`should call onInjectedCallback when the svg is injected`, (done) => {
-    const onInjectedCallbackSpy = jest.fn(() => {
-      done();
-    });
+  test(`should call onInjectedCallback when the svg is injected`, (done) => {
+    // This is a neat feature of Jest for async code.
+    // If `done` is called, the test will pass, otherwise it fails - default timeout is 5000ms.
+    // https://jestjs.io/docs/en/asynchronous#callbacks
+    const onInjectedSpy = jest.fn(() => {
+      done()
+    })
+    
     mount(<AnatomogramSvg 
       atlasUrl={'https://www.ebi.ac.uk/gxa/'}
       idsWithMarkup={[]}
       onClick={jest.fn()}
-      onInjectedCallback={onInjectedCallbackSpy}
+      onInjected={onInjectedSpy}
       onMouseOut={jest.fn()}
       onMouseOver={jest.fn()}
       species={`mus_musculus`}
-    />);
-  });
-});
+    />)
+  })
+})

@@ -12,7 +12,7 @@ describe(`Anatomogram`, () => {
       onMouseOut={jest.fn()}
       onMouseOver={jest.fn()}
       species={`mus_musculus`}
-    />)).toMatchSnapshot();
+    />)).toMatchSnapshot()
   })
 
   test(`should not render for an unsupported species`, () => {
