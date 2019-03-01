@@ -55,6 +55,7 @@ For example code, have a look at [the demo component](https://github.com/gxa/ana
 | onMouseOver      | function |   `() => {}`   | Callback invoked when the mouse is hovered on a tissue               |
 | onMouseOut       | function |   `() => {}`   | Callback invoked when the mouse is hovered off a tissue              |
 | onClick          | function |   `() => {}`   | Callback invoked when a tissue is clicked                            |
+| onInjecte        | function |   `() => {}`   | Callback invoked when SVG is injected                                |
 
 For a list of available species and IDs have a look at
 [`src/json/svgsMetadata.json`](https://github.com/gxa/anatomogram/blob/master/src/json/svgsMetadata.json). The file is automatically generated every time the package is published.
@@ -104,7 +105,7 @@ adding new tissues or updating IDs in an existing anatomogram or adding a new SV
 Run `npm run parseSvgs` to parse the updated IDs. When you are finished run a local copy of the demo page:
 
 ```sh
-npx webpack-serve
+npx webpack-dev-server
 ```
 
 Go to `localhost:9000` and see that the tissues show up like you want them to.
