@@ -1,15 +1,11 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Enzyme from 'enzyme'
-import {mount} from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import { mount } from 'enzyme'
 
 import Switcher from '../src/Switcher'
 
 import svgsMetadata from '../src/json/svgsMetadata.json'
 import {getAnatomogramViews, getDefaultView} from '../src/Assets'
-
-Enzyme.configure({ adapter: new Adapter() })
 
 const unique = (value, index, self) => self.indexOf(value) === index
 const allSpecies = svgsMetadata
