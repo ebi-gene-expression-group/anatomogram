@@ -19,10 +19,14 @@ class Anatomogram extends React.Component {
     this.setState({ selectedView: anatomogramView })
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.species !== this.props.species) {
-      this.setState({ selectedView: getDefaultView(nextProps.species) })
+  static getDerivedStateFromProps(props, state) {
+    if (props.species !== state.species) {
+      return {
+        species: props.species,
+        selectedView: getDefaultView(props.species)
+      }
     }
+    return null
   }
 
   render() {
