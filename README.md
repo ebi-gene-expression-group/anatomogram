@@ -13,7 +13,8 @@ To install:
 `npm install --save anatomogram`
 
 You can use it as a React component:
-```
+
+```js
 import Anatomogram from 'anatomogram'
 
 ...
@@ -23,7 +24,8 @@ import Anatomogram from 'anatomogram'
 ```
 
 Alternatively, if you don’t use React we’re providing a convenience `render` method:
-```
+
+```js
 import {render} from 'anatomogram'
 
 ...
@@ -34,11 +36,7 @@ render(options, target)
 Where `options` are the props passed as an object, and `target` is an ID of the DOM element that will contain the
 anatomogram.
 
-For example code, have a look at [the demo
-component](https://github.com/gxa/anatomogram/blob/master/html/AnatomogramDemo.js) and how we use it in
-https://github.com/gxa/atlas-heatmap. If you want to see it in action, go to [an organism part experiment in
-Atlas](https://www.ebi.ac.uk/gxa/experiments/E-MTAB-513) or [a search that returns organism part
-experiments](https://www.ebi.ac.uk/gxa/search?geneQuery=[{%22value%22:%22zinc%20finger%22}]).
+For example code, have a look at [the demo component](https://github.com/gxa/anatomogram/blob/master/html/AnatomogramDemo.js) and how we use it in [our Expression Atlas Heatmap](https://github.com/gxa/atlas-heatmap). If you want to see it in action, go to [an organism part experiment in Atlas](https://www.ebi.ac.uk/gxa/experiments/E-MTAB-513) or [a search that returns organism part experiments](https://www.ebi.ac.uk/gxa/search?geneQuery=[{%22value%22:%22zinc%20finger%22}]).
 
 ## Props
 
@@ -59,8 +57,7 @@ experiments](https://www.ebi.ac.uk/gxa/search?geneQuery=[{%22value%22:%22zinc%20
 | onClick          | function |   `() => {}`   | Callback invoked when a tissue is clicked                            |
 
 For a list of available species and IDs have a look at
-[`src/json/svgsMetadata.json`](https://github.com/gxa/anatomogram/blob/master/src/json/svgsMetadata.json). The file is
-automatically generated every time the package is published.
+[`src/json/svgsMetadata.json`](https://github.com/gxa/anatomogram/blob/master/src/json/svgsMetadata.json). The file is automatically generated every time the package is published.
 
 All three callbacks take a single string argument, the ID of the tissue affected by the mouse event.
 
@@ -69,8 +66,10 @@ The state of a tissue is either not shown, shown, highlighted or selected. On `m
 wiki](https://github.com/gxa/anatomogram/wiki).
 
 ## Building
+
 To use the anatomogram in a browser you need to build and bundle the package:
-```
+
+```js
 npm run dist -- --output-public-path='<URL>'
 ```
 
@@ -81,7 +80,8 @@ about this option in [Webpack’s documentation site](https://webpack.js.org/con
 After building, deployment of `anatomogramDemo.bundle.js` is optional, only if you want to host the demo component.
 
 Include the following in your HTML:
-```
+
+```html
 <script src="<URL>/vendorCommons.bundle.js"></script>
 <script src="<URL>/anatomogram.bundle.js"></script>
 
@@ -91,6 +91,7 @@ anatomogram.render(options, target)
 ```
 
 ### Building for a particular species
+
 You can take out all the unnecessary SVGs and PNGs and change
 [`Anatomogram.defaultProps.species`](https://github.com/gxa/anatomogram/blob/master/src/Anatomogram.js#L56) to any of
 the supported species. You can see an example in [the `mouse` branch](https://github.com/gxa/anatomogram/tree/mouse).
@@ -101,7 +102,8 @@ Read carefully [our authoring guidelines](https://github.com/gxa/anatomogram/blo
 adding new tissues or updating IDs in an existing anatomogram or adding a new SVG.
 
 Run `npm run parseSvgs` to parse the updated IDs. When you are finished run a local copy of the demo page:
-```
+
+```sh
 npx webpack-serve
 ```
 

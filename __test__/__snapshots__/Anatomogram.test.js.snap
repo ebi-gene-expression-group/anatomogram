@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Anatomogram should render for a supported species 1`] = `
+<div>
+  <Switcher
+    atlasUrl="https://www.ebi.ac.uk/gxa/"
+    onChangeView={[Function]}
+    selectedView="male"
+    species="mus_musculus"
+  />
+  <AnatomogramSvg
+    atlasUrl="https://www.ebi.ac.uk/gxa/"
+    idsWithMarkup={Array []}
+    onClick={[MockFunction]}
+    onInjected={[Function]}
+    onMouseOut={[MockFunction]}
+    onMouseOver={[MockFunction]}
+    selectedView="male"
+    species="mus_musculus"
+  />
+</div>
+`;

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnatomogramSvg should not render for an unsupported species 1`] = `
+<styled.div>
+  <ReactSVG
+    evalScripts="never"
+    fallback={null}
+    loading={null}
+    onInjected={[Function]}
+    renumerateIRIElements={true}
+    src="test-file-stub.svg"
+    svgClassName={null}
+    svgStyle={
+      Object {
+        "height": "auto",
+        "paddingLeft": "",
+        "width": "100%",
+      }
+    }
+    wrapper="div"
+  />
+</styled.div>
+`;
+
+exports[`AnatomogramSvg should render for a supported species 1`] = `
+<styled.div>
+  <ReactSVG
+    evalScripts="never"
+    fallback={null}
+    loading={null}
+    onInjected={[Function]}
+    renumerateIRIElements={true}
+    src="test-file-stub.svg"
+    svgClassName={null}
+    svgStyle={
+      Object {
+        "height": "auto",
+        "paddingLeft": "",
+        "width": "100%",
+      }
+    }
+    wrapper="div"
+  />
+</styled.div>
+`;

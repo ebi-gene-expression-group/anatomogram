@@ -1,6 +1,6 @@
 {
   "name": "anatomogram",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Anatomogram component for Expression Atlas heatmap",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -18,11 +18,14 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+    },
+    "setupTestFrameworkScriptFile": "jest-enzyme",
+    "testEnvironment": "enzyme"
   },
   "author": "Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
   "contributors": [
-    "Wojciech Bazant <wbazant@ebi.ac.uk>"
+    "Wojciech Bazant <wbazant@ebi.ac.uk>",
+    "Andrew Diamantoukos <andrewd@jimmy.harvard.edu"
   ],
   "license": "Apache-2.0",
   "repository": {
@@ -34,7 +37,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-svg": "^4.0.13",
+    "react-svg": "^7.2.2",
     "recompose": "^0.27.1",
     "styled-components": "^3.3.2",
     "urijs": "^1.19.1"
@@ -43,20 +46,22 @@
     "ajv": "^6.5.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-jest": "^23.0.1",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "coveralls": "^3.0.1",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "fast-xml-parser": "^3.11.1",
-    "file-loader": "^1.1.11",
-    "image-webpack-loader": "^4.3.0",
-    "jest": "^23.1.0",
-    "react-test-renderer": "^16.4.0",
+    "file-loader": "^3.0.1",
+    "image-webpack-loader": "^4.6.0",
+    "jest": "^23.6.0",
+    "jest-environment-enzyme": "^7.0.1",
+    "jest-enzyme": "^7.0.1",
+    "react-test-renderer": "^16.7.0",
     "webpack": "^4.11.1",
     "webpack-command": "^0.2.1",
     "webpack-serve": "^1.0.2"

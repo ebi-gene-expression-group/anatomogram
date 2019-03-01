@@ -25,12 +25,12 @@ exports[`Anatomogram switcher matches snapshot for brachypodium_distachyon 1`] =
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
 </div>
 `;
@@ -48,17 +48,17 @@ exports[`Anatomogram switcher matches snapshot for homo_sapiens 1`] = `
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
 </div>
 `;
@@ -70,12 +70,12 @@ exports[`Anatomogram switcher matches snapshot for hordeum_vulgare 1`] = `
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
 </div>
 `;
@@ -99,17 +99,17 @@ exports[`Anatomogram switcher matches snapshot for mus_musculus 1`] = `
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
 </div>
 `;
@@ -121,12 +121,12 @@ exports[`Anatomogram switcher matches snapshot for oryza_sativa 1`] = `
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
 </div>
 `;
@@ -150,12 +150,12 @@ exports[`Anatomogram switcher matches snapshot for solanum_lycopersicum 1`] = `
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
 </div>
 `;
@@ -173,12 +173,12 @@ exports[`Anatomogram switcher matches snapshot for sorghum_bicolor 1`] = `
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
 </div>
 `;
@@ -196,12 +196,12 @@ exports[`Anatomogram switcher matches snapshot for triticum_aestivum 1`] = `
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
 </div>
 `;
@@ -219,12 +219,12 @@ exports[`Anatomogram switcher matches snapshot for zea_mays 1`] = `
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
   <img
     className="sc-bwzfXH fKEuao"
     onClick={[Function]}
-    src="https://www.ebi.ac.uk/gxa/test-file-stub"
+    src="https://www.ebi.ac.uk/gxa/test-file-stub.svg"
   />
 </div>
 `;

@@ -85,8 +85,15 @@ const AnatomogramSvgWrapperDiv = styled.div`
 const AnatomogramSvg = (props) =>
   <AnatomogramSvgWrapperDiv>
     <ReactSVG
-      path={resolve(loadSvg(props.species, props.selectedView), props.atlasUrl).toString()}
-      onInjected={svgDomNode => { initialiseSvgElements(getSvgElementById(svgDomNode), props) }}
+      onInjected={(error, svgDomNode) => {
+        if (error) {
+          console.log(`ReactSVG Error: ${error}`)
+        } else {
+          initialiseSvgElements(getSvgElementById(svgDomNode), props)
+        }
+        props.onInjected(error, svgDomNode)
+      }}
+      src={resolve(loadSvg(props.species, props.selectedView), props.atlasUrl).toString()}
       svgStyle={{width: `100%`, height: `auto`, paddingLeft: props.selectedView ? `10px` : ``}} />
   </AnatomogramSvgWrapperDiv>
 
@@ -101,7 +108,12 @@ AnatomogramSvg.propTypes = {
   })).isRequired,
   onMouseOver: PropTypes.func.isRequired,
   onMouseOut: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  onInjected: PropTypes.func.isRequired,
+}
+
+AnatomogramSvg.defaultProps = {
+  onInjected: (error, svgDomNode) => {},
 }
 
 export default AnatomogramSvg
