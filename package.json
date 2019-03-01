@@ -1,6 +1,6 @@
 {
   "name": "anatomogram",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Anatomogram component for Expression Atlas heatmap",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -19,7 +19,9 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     },
-    "setupFilesAfterEnv": [ "jest-enzyme" ],
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
     "testEnvironment": "enzyme"
   },
   "author": "Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
