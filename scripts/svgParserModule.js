@@ -1,5 +1,5 @@
-const fs = require('fs')
-const fastXmlParser = require('fast-xml-parser')
+const fs = require(`fs`)
+const fastXmlParser = require(`fast-xml-parser`)
 
 module.exports = (svgData) => {
   if (fastXmlParser.validate(svgData) !== true) {
@@ -37,8 +37,8 @@ module.exports = (svgData) => {
     const shapeTypes = Object.keys(efoLayerGroup).filter((node) => !node.startsWith(attrPrefix) && node !== `#text`)
 
     return shapeTypes.reduce((acc, shapeType) => {
-        const shapes = Array.isArray(efoLayerGroup[shapeType]) ? efoLayerGroup[shapeType] : [efoLayerGroup[shapeType]]
-        return acc.concat(shapes.map((shape) => shape[`${attrPrefix}id`]))
-      }, [])
+      const shapes = Array.isArray(efoLayerGroup[shapeType]) ? efoLayerGroup[shapeType] : [efoLayerGroup[shapeType]]
+      return acc.concat(shapes.map((shape) => shape[`${attrPrefix}id`]))
+    }, [])
   }
 }

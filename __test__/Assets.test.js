@@ -1,4 +1,4 @@
-import {getAnatomogramViews, getDefaultView, supportedSpecies} from '../src/Assets'
+import { getAnatomogramViews, getDefaultView, supportedSpecies } from '../src/Assets'
 import fs from 'fs'
 import path from 'path'
 

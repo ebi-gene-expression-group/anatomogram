@@ -6,28 +6,28 @@ import AnatomogramSvg from '../src/AnatomogramSvg'
 describe(`AnatomogramSvg`, () => {
   test(`should render for a supported species`, () => {
     expect(
-      shallow(<AnatomogramSvg 
-        atlasUrl={''}
+      shallow(<AnatomogramSvg
+        atlasUrl={``}
         idsWithMarkup={[]}
         onClick={jest.fn()}
         onMouseOut={jest.fn()}
         onMouseOver={jest.fn()}
         species={`mus_musculus`}
-      />
-    )).toMatchSnapshot()
+      />)
+    ).toMatchSnapshot()
   })
 
   test(`should not render for an unsupported species`, () => {
     expect(
-      shallow(<AnatomogramSvg 
-        atlasUrl={''}
+      shallow(<AnatomogramSvg
+        atlasUrl={``}
         idsWithMarkup={[]}
         onClick={jest.fn()}
         onMouseOut={jest.fn()}
         onMouseOver={jest.fn()}
         species={`ovis_aries`}
-      />
-    )).toMatchSnapshot()
+      />)
+    ).toMatchSnapshot()
   })
 
   test(`should call onInjected when the svg is injected`, (done) => {
@@ -37,9 +37,9 @@ describe(`AnatomogramSvg`, () => {
     const onInjectedSpy = jest.fn(() => {
       done()
     })
-    
-    mount(<AnatomogramSvg 
-      atlasUrl={'https://www.ebi.ac.uk/gxa/'}
+
+    mount(<AnatomogramSvg
+      atlasUrl={`https://www.ebi.ac.uk/gxa/`}
       idsWithMarkup={[]}
       onClick={jest.fn()}
       onInjected={onInjectedSpy}

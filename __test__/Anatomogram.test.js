@@ -16,7 +16,7 @@ describe(`Anatomogram`, () => {
   })
 
   test(`should not render for an unsupported species`, () => {
-    expect(shallow(<Anatomogram atlasUrl={''} species={`ovis_aries`} />).children()).toHaveLength(0)
+    expect(shallow(<Anatomogram atlasUrl={``} species={`ovis_aries`} />).children()).toHaveLength(0)
   })
 
 })

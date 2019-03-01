@@ -1,6 +1,6 @@
-const fs = require('fs')
-const path = require('path')
-const parseSvg = require('./svgParserModule.js')
+const fs = require(`fs`)
+const path = require(`path`)
+const parseSvg = require(`./svgParserModule.js`)
 
 if (process.argv.length < 3) {
   process.stdout.write(`svgParse: no input files\n\n`)
@@ -33,7 +33,7 @@ else {
   const inPathStats = fs.lstatSync(process.argv[2])
 
   if (inPathStats.isFile()) {
-     process.stdout.write(JSON.stringify(parseSvgFile(process.argv[2]), null, 2))
+    process.stdout.write(JSON.stringify(parseSvgFile(process.argv[2]), null, 2))
 
   } else if (inPathStats.isDirectory()) {
     process.stdout.write(

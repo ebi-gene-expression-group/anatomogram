@@ -33,9 +33,10 @@ const IconImg = styled.img`
 const Switcher = ({atlasUrl, species, selectedView, onChangeView}) =>
   <IconWrapperDiv>
     {getAnatomogramViews(species).map((view) =>
-      <IconImg key={view}
-               onClick={() => onChangeView(view)}
-               src={resolve(loadIcon(view, selectedView), atlasUrl).toString()} />
+      <IconImg
+        key={view}
+        onClick={() => onChangeView(view)}
+        src={resolve(loadIcon(view, selectedView), atlasUrl).toString()} />
     )}
   </IconWrapperDiv>
 

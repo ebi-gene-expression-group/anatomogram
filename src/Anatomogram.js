@@ -45,6 +45,7 @@ class Anatomogram extends React.Component {
 }
 
 Anatomogram.propTypes = {
+  atlasUrl: PropTypes.string,
   species: PropTypes.string.isRequired
 }
 

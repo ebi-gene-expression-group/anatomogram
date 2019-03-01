@@ -41,23 +41,23 @@ const getSvgElementById = (svgDomNode) => {
 const paintSvgElement = (element, elementMarkup) => element && elementMarkup && Object.assign(element.style, elementMarkup)
 
 const registerEvent = (element, eventType, elementMarkup, callback) => {
-    element && element.addEventListener(eventType, () => {
-        paintSvgElement(element, elementMarkup)
-        callback()
-    })
+  element && element.addEventListener(eventType, () => {
+    paintSvgElement(element, elementMarkup)
+    callback()
+  })
 }
 
 
 const initialiseSvgElements = (getSvgElementById, {idsWithMarkup, onMouseOver,onMouseOut,onClick}) => {
   //More than one id can correspond to an element - see the svg "use" elements
   groupIntoPairs(
-      idsWithMarkup
-        .map(e=>e.id)
-        .filter((e,ix,self)=> self.indexOf(e) == ix)
-        .map(id => [getSvgElementById(id),id]),
-      `[0].id`
+    idsWithMarkup
+      .map(e=>e.id)
+      .filter((e,ix,self)=> self.indexOf(e) === ix)
+      .map(id => [getSvgElementById(id),id]),
+    `[0].id`
   )
-  .forEach(a => {
+    .forEach(a => {
       const element = a[1][0][0]
       const ids = a[1].map(t => t[1])
       //Given an element and its ids, we take the first element of the idsWithMarkup array that is one of the ids
@@ -68,7 +68,7 @@ const initialiseSvgElements = (getSvgElementById, {idsWithMarkup, onMouseOver,on
       registerEvent(element, `mouseover`, markupNormalAndUnderFocus.markupUnderFocus, onMouseOver.bind(this, ids))
       registerEvent(element, `mouseout`, markupNormalAndUnderFocus.markupNormal, onMouseOut.bind(this, ids))
       registerEvent(element, `click`, {}, onClick.bind(this, ids))
-  })
+    })
 }
 
 const loadSvg = (species, selectedView) => require(`./svg/${species}${selectedView ? `.${selectedView}` : ``}.svg`)
@@ -102,9 +102,9 @@ AnatomogramSvg.propTypes = {
   species: PropTypes.string.isRequired,
   selectedView: PropTypes.string,
   idsWithMarkup: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      markupNormal: PropTypes.object.isRequired,
-      markupUnderFocus: PropTypes.object.isRequired
+    id: PropTypes.string.isRequired,
+    markupNormal: PropTypes.object.isRequired,
+    markupUnderFocus: PropTypes.object.isRequired
   })).isRequired,
   onMouseOver: PropTypes.func.isRequired,
   onMouseOut: PropTypes.func.isRequired,
