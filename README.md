@@ -55,7 +55,7 @@ For example code, have a look at [the demo component](https://github.com/gxa/ana
 | onMouseOver      | function |   `() => {}`   | Callback invoked when the mouse is hovered on a tissue               |
 | onMouseOut       | function |   `() => {}`   | Callback invoked when the mouse is hovered off a tissue              |
 | onClick          | function |   `() => {}`   | Callback invoked when a tissue is clicked                            |
-| onInjecte        | function |   `() => {}`   | Callback invoked when SVG is injected                                |
+| onInjected       | function |   `() => {}`   | Callback invoked when SVG is injected                                |
 
 For a list of available species and IDs have a look at
 [`src/json/svgsMetadata.json`](https://github.com/gxa/anatomogram/blob/master/src/json/svgsMetadata.json). The file is automatically generated every time the package is published.
