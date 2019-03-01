@@ -1,0 +1,6 @@
+serve.config.js
+webpack.config.js
+coverage/
+__mocks__/
+lib/
+dist/
