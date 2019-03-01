@@ -30,7 +30,7 @@ describe(`AnatomogramSvg`, () => {
     )).toMatchSnapshot()
   })
 
-  test(`should call onInjectedCallback when the svg is injected`, (done) => {
+  test(`should call onInjected when the svg is injected`, (done) => {
     // This is a neat feature of Jest for async code.
     // If `done` is called, the test will pass, otherwise it fails - default timeout is 5000ms.
     // https://jestjs.io/docs/en/asynchronous#callbacks
