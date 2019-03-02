@@ -109,3 +109,9 @@ npx webpack-dev-server
 ```
 
 Go to `localhost:9000` and see that the tissues show up like you want them to.
+
+# Licence
+
+Code is distributed under the [Apache License version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
+All images, anatomograms and switcher icons, are distributed under the [Creative Commons Attribution 4.0 International
+license](https://creativecommons.org/licenses/by/4.0/).
