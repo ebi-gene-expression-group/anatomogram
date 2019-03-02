@@ -74,9 +74,10 @@ To use the anatomogram in a browser you need to build and bundle the package:
 npm run dist -- --output-public-path='<URL>'
 ```
 
-`<URL>` is the URL (absolute or relative) from which you’ll be serving the anatomogram. **Remember to append a final
-slash!** This is required so that the code knows where to look for static assets (i.e. SVGs and PNGs). You can read more
-about this option in [Webpack’s documentation site](https://webpack.js.org/configuration/output/#output-publicpath).
+`<URL>` is the URL (absolute or relative) from which you’ll be serving the anatomogram (e.g. `/anatomogram/dist/` for
+the `gh-pages` branch we use to build the demo page). **Remember to append a final slash!** This is required so that
+the code knows where to look for static assets (i.e. SVGs and PNGs). You can read more about this option in [Webpack’s
+documentation site](https://webpack.js.org/configuration/output/#output-publicpath).
 
 After building, deployment of `anatomogramDemo.bundle.js` is optional, only if you want to host the demo component.
 
