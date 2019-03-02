@@ -136,7 +136,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/anatomogram/";
+/******/ 	__webpack_require__.p = "/anatomogram/dist/";
 /******/
 /******/ 	var jsonpArray = window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || [];
 /******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
