@@ -70,7 +70,7 @@ wiki](https://github.com/gxa/anatomogram/wiki).
 
 To use the anatomogram in a browser you need to build and bundle the package:
 
-```js
+```sh
 npm run dist -- --output-public-path='<URL>'
 ```
 
@@ -83,7 +83,7 @@ After building, deployment of `anatomogramDemo.bundle.js` is optional, only if y
 Include the following in your HTML:
 
 ```html
-<script src="<URL>/vendorCommons.bundle.js"></script>
+<script src="<URL>/vendors.bundle.js"></script>
 <script src="<URL>/anatomogram.bundle.js"></script>
 
 <script>
