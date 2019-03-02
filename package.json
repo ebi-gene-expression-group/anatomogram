@@ -7,7 +7,7 @@
   "scripts": {
     "parseSvgs": "node scripts/svgParse.js src/svg > src/json/svgsMetadata.json",
     "prepack": "npm run parseSvgs && rm -rf lib && babel src -d lib --copy-files",
-    "dist": "npm run parseSvgs && webpack --run-prod",
+    "dist": "npm run parseSvgs && webpack -p",
     "pretest": "npm run parseSvgs",
     "test": "jest --coverage",
     "posttest": "jest --coverage --coverageReporters=text-lcov | coveralls",
