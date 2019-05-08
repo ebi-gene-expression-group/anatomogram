@@ -1,6 +1,6 @@
 {
   "name": "anatomogram",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Anatomogram component for Expression Atlas heatmap",
   "main": "lib/index.js",
   "sideEffects": false,
