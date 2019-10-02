@@ -1,5 +1,5 @@
 {
-  "name": "anatomogram",
+  "name": "@ebi-gene-expression-group/anatomogram",
   "version": "2.1.2",
   "description": "Anatomogram component for Expression Atlas heatmap",
   "main": "lib/index.js",
@@ -32,7 +32,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gxa/anatomogram.git"
+    "url": "git+https://github.com/gxa/anatomogram.git"
   },
   "dependencies": {
     "lodash": "^4.17.11",
@@ -67,5 +67,12 @@
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.3.1"
+  },
+  "bugs": {
+    "url": "https://github.com/gxa/anatomogram/issues"
+  },
+  "homepage": "https://github.com/gxa/anatomogram#readme",
+  "directories": {
+    "lib": "lib"
   }
 }
