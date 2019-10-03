@@ -10,12 +10,14 @@ The ontology IDs are sourced from [Uberon](www.uberon.org), [EFO](www.ebi.ac.uk/
 Ontology](www.plantontology.org/).
 
 To install:
-`npm install --save anatomogram`
+```bash
+npm install --save @ebi-gene-expression-group/anatomogram
+```
 
 You can use it as a React component:
 
 ```js
-import Anatomogram from 'anatomogram'
+import Anatomogram from '@ebi-gene-expression-group/anatomogram'
 
 ...
 
@@ -26,7 +28,7 @@ import Anatomogram from 'anatomogram'
 Alternatively, if you don’t use React we’re providing a convenience `render` method:
 
 ```js
-import {render} from 'anatomogram'
+import {render} from '@ebi-gene-expression-group/anatomogram'
 
 ...
 
@@ -116,3 +118,4 @@ Go to `localhost:9000` and see that the tissues show up like you want them to.
 Code is distributed under the [Apache License version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
 All images, anatomograms and switcher icons, are distributed under the [Creative Commons Attribution 4.0 International
 license](https://creativecommons.org/licenses/by/4.0/).
+
