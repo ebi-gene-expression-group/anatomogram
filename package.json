@@ -1,6 +1,6 @@
 {
   "name": "@ebi-gene-expression-group/anatomogram",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Anatomogram component for Expression Atlas heatmap",
   "main": "lib/index.js",
   "sideEffects": false,
