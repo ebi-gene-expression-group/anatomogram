@@ -57,7 +57,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.7.2",
-    "fast-xml-parser": "^3.15.1",
+    "fast-xml-parser": "^3.14.0",
     "file-loader": "^4.2.0",
     "image-webpack-loader": "^6.0.0",
     "jest": "^24.9.0",
